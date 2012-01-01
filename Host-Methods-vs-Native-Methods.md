@@ -74,18 +74,18 @@ function isHostMethod(object, property) {
 
 So lets take a quick re-cap of what’s going on here:
 
-* ‘function’
+* `function`:
 	Most browsers typeof operator will result with ‘function’ when passed a callable host object
 
-* ‘object’ && !!object[property]
+* `object’ && !!object[property`:
 	In older versions of IE (less than 9) it implements some of its host objects not as Native functions but as ActiveX objects (admittedly this is deep browser implementation talk and normally you don’t need to know this stuff, but in this instance it’s important to understand what the heck is going on with IE + this will be very important when it comes to the following bullet-point and the ‘unknown’ result). 
 
 	Because some objects are actually ActiveX objects it means that those callable host objects have a typeof result of ‘unknown’ and those which are non-ActiveX objects have a typeof result of ‘object’ (so that’s why we’re checking for ‘object’). ON TOP OF THAT… remember that in the ECMAScript 3 specification it allows a Host environment typeof call to result in anything the host wants, so you’ll see in some browsers that the ‘null’ value has a typeof result of ‘object’ (which means a false positive for our conditional checks)! So that’s why in the second half of the check we’re converting the object[property] into a boolean (using the double exclamation mark operators !!) as this will convert a potential null value into false and so the check will fail, unless of course the value is ‘object’ which if so it will be converted to true and pass.
 
-* ‘unknown’
+* `unknown`:
 	So, here comes that IE ActiveX object nonsense again. Any callable objects that are ActiveX objects will have a typeof result of ‘unknown’ - hence why we have this check here
 
-* ‘string’
+* `string`:
 	Lastly, this is something I added myself as I discovered that checking for the outerHTML method that it actually was returning ‘string’ instead of ‘object’ or ‘function’ - which just goes to show how flawed host object detection is
 	
 When is it OK to modify them?
