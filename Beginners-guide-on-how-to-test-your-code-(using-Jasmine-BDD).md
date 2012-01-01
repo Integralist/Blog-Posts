@@ -66,10 +66,10 @@ The set-up is as follows:
 * Then include your own ‘my-tests.js’
 * After that have an inline script which executes the Jasmine test runner…
 	
-	```js
-	jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
-	jasmine.getEnv().execute();
-	```
+```js
+jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+jasmine.getEnv().execute();
+```
 
 Within your own ‘my-tests.js’ file is where you’ll write your unit-tests.
 
