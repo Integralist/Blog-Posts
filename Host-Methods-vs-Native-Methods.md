@@ -75,7 +75,7 @@ function isHostMethod(object, property) {
 So lets take a quick re-cap of what’s going on here:
 
 * `function`:
-	Most browsers typeof operator will result with ‘function’ when passed a callable host object
+	For most browsers the `typeof` operator will result with ‘function’ when passed a callable host object
 
 * `object’ && !!object[property`:
 	In older versions of IE (less than 9) it implements some of its host objects not as Native functions but as ActiveX objects (admittedly this is deep browser implementation talk and normally you don’t need to know this stuff, but in this instance it’s important to understand what the heck is going on with IE + this will be very important when it comes to the following bullet-point and the ‘unknown’ result). 
