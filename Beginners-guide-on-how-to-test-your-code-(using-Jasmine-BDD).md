@@ -65,6 +65,7 @@ The set-up is as follows:
 * Then include your own JavaScript code ‘my-cool-library.js’
 * Then include your own ‘my-tests.js’
 * After that have an inline script which executes the Jasmine test runner…
+	
 	```js
 	jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
 	jasmine.getEnv().execute();
