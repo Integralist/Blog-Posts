@@ -65,11 +65,10 @@ The set-up is as follows:
 * Then include your own JavaScript code ‘my-cool-library.js’
 * Then include your own ‘my-tests.js’
 * After that have an inline script which executes the Jasmine test runner…
-
-```js
-jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
-jasmine.getEnv().execute();
-```
+	```js
+	jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+	jasmine.getEnv().execute();
+	```
 
 Within your own ‘my-tests.js’ file is where you’ll write your unit-tests.
 
@@ -137,12 +136,15 @@ describe('CSS tests', function() {
 
 …so a few things you’ll notice:
 
-* We’ve grouped all our tests related to the CSS part of our code using Jasmine’s `describe('test suite name', function(){ /* tests */ });`
-* We’re using a setUp method (which Jasmine calls ‘beforeEach’) to run some code to reset the class names before each test run (so we start from a clean slate for each test) - there is also a corresponding tearDown method which Jasmine calls ‘afterEach’ (see documentation)
+* We’ve grouped all our tests related to the CSS part of our code using Jasmine’s 
+	```js
+	describe('test suite name', function(){ /* tests */ });
+	```
+* We’re using a setUp method (which Jasmine calls `beforeEach`) to run some code to reset the class names before each test run (so we start from a clean slate for each test) - there is also a corresponding tearDown method which Jasmine calls `afterEach` (see documentation)
 * Each test is represented by `it('expectation of this test', function(){ /* assertions */ });`
 * The assertions are handled by Jasmine’s `expect(expressions).matcher`
 
-The assertions method ‘expect’ takes an expression (e.g. some code to execute) and then the result of that code is passed to the ‘matcher’. Our tests consisted of a few matchers such as:
+The assertions method `expect` takes an expression (e.g. some code to execute) and then the result of that code is passed to the *matcher*. Our tests consisted of a few matchers such as:
 
 * `toEqual()`
 * `toBe()`
@@ -189,15 +191,15 @@ it('should add class to element', function() {
 
 …as you can see the test starts by describing what is expected of it. In this case it should add a class to the specified element.
 
-Within the execution of the test itself we can see that we’re executing the css.add() method and telling it to add the class ‘newclass’ to the element ‘header’ (which as you can see in the full code above was an element with an id of ‘my-header’ stored in the variable ‘header’).
+Within the execution of the test itself we can see that we’re executing the `css.add()` method and telling it to add the class `newclass` to the element `header` (which as you can see in the full code above was an element with an id of `my-header` stored in the variable `header`).
 
-After that code has executed we’re expecting the header element’s className value to be ‘myclassa myclassb newclass’.
+After that code has executed we’re expecting the header element’s className value to be `myclassa myclassb newclass`.
 
-If we were to run the test-runner.html file we should see all tests pass (this is demonstrated by the green bar and the message of ‘4 specs, 0 failure’).
+If we were to run the test-runner.html file we should see all tests pass (this is demonstrated by the green bar and the message of `4 specs, 0 failure`).
 
-To see the test suite fail then just amend one of the tests slightly to cause it to fail. For example in the above example we looked at change it to: toBe(‘x myclassa myclassb newclass’) and this will cause the test to fail because obviously the list of class names on the header element is not going to include the class name ‘x’ at the start.
+To see the test suite fail then just amend one of the tests slightly to cause it to fail. For example in the above example we looked at change it to: `toBe(‘x myclassa myclassb newclass’)` and this will cause the test to fail because obviously the list of class names on the header element is not going to include the class name ‘x’ at the start.
 
-When you run the test-runner.html’ file now (remember that now one of the tests will fail) you’ll see that instead of a nice clean green bar to highlight success you see a red bar and a drill down into the issue. If you do as I suggested above to cause the test to fail you’ll notice now Jasmine highlights exactly what the problem is to you…
+Now when you run the test-runner.html file (remembering that now one of the tests will fail) you’ll see that instead of a nice clean green bar to highlight success you see a red bar and a drill down into the issue. If you do as I suggested above to cause the test to fail you’ll notice now Jasmine highlights exactly what the problem is to you…
 
 [http://cl.ly/1z3b1g3U1z0e2r2U2c2H](See screenshot image)
 
