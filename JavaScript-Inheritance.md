@@ -1,7 +1,7 @@
 JavaScript Inheritance
 ======================
 
-[Class based inheritance](http://en.wikipedia.org/wiki/Class_(object-oriented_programming) ) doesn’t exist in JavaScript. You can replicate its syntax but you’re better off learning how JavaScript implements its own form of inheritance (it’s much more efficient and easier to maintain code shared amongst other JavaScript developers).
+[Class based inheritance](http://en.wikipedia.org/wiki/Class_(object-oriented_programming\)) doesn’t exist in JavaScript. You can replicate its syntax but you’re better off learning how JavaScript implements its own form of inheritance (it’s much more efficient and easier to maintain code shared amongst other JavaScript developers).
 
 The basic premise is this: JavaScript functions created using the `new` keyword work in a similar way to what Class based languages know as ‘Constructors’. When a function uses the `new` keyword the Function object is given a `prototype` property which points (initially) to an empty object. This empty object can then have methods and properties added to it which will be available to all other objects that point their own prototype link to it. A basic example is as follows…
 
