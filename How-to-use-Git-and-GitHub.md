@@ -359,7 +359,7 @@ The following command only works after looking at a tag:
 
 e.g. my_first_tag-1-gd8a7d27*
 
-Tell Git to ignoYou can use a # as a comment line and then specify the types of files or specific files to be ignored, such as:re certain files and formats
+Tell Git to ignore certain files and formats
 --------------------------------------------
 
 `.gitignore` is a file that you can create to hold rules about what items Git should ignore.
