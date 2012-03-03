@@ -75,16 +75,14 @@ function isHostMethod(object, property) {
 So lets take a quick re-cap of what’s going on here:
 
 * `function`:  
-	For most browsers the `typeof` operator will result with ‘function’ when passed a callable host object
+	For most browsers the `typeof` operator will result with `function` when passed a callable host object
 
-* `object’ && !!object[property]`:  
-	Because we're dealing with host objects we can't expect `function` to be returned, and in most cases (as far as ES3 implementations are concerned) the result will normally be `object` which is incorrect but allowed as far as ES3 spec is concerned.
+* `'object’ && !!object[property]`:  
+	Because we're dealing with host objects we can't expect `function` to be returned, and in most cases (as far as ECMAScript 3 [ES3] implementations are concerned) the result will normally be `object` which is incorrect but allowed as far as the ES3 spec is concerned.
 	
 	So first of all we check for `object`.
 	
-	If that matches we then check to make sure the property coerces to true. The reason for this is that ES3 allows the host to return whatever they like, so if the property you're checking for is actually `null` the ES3 implementation `typeof` result will still be `object` for most browsers! So to work around this issue we coerce the result into a boolean (so if `null` is the result it will coerce to false and thus this whole expression will return false otherwise it'll return true).
-
-	So, because some objects are actually ActiveX objects it means that those callable host objects properties have a typeof result of ‘unknown’ and those which are non-ActiveX objects, their properties have a typeof result of ‘object’ (so that’s why we’re checking for ‘object’). ON TOP OF THAT… remember that in the ECMAScript 3 specification it allows a Host environment typeof call to result in anything the host wants, so you’ll see in some browsers that the ‘null’ value has a typeof result of ‘object’ (which means a false positive for our conditional checks)! So that’s why in the second half of the check we’re converting the object[property] into a boolean (using the double exclamation mark operators !!) as this will convert a potential null value into false and so the check will fail, unless of course the value is ‘object’ which if so it will be converted to true and pass.
+	If that matches we then check to make sure the property coerces to true. The reason for this is that ES3 allows the host to return whatever they like, so if the property you're checking for is actually `null` the ES3 `typeof` result (for most browsers) will still be `object` even though the result is `null`! So to work around this issue we coerce the result into a boolean (so if `null` is the result it will coerce to false and thus this whole expression will return false, otherwise it'll return true).
 
 * `unknown`:  
 	In older versions of IE (less than 9) it implements some of its host objects not as Native functions but as ActiveX objects (admittedly this is deep browser implementation talk and normally you don’t need to know this stuff, but in this instance it’s important to understand what the heck is going on with IE). 
@@ -92,7 +90,7 @@ So lets take a quick re-cap of what’s going on here:
 	So, in IE calling typeof on properties of an ActiveX Object will result in `unknown`.
 
 * `string`:  
-	Lastly, this is something I added myself as I discovered that checking for the outerHTML method that it actually was returning ‘string’ instead of ‘object’ or ‘function’ - which just goes to show how flawed host object detection is
+	Lastly, this is something I added myself as I discovered that checking for the `outerHTML` method that it actually was returning `string` instead of `object` or `function` - which just goes to show how flawed host object detection is
 	
 When is it OK to modify them?
 -----------------------------
