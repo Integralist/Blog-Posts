@@ -34,9 +34,7 @@ From the command line execute `gem install sass` (I needed to use `sudo` along w
 
 ###How to run
 
-Within the command line navigate to one level up from where your CSS directory is (that being where you'll be saving your SASS files and also where they'll be compiled into CSS). 
-
-From there you start up SASS by executing `sass --watch Assets/Styles/` and as you can see in my example, from the root directory of my website I have my SASS files stored here: `Assets/Styles`. This command uses the `--watch` flag which means every time a `.scss` file is saved a corresponding `.css` file is compiled automatically for you.
+Within the command line navigate to your website directory and execute the command `sass --watch Assets/Styles/` (change `Assets/Styles/` to whatever path your SASS/CSS files are). As you can see in my example, from the root directory of my website I have my SASS files stored here: `Assets/Styles`. This command uses the `--watch` flag which means every time a `.scss` file is saved a corresponding `.css` file is compiled automatically for you.
 
 One thing to be aware of is that if you aren going to use `nested` items (which apparently is a big selling point for SASS users but one that I personally think is a terrible feature for performance and efficiency) then you'll be better off starting up SASS using `sass --style expanded --watch Assets/Styles/` which means when your CSS is compiled the nested output will at least be laid out more logically than their default mess of a display (which is very difficult to try and understand).
 
