@@ -19,6 +19,7 @@ Below are some of the items we'll cover:
 * Importing
 * Extend
 * Mixins
+* Interpolation
 
 ###Installation
 
@@ -286,3 +287,23 @@ You create a mixing like so:
 	opacity: $opacity; 
 }
 ```
+
+###Interpolation
+
+One area where mixins can't help you is when there is some specific CSS3 syntax such as `background-image` (with gradients). This is because not only the value changes but the syntax itself is different for each browser. 
+
+One way to work around this issue is to use `interpolation`. The way it works is that you wrap a variable name with `#{}` e.g. `#{$my_variable}` and that will dynamically insert the value at that place in your CSS. Might sound a bit confusing so best to demonstrate this with an example, and the best example I can think of is again the `background-image` property with multiple different vendor prefixes… 
+
+```css
+// Variable
+$prefixes:-webkit,-moz,-ms,-o;
+
+// Loop over each item in the $prefixes variable
+// using interpolation to insert the relevant value dynamically
+@each $prefix in $prefixes {
+	background-image: #{$prefix}-linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.1));
+}
+
+```
+
+…most of the time mixins will help you work around CSS3 vendor prefixes but in the above instance `interpolation` is the way forward.
