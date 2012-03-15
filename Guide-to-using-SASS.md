@@ -39,7 +39,11 @@ Within the command line navigate to your website directory and execute the comma
 
 One thing to be aware of is that if you aren going to use `nested` items (which apparently is a big selling point for SASS users but one that I personally think is a terrible feature for performance and efficiency) then you'll be better off starting up SASS using `sass --style expanded --watch Assets/Styles/` which means when your CSS is compiled the nested output will at least be laid out more logically than their default mess of a display (which is very difficult to try and understand).
 
-One last point here is that you have to have your `.scss` files in the same location as where you want your `.css` files to be compiled (I thought I would be able to keep the SASS files separated into a `/SASS/` folder but that didn't work as you can't tell SASS where to put the compiled CSS (annoying I know but that's the way it is).
+One last point here is that if you execute the above command then you will need to have your `.scss` files in the same location as where your `.css` files should be. If on the other hand, like me, you prefer to keep your SASS files separate then ammend the original command as follows:  
+
+`sass --style extended --watch Assets/Styles/Sass/:Assets/Styles/` 
+
+…this basically says "watch the folder `Assets/Styles/Sass/` and compile any files into the parent folder `Assets/Styles`" - you'll notice that the colon character `:` is what helped make that happen.
 
 ###Comments
 
