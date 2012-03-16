@@ -146,7 +146,13 @@ These are very useful. A lot of times you have for example 'hover' effects that 
 
 You can import other SASS files into your main stylesheet using `@import "other.scss"`
 
-The biggest note of warning here is that if your main SCSS file has a variable specified, you can't reference that variable from within a separate SCSS file. It will just generate an error in the command line terminal. If you need to reference the variable in the parent SCSS file you'll need to add it (again) inside the imported SCSS file. (this isn't great but I guess we're stuck with it).
+The biggest note of warning here is that if you import a SCSS file and that file generates a CSS file of its own then you wont be able to use variables that aren't imported or defined in the imported SCSS file. For example… 
+
+If you have the main stylesheet `structure.scss` and within that file you import another SCSS file called `colours.scss` - if `colours.scss` generates its own CSS file `colours.css` then the SASS file `colours.scss` cannot use any variables that are defined inside `structure.scss` (or which have been imported separately into `structure.scss`). 
+
+…there is a work-around to this which is to make sure `colours.scss` doesn't generate a CSS file, and the way you do that is prefix the file name with an underscore `_colours.scss`. You can also still import it without specifying the underscore: `@import "colours.scss";`
+
+To be honest, it's likely that any stylesheets you have deemed modular enough to be imported you'll want to it not to generate it's own CSS file (what would be the point if when compiled it is being imported into the main CSS file?)
 
 **Beware!** if you're main stylesheet has for example a `.brand` class and so does your imported stylesheet, when you compile the SASS file into CSS the `.brand` class will be listed twice.
 
