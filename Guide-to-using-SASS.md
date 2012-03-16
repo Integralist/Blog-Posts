@@ -152,7 +152,7 @@ If you have the main stylesheet `structure.scss` and within that file you import
 
 …there is a work-around to this which is to make sure `colours.scss` doesn't generate a CSS file, and the way you do that is prefix the file name with an underscore `_colours.scss`. You can also still import it without specifying the underscore: `@import "colours.scss";`
 
-To be honest, it's likely that any stylesheets you have deemed modular enough to be imported you'll want to it not to generate it's own CSS file (what would be the point if when compiled it is being imported into the main CSS file?)
+To be honest, it's likely that any stylesheets you have deemed modular enough to be imported you'll want them not to generate their own CSS files (what would be the point if when compiled they are being imported into the main CSS file?)
 
 **Beware!** if you're main stylesheet has for example a `.brand` class and so does your imported stylesheet, when you compile the SASS file into CSS the `.brand` class will be listed twice.
 
