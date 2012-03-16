@@ -1,5 +1,7 @@
 #Guide to using SASS
 
+Note: for working examples see [https://github.com/Integralist/Guide-to-using-SASS](https://github.com/Integralist/Guide-to-using-SASS)
+
 ##Introduction
 
 I agree that 'pre-processors' such as LESS, SASS, Compass etc are normally a bad idea because generally they are used badly by developers/designers who could do better without them (see: [Object-Oriented CSS](https://github.com/stubbornella/oocss/wiki)).
