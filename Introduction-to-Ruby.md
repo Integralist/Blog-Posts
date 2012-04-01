@@ -479,7 +479,7 @@ end
 result = if x < y then x else y end
 ```
 
-…and so, as we've mentioned before with `functions`, these types of blocks return the last expression inside the block so the last expression is returned.
+…and so, as we've mentioned before with `functions`, these types of blocks return the last expression evalutated inside the block, so in the above example the last expression is returned and stored in the `result` variable.
 
 ---
 
