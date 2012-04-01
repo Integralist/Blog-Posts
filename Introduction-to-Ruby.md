@@ -10,7 +10,7 @@ So with that admission out in the open, this introduction to the Ruby programmin
 
 Looking at CoffeeScript I wasn't convinced. I like the JavaScript syntax, I think it's actually quite a beautiful language (when written correctly). But I decided that the future is just around the corner so why wait to see what all the fuss is about. In my mind, the best way to get involved with the new JavaScript/CoffeeScript style syntax is to investigate some of its inspirations which (seem to) stem from Ruby.
 
-Warning: this introduction assumes you have prior programming knowledge (doesn't matter really whether it's JavaScript or C# as long as you've has some programming experience). I'm not going to be explaining the basics of what are 'expressions', 'block statements', 'variables', 'arrays', 'functions/methods' etc.
+Warning: this introduction assumes you have prior programming knowledge (doesn't matter really whether it's JavaScript or C# as long as you've had some programming experience). I'm not going to be explaining the basics of what are 'expressions', 'block statements', 'variables', 'arrays', 'functions/methods' etc.
 
 So without further ado, here we go…
 
