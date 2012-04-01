@@ -298,7 +298,7 @@ puts "Hello" + name + "!, I see you're " + age + " years old."
 
 …but as you can see it's not as nice to look at or easy to read.
 
-You can also add new methods to an existing objects just by prefixing the name of the method with the relevant object… 
+You can also add new methods to an existing object just by prefixing the name of the method with the relevant object… 
 
 ```
 def Math.someNewThing (x) 
