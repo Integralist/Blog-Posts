@@ -73,7 +73,7 @@ The process is as follows (open the Terminal and start typing):
 
 ###The Interactive Ruby Console
 
-Beginners are advised to use the interactive Ruby console to get to know the language. So to start it up, in your Terminal type: `irb` (and if you want to quit type: `Ctrl+D`).
+Beginners are advised to use the interactive Ruby console to get to know the language. So to start it up, in your Terminal type: `irb` (and if you want to quit use: `Ctrl+D`).
 
 From irb you can start typing out code and seeing what the results are.
 
