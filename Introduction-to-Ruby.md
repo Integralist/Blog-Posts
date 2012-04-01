@@ -279,7 +279,7 @@ e.g. `Person.speak ()` => error but `Person.speak()` or `Person.speak` is fine.
 You can specify default values for arguments…
 
 ```
-def welcome (name = "World", age = 0)
+def welcome (name = "World", age = 1)
 	puts "Hello #{name}!, I see you're #{age} years old."
 end
 ```
