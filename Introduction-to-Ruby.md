@@ -140,7 +140,7 @@ x,y,z = [1,2,3] # assign each array item value to a variable, so x = 1, y = 2, z
 
 Variables in JavaScript typically come in two flavours: Global and Local. In JavaScript if you declare a variable with the `var` syntax then the variable is added as a property to the global object (which depending on the environment JavaScript is running in) most of the time will be the `window` object. If you declare a variable inside of a function in JavaScript using the `var` syntax then that variable is only available within that function (unless it's accessible via some priviledged object).
 
-In Ruby, if you declare a variable inside a function with no prefix then it is only available within that function. If you prefix it with a dollar sign (e.g. `$my_var = 123`) then that declares it as a global variable.
+In Ruby, if you declare a variable inside a function with no prefix then it is only available within that function. If you prefix it with a dollar sign (e.g. `$my_var = 123`) then that declares it as a global variable and is accessible from any where in the program.
 
 When using Classes, if you declare a variable within the class using an `@` prefix (e.g. `@my_var = 123`) then that variable is available to the object created by that class only (also known as an 'instance variable'). Where as a double `@@` (e.g. `@@my_var = 123`) is known as a 'class variable' which means it is available to all objects created by that particular class and any changes to this class variable is reflected in all objects created from that class. 
 
