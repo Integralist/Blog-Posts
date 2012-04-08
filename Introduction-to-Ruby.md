@@ -400,6 +400,8 @@ tester = Test.new("Mark")
 `tester.user_name= "Bob"` => "Bob"  
 `tester.user_name` => "Bob"
 
+Note: as well as `:attr_accessor` which creates getter and setter methods, there is `:attr_reader` which only creates a getter method, and `:attr_writer` which only creates a setter method.
+
 ---
 
 ###Loops
