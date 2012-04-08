@@ -210,6 +210,13 @@ objD.showValue # => 123
 There are 'magic' variables (like predefined variables in PHP).
 
 For example you have `__FILE__` which refers to the current file being executed and there is also `$0` which refers to the file used to start the program. I mention these two specifically because these are used in the getting started examples on the [Ruby website](http://www.ruby-lang.org/).
+```
+
+---
+
+###Symbols
+
+Symbols are like variables but are prefixed with a colon like so `:my_symbol`. They are lightweight Strings and are normally used in situations where you require a string but you won't be displaying it or doing too much with it. It is considered to  be easier on the server (similar in Regular Expressions where a 'non-capturing group' is more efficient than a capturing group when all you need to do is group a sub expression, rather than actually remember it's value).
 
 ---
 
