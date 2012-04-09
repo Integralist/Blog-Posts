@@ -651,7 +651,7 @@ arr.concat(["d", "e"])
 arr # => ["a", "b", "c", "d", "e"] 
 ```
 
-…there is also more basic concatenation using the `+` operator `arr + ["d", "e"]` which returns `["a", "b", "c", "d", "e"]` but one caveat is that when using `+` to concatenate Arrays doesn't overwrite the original Array (`arr` will still return `["a", "b", "c"]`)
+…there is also more basic concatenation using the `+` operator `arr + ["d", "e"]` which returns `["a", "b", "c", "d", "e"]` but one caveat is that you must remember to set the array to be overwritten. For example, the previous code will return an Array which is a combination of `arr` and `["d", "e"]` but it doesn't actually overwrite the original Array (`arr` will still return `["a", "b", "c"]`). If you were expecting `arr` to be changed to `["a", "b", "c", "d", "e"]` then you would need to explicitly overwrite `arr` using: `arr += ["d", "e"]` instead.
 
 There are two other useful Array methods `arr.first` and `arr.last`. Can you guess what they do? That's right, they return the first and last items in the Array.
 
