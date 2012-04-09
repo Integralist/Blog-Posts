@@ -30,6 +30,7 @@ So without further ado, here we go…
 * Symbols
 * Functions/Methods
 * Code Blocks
+* Lambdas
 * Classes
 * Loops
 * Conditionals
@@ -383,14 +384,40 @@ myfn { |x| puts x }
 
 ...this isn't as obvious but is less verbose (the `yield` keyword automatically detects the code block and passes control to it rather than us having to pass through the code block and executing the `call` method on the code block).
 
-An extra note on code blocks worth mentioning is the use of lambdas. Ruby also has a method called `lambda` which is used to save a code block into a variable. That code block can then be executed using the lambda's `call` method...
+---
+
+###Lambdas
+
+An extra note on code blocks worth mentioning is the use of lambdas. Lambdas are just a function without a name (e.g. anonymous functions in JavaScript) and so like functions the last expression is the return value. Lambdas are used to save a code block into a variable. That code block can then be executed using the lambda's `call` method. Ruby provides a method called `lambda` which can be followed by a code block… 
 
 ```
 my_codeblock = lambda { |x| puts x }
 my_codeblock.call("some txt to print")
 ```
 
-…the name lambda comes from its popular usage in other languages. In Ruby this type of action is sometimes called a `Proc` (in case you see `lambda`, `Proc`, `code blocks` mentioned in different articles, you now know they are all related).
+…lambdas are very popular in other languages hence it's inclusion in Ruby (it's a nice way to pass around code blocks). 
+
+In Ruby this type of action is sometimes called a `Proc` (so in case you see `lambda`, `Proc`, `code blocks` mentioned in different articles, you now know they are all related and how).
+
+The following example is modified from a test on RubyMonk but is a good example of using lambdas…
+
+```
+def with_names(fn)
+  result = []
+  [ ["Christopher", "Alexander"],
+    ["John", "McCarthy"],
+    ["Joshua", "Norton"] ].each do |pair|
+      result << fn.call(pair[0], pair[1])
+  end
+  result
+end
+
+l = lambda { |name1, name2| "#{name1} #{name2}" } 
+
+with_names(l)
+```
+
+…notice we can't use `yield` because although a lambda is like a code block it isn't identical, and where a code block can be used with `yield`, a lambda requires the `call` method be used.
 
 ---
 
