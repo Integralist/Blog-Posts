@@ -6,9 +6,11 @@ I'm not a Ruby developer. I'm a front-end developer who focuses on JavaScript, R
 
 I've experience with PHP. Writing object-oriented code, creating databases and bespoke Content Managed Systems etc, but I've not touched that sort of stuff for a few years now as the front-end stack is where I've concentrated my attention (it's what I enjoy most).
 
-So with that admission out in the open, this introduction to the Ruby programming language is likely to be full of holes you could drive a truck through. So why do it? Because with the arrival of JavaScript pre-processors such as CoffeeScript and the new additions to both ES5 (and much more so in ES6), these new additions are pushing the JavaScript language to be more 'functional' and thus similar in syntax to the Ruby programming language. 
+So with that admission out in the open, this introduction to the Ruby programming language is likely to be full of holes you could drive a truck through (any Ruby enthusiasts reading this are welcome to comment on anything I have incorrect). So why do it? Because with the arrival of JavaScript pre-processors such as CoffeeScript and the new additions to both ES5 (and much more so in ES6), these new additions are pushing the JavaScript language to be more 'functional' and thus similar in syntax to the Ruby programming language. 
 
 Looking at CoffeeScript I wasn't convinced. I like the JavaScript syntax, I think it's actually quite a beautiful language (when written correctly). But I decided that the future is just around the corner so why wait to see what all the fuss is about. In my mind, the best way to get involved with the new JavaScript/CoffeeScript style syntax is to investigate some of its inspirations which (seem to) stem from Ruby.
+
+What I found though was that Ruby is itself an amazingly flexible and beautiful language. Very expressive and a joy to write and use (and to look at). 
 
 Warning: this introduction assumes you have prior programming knowledge (doesn't matter really whether it's JavaScript or C# as long as you've had some programming experience). I'm not going to be explaining the basics of what are 'expressions', 'block statements', 'variables', 'arrays', 'functions/methods' etc.
 
@@ -24,10 +26,15 @@ So without further ado, here we go…
 * Comments
 * Variables
 * Magic Variables
+* Constants
+* Symbols
 * Functions/Methods
+* Code Blocks
 * Classes
 * Loops
 * Conditionals
+* Strings
+* Arrays
 * Hashes
 * Numbers (and how 'everything is an object' - similar to JavaScript)
 * Conclusion
@@ -214,58 +221,67 @@ For example you have `__FILE__` which refers to the current file being executed 
 
 ---
 
+###Constants
+
+Constants are variables that cannot be changed once they are set. Any variable that is capitalised (e.g. `Myconstant`) is made into a constant. 
+
+In other languages a constant is normally either prefixed with the keyword `constant Myconstant` or is all caps `MYCONSTANT`.
+
+If you try to overwrite a constant you'll get the following message: `warning: already initialized constant` - although as far as I can tell by testing this in irb it seems to change the constant and only warns you rather than actually preventing you from changing the value? ***Maybe a Rubyist reading this can clarify if this is expected behaviour.*** 
+
+---
+
 ###Symbols
 
-Symbols are like variables but are prefixed with a colon like so `:my_symbol`. They are lightweight Strings and are normally used in situations where you require a string but you won't be displaying it or doing too much with it. It is considered to  be easier on the server (similar in Regular Expressions where a 'non-capturing group' is more efficient than a capturing group when all you need to do is group a sub expression, rather than actually remember it's value).
+Symbols are like static variables (or constants). They are used as identifiers, as a way to keep code cleaner.
+
+If you had lots of hashes (which we'll come to later) and you have a key/property called "name" then you could write your hash like so…
+
+```
+hash1 = { "name" => "Mark" }
+hash2 = { "name" => "Brad" }
+hash3 = { "name" => "Ash" }
+hash4 = { "name" => "Neil" }
+```
+
+…but `"name"` is being re-created in memory every time it's referenced. It's much more energy efficient to use a Symbol which looks like a variable but is prefixed with a colon `:name`…
+
+```
+hash1 = { :name => "Mark" }
+hash2 = { :name => "Brad" }
+hash3 = { :name => "Ash" }
+hash4 = { :name => "Neil" }
+```
+
+…as you can see, Symbols don't have values like variables, they are literally just used as efficient identifiers.
 
 ---
 
 ###Functions/Methods
 
-To define a function the syntax is:
+In Ruby everything is an Object (even Strings and Integers) so when you're defining a function you're really defining a method (methods are the same as functions but you normally call a function a method when it's attached to an object).
+
+To define a method the syntax is:
 
 ```
-def function_name (arguments)
+def method_name (arguments)
 	// function code
 end
 ```
 
-In JavaScript, if a function doesn't specify a return value then it returns `undefined`. In Ruby a function will return the last expression evaluated in its body, and if there isn't one then it will return `nil` (`nil` is equivalent to `null` in PHP).
+In JavaScript, if a method doesn't explicitly specify a return value then it returns `undefined`. In Ruby a method will return the last expression evaluated in its body, and if there isn't one then it will return `nil` (`nil` is equivalent to `null` in PHP).
 
-As was noted in the above 'Variables' section about variables being able to assigned multiple values, this can come in handy with functions returning multiple values as well (which is quite interesting as I'm only used to functions in JavaScript returning a single value)… 
+As was noted in the above 'Variables' section about variables being able to assigned multiple values, this can come in handy with method returning multiple values as well (which is quite interesting as I'm only used to functions in JavaScript returning a single value)… 
 
 ```
-def myFunction 
+def myMethod 
     [1, 2] # this being the last expression, this is what's returned
 end
 
-a, b = myFunction; # => a = 1, b = 2
+a, b = myMethod; # => a = 1, b = 2
 ```
 
-You can call a function without parenthesis, e.g. `myFunction` apposed to `myFunction()`. The choice is yours whether you use parenthesis or not - personally there are times where I can see myself not needing them and other times using them so it's crystal clear what what I'm doing is calling a function (time will tell).
-
-Function arguments (and variables) can be inserted into a string (must be a double quoted string, not single quotes) using what's called "interpolation": `#{argument_name}`. 
-
-For example… 
-
-```
-def welcome (name)
-	puts "Hello #{name}!"
-end
-
-welcome("Mark")
-welcome ("Mark")
-welcome"Mark"
-welcome "Mark"
-```
-
-Multiple arguments work the same way…
-
-```
-def welcome (name, age)
-	puts "Hello #{name}!, I see you're #{age} years old."
-end
-```
+You can call a method without parenthesis, e.g. `myMethod` apposed to `myMethod()`. The choice is yours whether you use parenthesis or not - personally there are times where I can see myself not needing them and other times using them so it's crystal clear that what I'm doing is calling a method (time will tell - but I understand a good practice is to use parenthesis whenever a method expects arguments to be passed otherwise there is no point in using them).
 
 But note that with multiple arguments the caller must not have a space between the parenthesis and the function name.
 
@@ -297,14 +313,6 @@ end
 `welcome "Mark"` => Hello Mark! Looks like you're 1 today  
 `welcome "Mark", 30` => Hello Mark! Looks like you're 30 today
 
-Lastly, where we mentioned interpolation as a way to insert variables and arguments into a string, you could do the same with simple string concatenation… 
-
-```
-puts "Hello" + name + "!, I see you're " + age + " years old."
-```
-
-…but as you can see it's not as nice to look at or easy to read.
-
 You can also add new methods to an existing object just by prefixing the name of the method with the relevant object… 
 
 ```
@@ -320,6 +328,13 @@ Math.someNewThing("abc") # => abc was here
 
 …in Ruby these types of method declarations are referred to as 'class methods' (or 'singleton methods')
 
+In a similar example of extending already defined Classes:
+
+```
+class Fixnum    def seconds        self    end    def minutes        self * 60    end    def hours        self * 60 * 60    end    def days        self * 60 * 60 * 24    end 
+endputs Time.nowputs Time.now + 10.minutesputs Time.now + 16.hoursputs Time.now - 7.days
+```
+
 Note: you might see methods that are called using a ? at the end, these indicate that the method will return a Boolean value (e.g. `respond_to?` which you'll see below in the 'Classes' section)… 
 
 ```
@@ -329,6 +344,53 @@ x.empty? # => true (…or x.empty?() if you prefer the use of parenthesis)
 x = [1, 2, 3]
 x.empty? # => false
 ```
+
+If you want to know what methods are available to an object/class then look at the `class` of the object and then inspect the methods available… 
+
+```
+my_hash = { :name => "Mark" }
+my_hash.class # => Hash
+Hash.instance_methods # => [:rehash, :to_hash, :to_a, :inspect, :to_s, :==, :[], :hash, :eql?, :fetch, :[]=, :store, :default, :default=, :default_proc, :default_proc=, :key, :index, :size, :length, :empty?, :each_value, :each_key, :each_pair, :each, :keys, :values, :values_at, :shift, :delete, :delete_if, :keep_if, :select, :select!, :reject, :reject!, :clear, :invert, :update, :replace, :merge!, :merge, :assoc, :rassoc, :flatten, :include?, :member?, :has_key?, :has_value?, :key?, :value?, :compare_by_identity, :compare_by_identity?, :entries, :sort, :sort_by, :grep, :count, :find, :detect, :find_index, :find_all, :collect, :map, :flat_map, :collect_concat, :inject, :reduce, :partition, :group_by, :first, :all?, :any?, :one?, :none?, :min, :max, :minmax, :min_by, :max_by, :minmax_by, :each_with_index, :reverse_each, :each_entry, :each_slice, :each_cons, :each_with_object, :zip, :take, :take_while, :drop, :drop_while, :cycle, :chunk, :slice_before, :nil?, :===, :=~, :!~, :<=>, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :freeze, :frozen?, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__]
+```
+---
+
+###Code Blocks
+
+In Ruby a `code block` is any piece of code within either `do..end` or curly brackets `{}` and when creating a method if you want to pass a code block in as an argument you need to prefix the argument name with an ampersand `&` like so…
+
+```
+def myfn (&code_block)
+    %w(a e I o u).each do |vowel|
+        code_block.call(vowel)
+    end
+end
+
+myfn { |x| puts x }
+```
+…what the above code does is create an Array and then iterates over it. Every items in the Array is passed to a code block (the code block which is passed in as an argument to the method, but could have been any code block defined else where in the program).
+
+But the above can be simplified...
+
+```
+def myfn
+    %w(a e I o u).each do |vowel|
+        yield vowel
+    end
+end
+
+myfn { |x| puts x }
+```
+
+...this isn't as obvious but is less verbose (the `yield` keyword automatically detects the code block and passes control to it rather than us having to pass through the code block and executing the `call` method on the code block).
+
+An extra note on code blocks worth mentioning is the use of lambdas. Ruby also has a method called `lambda` which is used to save a code block into a variable. That code block can then be executed using the lambda's `call` method...
+
+```
+my_codeblock = lambda { |x| puts x }
+my_codeblock.call("some txt to print")
+```
+
+…the name lambda comes from its popular usage in other languages. In Ruby this type of action is sometimes called a `Proc` (in case you see `lambda`, `Proc`, `code blocks` mentioned in different articles, you now know they are all related).
 
 ---
 
@@ -492,6 +554,119 @@ result = if x < y then x else y end
 
 ---
 
+###Strings
+
+Building up string values can be a bit of a nightmare in other languages. I know in PHP and JavaScript it's a real pain without including some kind of templating rendering (such as `Mustache`). But in Ruby they provide a technique called Interpolation which is where method arguments and variables can be inserted into a string (must be a double quoted string, not single quotes) using: `#{variable_name}`. 
+
+For example… 
+
+```
+def welcome (name)
+	puts "Hello #{name}!"
+end
+
+welcome("Mark")
+```
+
+Multiple arguments work the same way…
+
+```
+def welcome (name, age)
+	puts "Hello #{name}!, I see you're #{age} years old."
+end
+```
+
+You could do the same with simple string concatenation… 
+
+```
+puts "Hello" + name + "!, I see you're " + age + " years old."
+```
+
+…but as you can see it's not as nice to look at or easy to read and definitely isn't as maintainable.
+
+As mentioned earlier, as everything in Ruby is an object (even Strings) there are methods available to strings such as:
+
+* `sub` (basic find/replace)
+* `gsub` (basic 'global' find/replace)
+* `scan` (regex based search which executes code block for each match)
+* `match` (regex based search with Array of results returned)
+
+For example…
+
+```
+"foobarfoobar".sub('bar','foo')
+# => foofoofoobar
+
+"foobarfoobar".gsub('bar','foo')
+# => foofoofoofoo
+
+x = "This is a test"
+x.sub(/^[a-zA-Z]{4}/, 'Hello')
+# => "Hello is a test"
+
+x = "The car cost £2000 in 2012"
+x.scan(/\d+/) { |match| puts match }
+# => 2000
+# => 2012
+# scan() without the code block returns an array of matches
+
+x = "This is a test".match(/(\w+) (\w+)/)
+puts x[0] # => This is
+puts x[1] # => This
+puts x[2] # => is
+```
+
+---
+
+###Arrays
+
+We've seen Arrays used quite a bit already, but lets look at some additional methods and operators available… 
+
+The bitwise operator `<<` is used to add a new item to an array:
+
+```
+x = []
+x << "abc"
+```
+
+…which is equivalent to `x.push("abc")`
+
+Note: Strings also use the `<<` operator to add content to them:
+
+```
+testString = "this is my string"
+testString << " that has extra stuff added to it"
+testString # => "this is my string that has extra stuff added to it" 
+```
+
+There are methods for removing the last item in the Array `x.pop()` as well as joining an array items into a string using the specified character(s) as a separator `x.join(", ")`.
+
+With Strings you can use the `split` method to convert a string into an Array: `"this is my string".split(" ")` which returns `=> ["this", "is", "my", "string"]`.
+
+If you need to concatenate two Arrays you can use the `concat` method… 
+
+```
+arr = ["a", "b", "c"]
+arr.concat(["d", "e"])
+arr # => ["a", "b", "c", "d", "e"] 
+```
+
+…there is also more basic concatenation using the `+` operator `arr + ["d", "e"]` which returns `["a", "b", "c", "d", "e"]` but one caveat is that when using `+` to concatenate Arrays doesn't overwrite the original Array (`arr` will still return `["a", "b", "c"]`)
+
+There are two other useful Array methods `arr.first` and `arr.last`. Can you guess what they do? That's right, they return the first and last items in the Array.
+
+Some other interesting features of Ruby is the ability to write Arrays more quickly using the `%w()` method. So instead of writing `["a", "e", "i", "o", "u"]` you would write `%w(a e i o u)` which generates the same Array.
+
+There are many Array methods for inserting new items into an Array, but you can also use Ranges (which normally work like `('A'..'Z')`):
+
+```
+arr = [0, 1, 2, 3, 4, 5, 6]
+arr[1..3] = ["a", "b", "c"]
+arr # => [0, "a", "b", "c", 4, 5, 6]
+```
+
+---
+
 ###Hashes
 
 Hashes are like 'objects' in JavaScript and 'associative arrays' in other languages. Like Arrays they have an iterator method called `each` which works the same way, the only difference being is that is doesn't just pass the value through but the 'key' as well.
@@ -522,7 +697,20 @@ h.each do |key, value|
 end
 ```
 
-You don't have to use a String as a hash `key`. You can use any object.
+You don't have to use a String as a hash `key`. You can use any object or Symbol.
+
+In Ruby 1.9 the keys of a hash are returned in the order they were added when looping properties (unlike JavaScript where the order are not guaranteed).
+
+To see what keys are available in an object use the `keys` property:
+
+```
+hash = { :name => "Mark", :age => 30 }
+hash.keys # => [:name, :age]
+```
+
+You can delete a key/value from the hash using `hash.delete(key)`
+
+Hashes also have shortcut for deleting properties depending on their value: `hash.delete_if { |key, value| value <= 30 }`
 
 ---
 
