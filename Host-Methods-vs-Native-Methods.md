@@ -1,7 +1,7 @@
 Host Methods vs Native Methods
 ==============================
 
-This was intended as a short (I failed) and overly simplified (I likely succeeded) post about Host methods and Native methods:
+This was intended as a short and overly simplified post about Host methods and Native methods:
 
 * What they are?
 * How to detect them?
