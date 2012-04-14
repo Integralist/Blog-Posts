@@ -43,7 +43,7 @@ These are important decisions that need to be made and ones that are outside the
 
 Now, detecting Host methods is actually worse because they can be implemented in any fashion the host environment chooses.
 
-So far it has been *noted* that checking the `typeof` result for a Host method will normally result in either function, object, unknown or (recently I found…) string, so if you get one of these back as a result then it’s a good chance the host object you’re checking for is available to use, but as you should be able to tell by now, this is a flawed process… fun heh!
+So far it has been *noted* that checking the `typeof` result for a Host method will normally result in either function, object or unknown, so if you get one of these back as a result then it’s a good chance the host object you’re checking for is available to use, but as you should be able to tell by now, this is a flawed process… fun heh!
 
 Again, this isn’t a reliable assumption to make, because in a future/new host environment they might have a `typeof` result that is none of the above. Literally you could check the `typeof` for a method and its result could be *spacecraft* - there are no rules as far as the Host environment is concerned!
 
