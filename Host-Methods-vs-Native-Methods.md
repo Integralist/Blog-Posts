@@ -43,9 +43,9 @@ These are important decisions that need to be made and ones that are outside the
 
 Now, detecting Host methods is actually worse because they can be implemented in any fashion the host environment chooses.
 
-So far it has been *noted* that checking the typeof result for a Host method will normally result in either function, object, unknown or (recently I found…) string, so if you get one of these back as a result then it’s a good chance the host object you’re checking for is available to use, but as you should be able to tell by now, this is a flawed process… fun heh!
+So far it has been *noted* that checking the `typeof` result for a Host method will normally result in either function, object, unknown or (recently I found…) string, so if you get one of these back as a result then it’s a good chance the host object you’re checking for is available to use, but as you should be able to tell by now, this is a flawed process… fun heh!
 
-Again, this isn’t a reliable assumption to make, because in a future/new host environment they might have a typeof result that is none of the above. Literally you could check the typeof for a method and its result could be *spacecraft* - there are no rules as far as the Host environment is concerned!
+Again, this isn’t a reliable assumption to make, because in a future/new host environment they might have a `typeof` result that is none of the above. Literally you could check the `typeof` for a method and its result could be *spacecraft* - there are no rules as far as the Host environment is concerned!
 
 But for testing a host method exists, the following function has become the de-facto standard:
 
@@ -67,8 +67,7 @@ function isHostMethod(object, property) {
 
 	return type == 'function' || // This is the result we're expecting (as the test is for a method)
 		   (type == 'object' && !!object[property]) || // Protect against ES3 'null' typeof result being 'object'
-		   type == 'unknown' || // For IE < 9 when Microsoft used ActiveX objects for Native Functions (we're checking property of ActiveX object)
-		   type == 'string'; // typeof for 'document.body[outerHTML]' results in 'string'
+		   type == 'unknown'; // For IE < 9 when Microsoft used ActiveX objects for Native Functions (we're checking property of ActiveX object)
 }
 ```
 
@@ -87,10 +86,7 @@ So lets take a quick re-cap of what’s going on here:
 * `unknown`:  
 	In older versions of IE (less than 9) it implements some of its host objects not as Native functions but as ActiveX objects (admittedly this is deep browser implementation talk and normally you don’t need to know this stuff, but in this instance it’s important to understand what the heck is going on with IE). 
 	
-	So, in IE calling typeof on properties of an ActiveX Object will result in `unknown`.
-
-* `string`:  
-	Lastly, this is something I added myself as I discovered that checking for the `outerHTML` method that it actually was returning `string` instead of `object` or `function` - which just goes to show how flawed host object detection is
+	So, in IE calling the `typeof` operator with properties of an ActiveX Object will result in `unknown`.
 	
 When is it OK to modify them?
 -----------------------------
