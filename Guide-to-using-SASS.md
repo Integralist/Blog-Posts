@@ -316,6 +316,11 @@ $prefixes:-webkit,-moz,-ms,-o;
 	background-image: #{$prefix}-linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.1));
 }
 
+// The following example might be better placed inside a mixin or extend
+@each $prefix in $prefixes {
+	#{$prefix}-border-radius: 10px;
+}
+
 ```
 
 …most of the time mixins will help you work around CSS3 vendor prefixes but in the above instance `interpolation` is the way forward.
