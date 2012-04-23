@@ -218,7 +218,6 @@ objD.showValue # => 123
 There are 'magic' variables (like predefined variables in PHP).
 
 For example you have `__FILE__` which refers to the current file being executed and there is also `$0` which refers to the file used to start the program. I mention these two specifically because these are used in the getting started examples on the [Ruby website](http://www.ruby-lang.org/).
-```
 
 ---
 
