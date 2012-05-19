@@ -247,7 +247,7 @@ img.onload = function(){
 };
 ```
 
-…one other small note is the use of the bitwise operator `~~` which use see used inside the `onload` listener: `piece_height = ~~(this.height / canvas_grid);`. What this does is functionally equivalent to `Math.floor` and is a technique I discovered from [James Padolsey](http://james.padolsey.com/javascript/double-bitwise-not/).
+…one other small note is the use of the bitwise operator `~~` which you can see I've used inside the `onload` listener: `piece_height = ~~(this.height / canvas_grid);`. What this does is functionally equivalent to `Math.floor` and is a technique I discovered from [James Padolsey](http://james.padolsey.com/javascript/double-bitwise-not/).
 
 ####Clearing the Canvas
 
