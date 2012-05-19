@@ -879,7 +879,7 @@ Lastly we set `event_moving` to true which is useful for doing some checks later
 
 But lets just quickly review the `eventObject`. Most people don't realise that with `addEventListener` you don't have to specify a function to be the listener and that you can specify an object, but that object must have a `handler` property with a function assigned to it which acts as the listener. The reason I've used an object rather than a straight function is because I wanted to pass some additional parameters but couldn't of done that otherwise without using an anonymous function and if you don't know: it's best to avoid using anonymous functions for an event listener because if you do then you wont be able to remove the event listener (without maybe building your own abstraction of the events API to workaround the issue - I wont go into the details of why you can't remove an anonymous function referenced event listener as that's outside the scope of this post, but suffice to say it's similar to checking if `{} == {}`).
 
-Well now we've reached the `dragPiece` function… 
+We've now reached the `dragPiece` function… 
 
 ```js
 var eventX = e.offsetX || e.pageX, 
@@ -920,20 +920,20 @@ if ((eventX >= empty_space.x && eventX < (empty_space.x + piece_width)) && (even
 
 …so again lets look through what's happening.
 
-The `halfWidth` and `halfHeight` variables are there because when we draw the puzzle piece onto the top canvas we want the puzzle piece to be centered to the mouse cursor/users touch.
+The `halfWidth` and `halfHeight` variables are there because when we draw the puzzle piece onto the top canvas we want the puzzle piece to be centered to the mouse cursor/user's touch.
 
 The line:
 
 `dragCanvasContext.clearRect(global.user_positionX, global.user_positionY, piece_width, piece_height);`
 
-…clears where the puzzle piece was last drawn. We then… update the co-ordinates for mouse/touch position…
+…clears where the puzzle piece was last drawn. We then update the co-ordinates for mouse/touch position…
 
 ```js
 global.user_positionX = eventX - halfWidth;
 global.user_positionY = eventY - halfHeight;
 ```
 
-…the next step is to see if the user has moved the puzzle piece 'near' the empty space. The way we do this is we highlight the empty space so it has a red background whenever the user moves 20px within the empty space. This is so they are aware that at any point soon the puzzle piece will be dropped into the empty space… 
+…the next step is to see if the user has moved the puzzle piece 'near' the empty space. The way we do this is we highlight the empty space so it has a red background whenever the user moves 20px within it. This is so they are aware that at any point soon the puzzle piece will be dropped into this empty space… 
 
 ```js
 if (global.user_positionX <= empty_space.x + (piece_width - 20) && 
