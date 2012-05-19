@@ -440,7 +440,7 @@ OK, so the first thing we find inside of the `movePiece` function are the variab
 
 …we're checking if `requestAnimationFrame` is natively supported (rather than just a `setInterval`) and then we change the amount the puzzle piece should move depending on that result (we find moving by 20 on every iteration is a lot smoother using `requestAnimationFrame`, whereas moving by 20 using `setInterval` is just too fast).
 
-I'll first requirement from here is to find out which puzzle piece was clicked on. When we find out what piece was selected we can then decide whether we want to continue within the function to actually animate the piece into the empty space or not (I say "*we can decide*" because at this stage we don't know if the selected puzzle piece is a valid piece that has been clicked on - e.g. there is no empty space immediately next to it)… 
+Our first requirement from here is to find out which puzzle piece was clicked on. When we find out what piece was selected we can then decide whether we want to continue within the function to actually animate the piece into the empty space or not (I say "*we can decide*" because at this stage we don't know if the selected puzzle piece is a valid piece that has been clicked on - e.g. there is no empty space immediately next to it)… 
 
 ```js
 // Find the piece that was clicked on
