@@ -409,6 +409,8 @@ function toggleDragCheck (e) {
 }
 ```
 
+UPDATE: I have since realised another way I could have implemented 'drag & drop' which is to check the 'move' event (remember this is an alias for `mousemove` and `touchmove`) while the 'down' event was triggered and to set a threshold of let's say 4px in any direction before triggering the drag and drop mechanism. I don't know how much this would have simplified things but maybe that could be an exercise for the reader to investigate. 
+
 ####Automatic puzzle piece animation
 
 We have two routes to go down now: `startDrag` or `movePiece`.
