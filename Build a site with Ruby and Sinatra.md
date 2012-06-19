@@ -220,7 +220,7 @@ Now at the moment we're using the fact that with Ruby, the last expression insid
 
 But we ideally want to be displaying HTML to the user! To do this we'll use 'templates'.
 
-Now templates can be inlined inside your ruby code, but personally I prefer them to be external because I think that's a lot cleaner.
+Note that templates can be inlined inside your Ruby code, but personally I prefer them to be external because I think that's a lot cleaner and abides by the 'separate of concerns' rule (which I like to keep to whenever possible).
 
 Our code is going to start looking something like this…
 
@@ -234,11 +234,11 @@ get '/projects' do
 end
 ```
 
-…what this is doing is using ERB (which stands for 'Embedded Ruby') and is the standard templating language available in Ruby - although there are many templating languages you could load and use in its place. What we've said here in our code is load the `:home` template/ERB file when on the home page, and load the `:project` template/ERB file when on the projects page.
+…what this is doing is using ERB (which stands for 'Embedded Ruby') and is the standard templating language available in Ruby - although there are many templating languages you could load and use in its place. What we've said here in our code is load the `:home` template (.erb file) when on the home page, and load the `:project` template (.erb file) when on the projects page.
 
-By default Sinatra looks for templates inside of the folder called 'views' (you can change this if you want but I didn't bother as 'views' made the most sense for a folder containing 'templates' - especially considering MVC is likely the way you'll code will want to go in the near future).
+By default Sinatra looks for templates inside of a root folder called `views` (you can change this if you want but I didn't bother as `views` made the most sense for a folder containing 'templates' - especially considering MVC is likely the way you'll code will want to go in the near future and they use a similar concept of 'views' representing user interface).
 
-Inside our 'views' folder we'll need to create two files then: `home.erb` and `projects.erb` and they'll look a little bit like this…
+Inside our `views` folder we'll need to create two files then: `home.erb` and `projects.erb` and they'll look a little bit like this…
 
 ```html
 <!-- home.erb -->
@@ -250,9 +250,11 @@ Inside our 'views' folder we'll need to create two files then: `home.erb` and `p
 <p>HTML content for my projects page</p>
 ```
 
-Now this doesn't look like much of a HTML page, and that's because I'm using (or I'm going to be using very shortly) what Sinatra refers to as a main layout file. What this means is I can have a 'master' HTML file if you will, that stays the same for every page and I can load my templates into that master layout. This is done by creating a 'layout.erb' file (also within the 'views' folder). If Sinatra finds a 'layout.erb' file it will automatically use it as a master layout for all your templates.
+Now this doesn't look like much of a HTML page, and that's because I'm using (or I'm going to be using very shortly) what Sinatra refers to as a main layout file and this 'layout' file will contain the rest of my HTML code and will be wrapped around my above templates. 
 
-But if I didn't create a 'layout.erb' file then I could have made my templates above look more like a proper page with full HTML…
+What this means is I can have a 'master' HTML file that stays the same for every page and I can load my templates into that master layout. This is done by creating a `layout.erb` file (also within the `views` folder). If Sinatra finds a `layout.erb` file it will automatically use it as a master layout for all your templates.
+
+But if I didn't create a `layout.erb` file then I could have modified my templates above to include a full set of HTML like so…
 
 ```html
 <!-- home.erb -->
@@ -268,7 +270,7 @@ But if I didn't create a 'layout.erb' file then I could have made my templates a
 </html>
 ```
 
-…but I prefer having a master layout to handle this stuff so lets create a 'layout.erb' file (within the 'views' folder) and add the following content to it…
+…but I prefer having a master layout to handle this stuff, so lets create a `layout.erb` file (within the `views` folder) and add the following content to it…
 
 ```html
 <!-- layout.erb -->
@@ -284,7 +286,7 @@ But if I didn't create a 'layout.erb' file then I could have made my templates a
 </html>
 ```
 
-…you should notice the Ruby tags `<% %>` which are used to place Ruby code inside of them. Here we're telling Ruby to `yield` to the template file we're loading. So for example when a user accesses the home page and we load 'home.erb', we're effectively loading the 'layout.erb' file and telling it that when it reaches the `body` tag we want it to load in the content from the 'home.erb' file into it so it will end up rendering in the web browser like this…
+…you should notice the Ruby tags `<% %>` which are used to place Ruby code inside of them. Here we're telling Ruby to `yield` to the template file we're loading. So for example when a user accesses the home page and we load `home.erb`, we're effectively loading the `layout.erb` file and telling it that when it reaches the `body` tag we want it to load in the content from the `home.erb` file into it so it will end up rendering in the web browser like this…
 
 ```html
 <!doctype html>
@@ -307,7 +309,7 @@ get '/internet-explorer' do
 end
 ```
 
-…and what you can see here is that I'm not only telling Sinatra to load the 'ie.erb' file but to also use the 'layout_ie.erb' file as the master layout file for this page rather than the default 'layout.erb'.
+…and what you can see here is that I'm not only telling Sinatra to load the `ie.erb` file but to also use the `layout_ie.erb` file as the master layout file for this page rather than the default `layout.erb`.
 
 One other thing worth mentioning is that you can pass variables from your route block into your template using class instance variables…
 
