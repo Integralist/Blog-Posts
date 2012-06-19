@@ -236,7 +236,7 @@ end
 
 …what this is doing is using ERB (which stands for 'Embedded Ruby') and is the standard templating language available in Ruby - although there are many templating languages you could load and use in its place. What we've said here in our code is load the `:home` template (.erb file) when on the home page, and load the `:project` template (.erb file) when on the projects page.
 
-By default Sinatra looks for templates inside of a root folder called `views` (you can change this if you want but I didn't bother as `views` made the most sense for a folder containing 'templates' - especially considering MVC is likely the way you'll code will want to go in the near future and they use a similar concept of 'views' representing user interface).
+By default Sinatra looks for templates inside of a root folder called `views` (you can change this if you want but I didn't bother as `views` made the most sense for a folder containing 'templates').
 
 Inside our `views` folder we'll need to create two files then: `home.erb` and `projects.erb` and they'll look a little bit like this…
 
