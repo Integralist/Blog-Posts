@@ -19,17 +19,21 @@
 
 ##Introduction
 
-In my opinion there's isn't enough good information on the web about how to get started building a [Ruby][1] based website unless you want to use the ever popular [Ruby on Rails][2] framework. 
+In my opinion there's isn't enough good information on the web about how to get started building a [Ruby][1] based website (unless you want to use the ever popular [Ruby on Rails][2] framework). 
 
-But even then, it's not as straight forward as you'd think (not for someone new to the language or server-side coding in general). 
+But even then, it's not as straight forward as you'd think (not for someone new to the language or server-side coding in general).
 
-Imagine you're new to let's say [PHP][3]. Well, it's quite easy for you to get started: you open up a text file, throw in some PHP tags `<?php ?>` and start writing code, upload the file to a web host that supports PHP - and there are many of them nowadays - and that's all there is to it. If you just want to *get started* then there really isn't anything more to it - PHP was designed as a DSL (Domain Specific Language) - for the web - where as Ruby was not. 
+###DSL vs GPL
 
-Ruby was designed to be a GPL (General Purpose Language) which means it can be used within lots of different domains (and by *domains* we really mean 'environments'). So over the course of time it has evolved to handle web related requirements. This is why there is no straight forward set-up (well, there is, but it's difficult in my opinion to grasp it without a helping hand or good prior knowledge of how Ruby works - which again in my opinion is vastly different than other DSL's** such as PHP and ASP.NET, both of which I've programmed with in the past).
+Before we go any further, it's worth clarifying the difference between a Domain Specific Language (DSL) and a General Purpose Language (GPL). Languages like JavaScript and PHP are DSL's because they were designed to be run within a specific 'domain' (and by domain we really mean 'environment') such as the web. But languages like Python and Ruby are GPL's because they can run within many different domains (e.g. Ruby can run on the web, desktop, command line etc).
 
-***PHP appears to have begun as a DSL but has since evolved more into a GPL, as it can be run on the desktop and in other domains it wasn't originally designed for.*
+If we look at a DSL language such as [PHP][3]**: it is very easy to build a site using PHP because you can just input some (hideous) procedural code, upload the file onto a server that supports PHP (and what server doesn't nowadays) and that's all there is to it.
 
-The problem with Ruby is that there is no "just get started" guide for those who want to play around with Ruby OR who want to build a site with it but not have to deal with design patterns such as MVC (or not straight away at least). I wouldn't be surprised if developers new to Ruby felt obliged to use Ruby on Rails because it seems to be the only Ruby related framework out there that gets any real spotlight - and I understand why, because it truly is an all encompassing framework - but I wanted a Ruby site without the bloat of a framework like [Ruby on Rails][2]. I didn't want all the confusing MVC structure and features that I'd never use. Hence why I'm writing this now.
+With a GPL such as Ruby it isn't so straight forward (it's like the old adage "the questions easy when you know the answer": Ruby can be easy to use and get set-up when you know what you're doing but the fundaments - in my opinion - are difficult to grasp without a helping hand).
+
+***PHP (and JavaScript) were designed to be DSL's but have since evolved more into GPL's as they can be run on the desktop as well as the web (and many other environments they weren't originally designed for).*
+
+My issue with Ruby is that there is no "just get started" guide for those who want to play around with Ruby OR who want to build a site with it but not have to deal with design patterns such as MVC (or not straight away at least). I wouldn't be surprised if developers new to Ruby felt obliged to use Ruby on Rails because it seems to be the only Ruby related framework out there that gets any real spotlight - and I understand why, because it truly is an all encompassing framework - but I wanted a Ruby site without the bloat of a framework like [Ruby on Rails][2]. I didn't want all the confusing MVC structure and features that I'd never use. Hence why I'm writing this now.
 
 ##GitHub Repository
 
