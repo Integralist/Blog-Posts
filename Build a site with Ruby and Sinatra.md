@@ -9,11 +9,12 @@
 * Example
     * Requirements
     * Set-up
-    * Performance
+    * Shotgun
     * Loading pages
     * Loading templates
     * Static resources
     * Handling errors
+    * Performance
     * Hosting our application
 * Conclusions
 
