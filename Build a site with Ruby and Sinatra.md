@@ -64,11 +64,26 @@ For today we'll be using the first option Heroku, but we'll come back to the hos
 
 ###Requirements
 
-OK, for us to build our application we're going to need to install some software. The first and most obvious being the Ruby programming language itself - please see my [introduction to the Ruby language][8] for more information on this.
+OK, for us to build our application we're going to need to install the following software...
 
-The next thing we're going to need to install is Sinatra, and to do this you'll need your CLI (Command Line Interface) tool of choice. I'm on a Macintosh so by default that will be the Terminal app. All we need to do is to execute the following command `gem install sinatra` and this will start downloading the Sinatra files from the web**.
+* Ruby (Programming Language - see my [introduction to the Ruby language][8] for more information on how to do this)
+* Sinatra (Web Framework)
+* Bundler (Dependancy Manager)
+* Shotgun (Utility)
+* Thin (Web Server)
 
-***When Ruby is installed it provides you with something called 'gems'. These gems are actually code projects (like repositories on GitHub) and are hosted publically on [http://rubygems.org/][10]. So if you're looking for a way to send email then you might search the Ruby Gems site and find a project called Pony which lets you send email very easily using a nice API and which can be install simply by running the command `gem install pony`.*
+When Ruby is installed it provides you with a tool called 'gems'. It is a list of code based projects and each one is referred to as a 'gem'. These gems are actually hosted publically on [http://rubygems.org/][10]. If you ever need a piece of functionality that you don't fancy writing yourself then you can search for a 'gem' that has already been built and download it, and then use it within your application.
+
+For example, you could be looking for a way to send email from your Ruby application. You would then search the Ruby Gems site (or you can do it via the command line) for a gem that provides this functionality. In this instance you would probably find the gem `Pony` which does exactly this and can be installed simply by running the command `gem install pony`.
+
+So, with this new knowledge about `gems` let us start downloading the above software. Start by opening your CLI (Command Line Interface) tool of choice. I'm on a Macintosh so by default that will be the Terminal app. 
+
+All we need to do is to execute the following command `gem install name_of_gem`...
+
+* Sinatra: `gem install sinatra`
+* Bundler: `gem install bundler`
+* Shotgun: `gem install shotgun`
+* Thin: `gem install thin`
 
 To see what 'gems' you have already installed you can run the command `gem list --local` and this will display something similar to this (which is what I have installed on my own machine currently)…
 
@@ -95,21 +110,6 @@ thin (1.3.1)
 tilt (1.3.3)
 treetop (1.4.10)
 ```
-
-Now, there are some other gems we'll want to install: 
-
-1. `bundler` (which I had installed by default but if you don't then just run `gem install bundler`) - Bundler manages an applications dependancies and we'll see this in use nearer the end. 
-2. `shotgun` which makes it easier to test our application locally (run `gem install shotgun`). 
-3. Lastly we want to install a different web server than what is used by default by Sinatra which is called `Thin` (run `gem install thin`).
-
-So let's quickly recap on the applications we're installing:
-
-* Sinatra (Web Framework)
-* Bundler (Dependancy Manager)
-* Shotgun (Utility)
-* Thin (Web Server)
-
-It's only four items and that'll be enough to get us going and on our way...
 
 ###Set-up
 
