@@ -29,11 +29,11 @@ Before we go any further, it's worth clarifying the difference between a Domain 
 
 If we look at a DSL language such as [PHP][3]**: it is very easy to build a site using PHP because you can just input some procedural code, upload the file onto a server that supports PHP (and what server doesn't nowadays) and that's all there is to it (!now I'm obviously not suggesting this is good practice - I'm just illustrating the point that if you wanted to __just get started__ with PHP then that is all there is to it).
 
-With a GPL such as Ruby it isn't so straight forward (it's like the old adage "the question is easy when you know the answer": Ruby can be easy to use and get set-up when you know what you're doing but the fundaments - in my opinion - are difficult to grasp without a helping hand).
+With a GPL such as Ruby it isn't so straight forward (it's like the old adage "the question is easy when you know the answer": Ruby can be easy to use and get set-up when you know what you're doing, but the fundaments - in my opinion - are difficult to grasp without a helping hand).
 
 ***PHP (and JavaScript) were designed to be DSL's but have since evolved more into GPL's as they can be run on the desktop as well as the web (and many other environments they weren't originally designed for).*
 
-My issue with Ruby is that there is no "just get started" guide for those who want to play around with Ruby OR who want to build a site with it but not have to deal with design patterns such as MVC (or not straight away at least). I wouldn't be surprised if developers new to Ruby felt obliged to use Ruby on Rails because it seems to be the only Ruby related framework out there that gets any real spotlight - and I understand why, because it truly is an all encompassing framework - but I wanted a Ruby site without the bloat of a framework like [Ruby on Rails][2]. I didn't want all the confusing MVC structure and features that I'd never use. Hence why I'm writing this now.
+My issue with Ruby is that there is no "just get started" guide for those who want to build a site with it but not have to deal with design patterns such as MVC (maybe not straight away at least). I wouldn't be surprised if developers new to Ruby felt obliged to use Ruby on Rails because it seems to be the only Ruby related framework out there that gets any real spotlight - and I understand why, because it truly is an all encompassing framework - but I wanted a Ruby site without the bloat of a framework like [Ruby on Rails][2]. I didn't want all the confusing MVC structure and features that I'd never use. Hence why I'm writing this now.
 
 ##GitHub Repository
 
@@ -47,16 +47,18 @@ Sinatra does require you to do a lot of work off your own back, but at the same 
 
 ##Hosting
 
-Obviously running a site locally on your computer is one thing, but you want to be able to share it with the community and let others use it! Ruby hosting is something I'm still investigating but there are currently two options for those who aren't willing to put their money where their mouth is just yet. These are:
+Now running a site locally on your computer is one thing, but you want to be able to share it with the community and let others use it! Ruby hosting is something I'm still looking into but I have found two popular options for those who aren't willing to put their money where their mouth is just yet (e.g. developers who are just experimenting with Ruby to see if it'll work for them). These are:
 
 * [Heroku][6]
 * [OpenShift][7]
 
-Both offer professional services, and both offer free options which allow you to test their services, and if you discover your latest web creation is doing well then you can pay money to these companies to help your application scale with the increased users it is getting.
+OpenShift is a relative newcomer to the hosting arena and currently is free (although paid for plans are likely to be introduced soon).
 
-But for the moment we just want to get our application online and so we'll be using the first option Heroku (which is the more well known of the two and it one of the most popular cloud hosting services available - specifically for Ruby, although they also, like OpenShift, host other application types like: Python and Node.Js etc).
+Heroku is one of the most well known and talked about Ruby web hosts and offers both free and paid for options.
 
-We'll come back to the hosting aspect at the end of this article when we're ready to actually upload our application.
+This means we can use either one to host our application for free and so allow us to test their services, and if you discover your latest web creation is doing well and getting lots of traffic then these platforms can scale to meet your needs.
+
+For today we'll be using the first option Heroku, but we'll come back to the hosting aspect at the end of this article when we're ready to actually upload our test application.
 
 ##Example
 
