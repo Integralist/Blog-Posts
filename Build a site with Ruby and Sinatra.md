@@ -378,7 +378,7 @@ end
 
 …the above code block is referred to as a 'filter' block and it is executed before every HTTP request. 
 
-So what this does is execute `request.path_info.sub! %r{/$}, ''` *before* every HTTP request. This code uses a Regular Expression to find the last forward-slash in the path then and removes it if it finds one. Which means it doesn't matter if the user puts an extra slash at the end of the URL.
+So what this does is execute `request.path_info.sub! %r{/$}, ''` *before* every HTTP request. This code uses a Regular Expression to find the last forward-slash in the path and then removes it if it finds one. Which means it doesn't matter if the user puts an extra slash at the end of the URL.
 
 Note: there is also a `after` filter block as well for doing tidy up work (although I've not had any reason to use it - yet).
 
