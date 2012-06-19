@@ -168,7 +168,7 @@ So at this point you've got some Ruby code and you're able to view it in a web b
 
 ###Loading pages
 
-If you wanted to have a page called "Projects" that you accessed via `http://yourdomain.com/projects` then all you would need to do is to is this…
+If you wanted to add a new page called "Projects" that you accessed via `http://localhost:4567/projects` then all you would need to do is add the following code…
 
 ```ruby
 get '/projects' do
@@ -176,7 +176,23 @@ get '/projects' do
 end
 ```
 
-If you had a form on that page which POST'ed the data back to the current page and you wanted to do something with that data (e.g. a login form) then you could do this…
+What we've done is created a new 'route' - a new way for a user to access your application.
+
+Imagine now that this 'projects' page had a login form on it that let the user enter a username and password and this form POST'ed the data entered by the user back to the current page...
+
+```html
+<form method="post">
+	<dl>
+		<dt>Name</dt>
+		<dd><input name="user" type="text"></dd>
+		<dt>Email</dt>
+		<dd><input name="password" type="password"></dd>
+	</dl>
+	<p><input type="submit" value="Send"></p>
+</form>
+```
+
+...for you to access the POST'ed data then you would need to add another 'route' to handle it. But this time instead of using a `get` request it would be a `post` request like so…
 
 ```ruby
 post '/projects' do
@@ -186,9 +202,9 @@ post '/projects' do
 end
 ```
 
-…you'll notice that the form data is passed to the block using special parameters called `params`. So in the above example we had two form fields with the names `user` and `password` and we're assigning their values to variables.
+…you'll notice that the form data is passed to the block using special parameters called `params`. So in the above example we had two form fields with the names `user` and `password` and we're assigning their values to the variables `user` and `pass` where we can now do validation on the values.
 
-You can also access the data added to the URL path. For example if you had a page which added two numbers together then it could be handled directly via the URL as follows…
+You can also use the URL path as a way for the user to interact with your application. For example if you had a page which added two numbers together then it could be handled directly via the URL as follows…
 
 ```ruby
 get '/add/:a/:b' do |a, b|
@@ -196,7 +212,7 @@ get '/add/:a/:b' do |a, b|
 end
 ```
 
-…this would display on the page the result of adding `a` to `b`. So if I went to the URL `http://localhost:4567/add/2/2` then this would display `4` as that would be the result of `2 + 2` which was the two paths I specified within the URL.
+…this would display on the page the result of adding `a` and `b` together. So if I went to the URL `http://localhost:4567/add/2/2` then this would display `4` as that would be the result of `2 + 2` (which was the two parameters I specified within the URL).
 
 ###Loading templates
 
