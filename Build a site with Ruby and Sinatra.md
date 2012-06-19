@@ -465,7 +465,7 @@ gem 'thin', '1.3.1'
 	   e.g.  
 	   `touch Procfile`,  
 	   `echo web: bundle exec ruby app.rb -p $PORT > Procfile`
-	* Commit your files using Git (sorry not going into how to use Git here!)
+	* Commit your files using Git (if you don't know how to use Git then [read this introduction][11])
 	* If you've not done this already then create a `remote` for heroku: `git remote add heroku git@heroku.com:xxxxx.git` (when you created your app earlier heroku would have generated a remote URL for you to use)
 	* `git push heroku master`
 	* `heroku open` will open your default browser to the relevant app URL heroku has given you (they are normally pretty crazy looking URL's - but you can at some later stage - if you want - register a proper domain and point it to the app on heroku's server so you don't have to give out a dodgy long URL to your users)
@@ -476,9 +476,9 @@ Hopefully if you followed along, and had no errors, then you should see your new
 
 Well, there you have it. Building a website using Sinatra and Ruby, and actually getting it hosted online.
 
-It's a bit of a whirlwind pace we've set here, going through lots of different concepts such as performance tricks and handling errors, through to loading template files etc. But hopefully it wasn't too fast paced and you managed to use the information presented here. 
+It has been a bit of a whirlwind pace we've set here, going through lots of different concepts such as performance tricks and handling errors, through to loading template files etc. But hopefully it wasn't too fast paced, and you managed to utilise this information to get you up and running. 
 
-I'm actually writing this at record pace at home late at night feeling very tired so if this article doesn't read right, or you think it needs improving then please get in contact and let me know what you think would help improve it (and thus help other users benefit from it!)
+I'm actually writing this at record pace at home, late at night - feeling very tired, so if this article doesn't read right, or you think it needs improving then please get in contact and let me know what you think would help improve it (and thus help other people better understand the concepts)
 
 Thanks.
 
@@ -492,3 +492,4 @@ Thanks.
 [8]: https://github.com/Integralist/Blog-Posts/blob/master/Introduction-to-Ruby.md "Introduction to Ruby (a front-end developers perspective)"
 [9]: http://toolbelt.heroku.com/ "Everything you need to get started using heroku"
 [10]: http://rubygems.org/ "Your community gem host"
+[11]: https://github.com/Integralist/Blog-Posts/blob/master/How-to-use-Git-and-GitHub.md "How to use Git and GitHub"
