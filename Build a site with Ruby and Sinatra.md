@@ -338,9 +338,9 @@ end
 
 ###Static resources
 
-OK, the next thing to be aware of is that Sinatra serves up ALL static resources from a folder called 'public' (again you can change this but I'm happy using it - as the name is perfectly logical already).
+OK, the next thing to be aware of is that Sinatra serves up ALL static resources from a folder called `public` (again you can change this but I'm happy using it - as the name is perfectly logical already).
 
-What this means is that if you have a file path like: `/path/to/file` then for that to work you need to have the folders/files within the 'public' folder otherwise Sinatra can't locate them. It DOESN'T mean you have to change all your paths to `/public/path/to/file`. You keep the path the same as it is already but you just move the files/folders inside of a folder called `public`.
+What this means is that if you have a file path like: `/path/to/file` then for that to work you need to have the folders/files within the root `public` folder otherwise Sinatra can't locate them. It DOESN'T mean you have to change all your paths to `/public/path/to/file`. You keep the path the same as it is already but you just move the files/folders inside of a root folder called `public`.
 
 So for example in all my projects I have my JavaScript files in the following directory…
 
@@ -350,7 +350,7 @@ So for example in all my projects I have my JavaScript files in the following di
 
 `Assets/Styles/`
 
-…all I need to do is create an 'Assets' folder within the 'public' folder. Within that I then have the 'Assets' folder, and inside of that is my 'Scripts' and 'Styles' folders which hold the relevant files.
+…all I need to do is create an `Assets` folder within the `public` folder. Within that I then have the `Assets` folder, and inside of that is my `Scripts` and `Styles` folders which hold the relevant files.
 
 If this sounds a bit confusing then have a look at the GitHub repo linked at the top of this article to see what I'm talking about.
 
