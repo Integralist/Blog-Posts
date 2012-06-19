@@ -390,7 +390,7 @@ error do
 end
 ```
 
-In a development environment Sinatra tries to be helpful by displaying very detailed error messages. But you may find this overrides your error page you want to show to a user. So if you want to test your error page is working correct then simply `disable :show_exceptions` to some where near the top of your application file and this will show you what your users will see in the live environment (e.g. they'll see your actual error page rather than some hideous looking error codes).
+In a development environment Sinatra tries to be helpful by displaying very detailed error messages. But you may find this overrides your custom error page which you would want to show to a user. So if you want to just test your error page is working correct before you 'go live' then simply add `disable :show_exceptions` to some where near the top of your application file and this will mean the detailed error stack is no longer shown when you encounter an error during development and so you'll end up seeing what your users will see in the live environment.
 
 Also, within your 'error.erb' template file you can access the error using the environment variable `sinatra.error`…
 
