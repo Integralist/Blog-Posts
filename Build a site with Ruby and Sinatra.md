@@ -392,7 +392,7 @@ end
 
 In a development environment Sinatra tries to be helpful by displaying very detailed error messages. But you may find this overrides your custom error page which you would want to show to a user. So if you want to just test your error page is working correct before you 'go live' then simply add `disable :show_exceptions` to some where near the top of your application file and this will mean the detailed error stack is no longer shown when you encounter an error during development and so you'll end up seeing what your users will see in the live environment.
 
-Also, within your 'error.erb' template file you can access the error using the environment variable `sinatra.error`…
+Also, within your `error.erb` template file you can access the error using the environment variable `sinatra.error`…
 
 ```erb
 <p>Sorry there was the following error: <strong class="error"><%= env["sinatra.error"] %></strong></p>
@@ -400,27 +400,39 @@ Also, within your 'error.erb' template file you can access the error using the e
 
 ###Performance
 
-Some performance things you can do with Sinatra are you can tell it to cache your static resources for a set amount of time…
+The performance of your application is very important, and specifically for a web application you want to make sure that all resources are sent to the user as quickly as possible.
+
+Here are some things you can do to help improve the performance of your web application...
+
+1. Cache static resources
+2. Use the `Thin` Web Server
+3. GZIP all content
+
+####1. Cache static resources
 
 ```ruby
 # We set the cache control for static resources to approximately 1 month
 set :static_cache_control, [:public, :max_age => 2678400]
 ```
 
-You can also tell Sinatra to use the 'Thin' server rather than the default 'WEBrick' server if it's available (Thin is a supremely better performing web server so do please use it!)
+####2. Use the `Thin` Web Server
+
+You can also tell Sinatra to use the `Thin` server rather than the default `WEBrick` server if it's available (`Thin` is a supremely better performing web server so do please use it!)
 
 ```ruby
 # We specify which server we want to use (Thin is tried first and then failing that WEBrick)
 set :server, %w[thin webrick]
 ```
 
-We can also have the web server automatically GZIP all our static resources such as HTML content, JavaScript files, CSS files by using one line of Ruby code…
+####3. GZIP all content
+
+We can also have the web server automatically GZIP all our static resources (which can reduce the file size of a resource by up to 70%!) such as HTML content, JavaScript files, CSS files by using one line of Ruby code…
 
 ```ruby
 use Rack::Deflater
 ```
 
-…this uses the 'Rack' middleware application (Rack is what sits behind Sinatra as is the actual HTTP web server interface. But Sinatra hides all of that behind the DSL syntax of `get` and `post` calls (nice huh).
+…this uses the 'Rack' middleware application (Rack is what sits behind Sinatra and is the actual HTTP web server interface), but Sinatra hides all of that behind the DSL syntax of `get` and `post` calls (nice huh).
 
 ###Hosting our application
 
