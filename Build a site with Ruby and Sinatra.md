@@ -366,7 +366,9 @@ end
 
 …as you can see I'm loading a 'notfound.erb' template for the content. This will get called anytime an unknown URL is specified by the user.
 
-One thing you might not want to have happen is if someone types in `http://localhost:4567/projects/` instead of `http://localhost:4567/projects` (notice the extra forward-slash at the end) then that is considered a different 'route' and wont be recognised so the user is directed to the 'not found' route. To fix this you can do the following…
+One thing you might not want to have happen is if someone types in `http://localhost:4567/projects/` instead of `http://localhost:4567/projects` (notice the extra forward-slash at the end of the first example) then that is considered a different 'route' and wont be recognised by Sinatra and so the user is directed to the 'not found' route. 
+
+To fix this you can do the following…
 
 ```ruby
 before do
@@ -374,11 +376,13 @@ before do
 end
 ```
 
-…what this is is a 'filter' block and it is executed before every HTTP request. So the code `request.path_info.sub! %r{/$}, ''` is run before every HTTP request and thus the Regular Expression finds the last forward-slash and removes it. Which means it doesn't matter if the user puts an extra slash at the end of the URL.
+…the above code block is referred to as a 'filter' block and it is executed before every HTTP request. 
+
+So what this does is execute `request.path_info.sub! %r{/$}, ''` *before* every HTTP request. This code uses a Regular Expression to find the last forward-slash in the path then and removes it if it finds one. Which means it doesn't matter if the user puts an extra slash at the end of the URL.
 
 Note: there is also a `after` filter block as well for doing tidy up work (although I've not had any reason to use it - yet).
 
-But if there is an actual error then you can use…
+If there is an actual error then you can use…
 
 ```ruby
 error do
