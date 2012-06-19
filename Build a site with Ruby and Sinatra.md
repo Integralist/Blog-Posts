@@ -3,6 +3,7 @@
 ##Table of Contents
 
 * Introduction
+    * DSL vs GPL
 * GitHub Repository
 * Sinatra
 * Hosting
