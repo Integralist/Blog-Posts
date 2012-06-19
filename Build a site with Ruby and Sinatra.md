@@ -27,7 +27,7 @@ But even then, it's not as straight forward as you'd think (not for someone new 
 
 Before we go any further, it's worth clarifying the difference between a Domain Specific Language (DSL) and a General Purpose Language (GPL). Languages like JavaScript and PHP are DSL's because they were designed to be run within a specific 'domain' (and by domain we really mean 'environment') such as the web. But languages like Python and Ruby are GPL's because they can run within many different domains (e.g. Ruby can run on the web, desktop, command line etc).
 
-If we look at a DSL language such as [PHP][3]**: it is very easy to build a site using PHP because you can just input some procedural code, upload the file onto a server that supports PHP (and what server doesn't nowadays) and that's all there is to it (!now I'm obviously not suggesting this is good practice - I'm just illustrating the point that if you wanted to *just get started* with PHP then that is all there is to it).
+If we look at a DSL language such as [PHP][3]**: it is very easy to build a site using PHP because you can just input some procedural code, upload the file onto a server that supports PHP (and what server doesn't nowadays) and that's all there is to it (!now I'm obviously not suggesting this is good practice - I'm just illustrating the point that if you wanted to __just get started__ with PHP then that is all there is to it).
 
 With a GPL such as Ruby it isn't so straight forward (it's like the old adage "the questions easy when you know the answer": Ruby can be easy to use and get set-up when you know what you're doing but the fundaments - in my opinion - are difficult to grasp without a helping hand).
 
