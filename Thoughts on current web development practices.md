@@ -259,51 +259,51 @@ Here follows is my current CSS/Sass structure…
         	* csslint.txt (*this contains my generic terminal command for executing CSS linting*)
         * /`Sass`/
             * /`Base`/
-            	* _additions.scss
-            	* _normalize.scss
-            	* _placeholder.scss
-            	* _theme.scss
+            	* `_additions.scss`
+            	* `_normalize.scss`
+            	* `_placeholder.scss`
+            	* `_theme.scss`
             * /`Configurations`/
-            	* _variables.scss
+            	* `_variables.scss`
             * /`Functions`/
-            	* _calcems.scss
-            	* _calcpercentage.scss
-            	* _fontsize.scss
+            	* `_calcems.scss`
+            	* `_calcpercentage.scss`
+            	* `_fontsize.scss`
             * /`Layouts`/
-            	* _container.scss
-            	* _grid.scss
-            	* _matrix.scss
+            	* `_container.scss`
+            	* `_grid.scss`
+            	* `_matrix.scss`
             * /`Modules`/
             	* /`Components`/
-            		* _button.scss
-            		* _media.scss
+            		* `_button.scss`
+            		* `_media.scss`
             	* /`Extensions`/
             		* *this contains _{n}.scss files that hold re-usable classes*
             	* /`Helpers`/
-            		* _clearfix.scss
-            		* _hidetxt.scss
-            		* _horizontal.scss
-            		* _push.scss
+            		* `_clearfix.scss`
+            		* `_hidetxt.scss`
+            		* `_horizontal.scss`
+            		* `_push.scss`
             	* /`Mixins`/
-            		* _border.scss
-            		* _boxsizing.scss
-            		* _radius.scss
-            		* _shadow.scss
-            		* _transform.scss
-            		* _transition.scss
+            		* `_border.scss`
+            		* `_boxsizing.scss`
+            		* `_radius.scss`
+            		* `_shadow.scss`
+            		* `_transform.scss`
+            		* `_transition.scss`
             	* *this contains .scss files specific to this project*
             * /`Plugins`/
-            	* _slimbox.scss
+            	* `_slimbox.scss`
             * /`Queries`/
-            	* _320-home.scss
-            	* _600-home.scss
-            	* _960-home.scss
-		* home.scss
-		* sub_page.scss
-		* another_page_type.scss
-	* home.css
-	* sub_page.css
-	* another_page_type.css
+            	* `_320-home.scss`
+            	* `_600-home.scss`
+            	* `_960-home.scss`
+		* `home.scss`
+		* `sub_page.scss`
+		* `another_page_type.scss`
+	* `home.css`
+	* `sub_page.css`
+	* `another_page_type.css`
 
 
 …now this may look like a **lot** of style sheets, but the beauty of using a pre-processor such as Sass is that it allows you to have a very modular code base and yet for deployment/production (e.g. the pushing of your code to the 'live' server) you can *build* your separate code modules into a single (compressed/minified) stylesheet.
