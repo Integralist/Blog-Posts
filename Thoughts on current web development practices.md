@@ -274,24 +274,23 @@ Here follows is my current CSS/Sass structure…
             	* `_grid.scss`
             	* `_matrix.scss`
             * /`Modules`/
-            	* /`Components`/
-			* test _ test
-            		* `_button.scss`
-            		* `_media.scss`
-            	* /`Extensions`/
-            		* *this contains _{n}.scss files that hold re-usable classes*
-            	* /`Helpers`/
-            		* `_clearfix.scss`
-            		* `_hidetxt.scss`
-            		* `_horizontal.scss`
-            		* `_push.scss`
-            	* /`Mixins`/
-            		* `_border.scss`
-            		* `_boxsizing.scss`
-            		* `_radius.scss`
-            		* `_shadow.scss`
-            		* `_transform.scss`
-            		* `_transition.scss`
+            	* /`Components`/  
+		`_button.scss`  
+            	`_media.scss`
+            	* /`Extensions`/  
+            	*this contains _{n}.scss files that hold re-usable classes*
+            	* /`Helpers`/  
+            	`_clearfix.scss`  
+            	`_hidetxt.scss`  
+            	`_horizontal.scss`  
+            	`_push.scss`
+            	* /`Mixins`/  
+            	`_border.scss`  
+            	`_boxsizing.scss`  
+            	`_radius.scss`  
+            	`_shadow.scss`  
+            	`_transform.scss`  
+            	`_transition.scss`
             	* *this contains .scss files specific to this project*
             * /`Plugins`/
             	* `_slimbox.scss`
