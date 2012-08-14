@@ -540,10 +540,13 @@ var obj2 = {
 
 obj2.speak(); // => 'My name is Mark'
 
+// obj1 doesn't have a speak method and we don't want to add extra code to that object when 
+// obj2 already has the same method already defined. We want to be able to just borrow obj2's 'speak' method!
+
 obj2.speak.call(obj1); // => 'My name is Bob'
 ```
 
-…you can see how this can make functions/methods very re-usable!
+…you can see how by using the `call` method we can make better use of existing functions and so we become more productive as well as have smaller and more efficient code.
 
 ##Code Reuse (inheritance)
 
