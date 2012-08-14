@@ -270,7 +270,7 @@ console.log(Object.prototype.toString.call(arr)); // => "[object Array]" - that'
 
 That previous sentence probably didn't make a lot of sense because we've not covered `this` or anything to do with contexts/execution environments etc - but try and stick with it for a moment and understand that what we've done is called the `Object.prototype`'s `toString` method but we've called it as if it was our Array that had executed `toString`.
 
-The way this trick works actually requires a deep level understanding of how JavaScript handles it's conversion of data types: something I definitely wont go into here).
+The way this trick works actually requires a deep level understanding of how JavaScript handles its conversion of data types: something I definitely wont go into here).
 
 ##Arrays
 
