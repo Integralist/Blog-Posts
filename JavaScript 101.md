@@ -225,7 +225,7 @@ Every Object you create in JavaScript has a hidden object tied to it. This hidde
 
 All 'objects' that you create (e.g. `var obj = {};`) have the same prototype object they point to/reference - which is the top level `Object` in JavaScript. We call this `Object.prototype`, and this top level `Object` itself has no prototype (it's the only object that has no prototype because nothing precedes it).
 
-All built-in Constructors (e.g. `Array.prototype`, `Date.prototype`) inherit from the `Object.prototype` and this linked set of objects is known as the 'prototype chain' and is how 'inheritance' works (we don't go into 'inheritance' in this article - but see this post I had written a long time ago on [JavaScript Inheritance - using Classical Object-Oriented syntax](https://github.com/Integralist/Blog-Posts/blob/master/JavaScript-Inheritance.md)).
+All built-in Constructors (e.g. `Array.prototype`, `Date.prototype`) inherit from the `Object.prototype` and this linked set of objects is known as the 'prototype chain' and is how 'inheritance' works (see below for a short mention of inheritance and other forms of code reuse).
 
 ###Accessing properties/methods
 
