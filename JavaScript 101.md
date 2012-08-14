@@ -16,7 +16,7 @@
 
 ##Introduction
 
-I've written this *very* brief guide to JavaScript just as an aid for people new to the language and who need a basic starting point to see what the syntax looks like and some of the aspects of the language.
+I've written this *very* brief guide to JavaScript just as an aid for people new to the language and who need a basic starting point to see what the syntax looks like and some aspects of the language.
 
 This article's purpose is to give users a glimpse of the JavaScript environment and to hopefully spur them onto further reading/learning. 
 
@@ -38,7 +38,7 @@ operator            | `+`, `-`, `!`, `++`, `===`, `&&`, `typeof`
 
 ###Expression
 
-An example of an 'expression would be `1+1`. 
+An example of an 'expression' would be `1+1`. 
 
 Looks straight forward enough, and it should be. As mentioned above, an expression is simply *something* that can be interpreted as a value. So `1+1` (when evaluated by the JavaScript engine) results in an number with a value of two. 
 
@@ -212,7 +212,8 @@ Every Object you create in JavaScript has a hidden object tied to it. This hidde
 All 'objects' that you create (e.g. `var obj = {};`) have the same prototype object they point to/reference - which is the top level `Object` in JavaScript. We call this `Object.prototype`, and this top level `Object` itself has no prototype (it's the only object that has no prototype because nothing precedes it).
 
 All built-in Constructors (e.g. `Array.prototype`, `Date.prototype`) inherit from the `Object.prototype` and this linked set of objects is known as the 'prototype chain' and is how 'inheritance' works (we don't go into 'inheritance' in this article - but see this post I had written a long time ago on [JavaScript Inheritance - using Classical Object-Oriented syntax](https://github.com/Integralist/Blog-Posts/blob/master/JavaScript-Inheritance.md)).
-###Accessing properties/methods
+
+###Accessing properties/methods
 
 To access properties/methods you can use either the dot notation or the bracket notation. The difference is in whether the property/method name is known at the type of execution or not.
 
