@@ -16,9 +16,9 @@
 
 ##Introduction
 
-I've written this *very* brief guide to JavaScript just as an aid for people new to the language and who need a basic starting point to see what the syntax looks like and some aspects of the language.
+I've written this *very* brief guide to JavaScript just as an aid for people new to the language and who need a basic starting point to see what the syntax looks like and to get a feeling for some of its features.
 
-This article's purpose is to give users a glimpse of the JavaScript environment and to hopefully spur them onto further reading/learning. 
+This article's main purpose is to give readers new to the language a glimpse of the JavaScript environment and to hopefully spur them onto further reading/learning. 
 
 ##What is JavaScript
 
@@ -36,7 +36,7 @@ function expression | `var myFunction = function(){ /* code */ };`
 primitive           | `undefined`, `null`, `boolean`, `string` and `number`
 operator            | `+`, `-`, `!`, `++`, `===`, `&&`, `typeof`
 
-###Expression
+###Expressions
 
 An example of an 'expression' would be `1+1`. 
 
@@ -44,7 +44,7 @@ Looks straight forward enough, and it should be. As mentioned above, an expressi
 
 Now the expression `1+1` is pretty useless in a JavaScript program because we're not doing anything with it. For us to more effectively use this expression we ideally want to store it somewhere so we can reference it later and that's where 'variables' come in (see later on this article).
 
-###Statement
+###Statements
 
 Examples of JavaScript 'statements': 
 
@@ -66,56 +66,70 @@ One quote you'll hear a lot in JavaScript is:
 
 …and what this means is try to avoid creating global properties and methods. The less 'globals' you create then the less likely your code will conflict with another piece of code written by someone else that may be included in the same page.
 
-To avoid declaring global properties/methods there are certain 'patterns' that have been designed to work around this issue, such as…
+To avoid declaring global properties/methods there are certain 'patterns' that have been designed to work around this issue, such as the IIFE pattern…
 
 ```
 /*
  * this pattern is referred to as an IIFE (immediately invoked function expression)
- * the function is immediately executed and all code within is scoped to the function
+ * the function is immediately executed and all code within it is scoped to the function
  * when executed we pass through 'this' which refers to the global object
  * we accept 'this' into the function as an argument called 'global'
  */
-var app = (function(global){
+var app = (function (global) {
 
     // private data (private as in: it can't be accessed from other code outside this function)
-    function a_function_Ill_make_public(){
+    // note: don't EVER name your functions like this!
+    function will_be_made_public_but_cant_be_accessed_directly(){
         console.log('Private');
     }
     
     return {
         // public API (private code we've chosen to make public)
-        do_something: a_function_Ill_make_public
+        do_something: will_be_made_public_but_cant_be_accessed_directly
     };
 
 }(this));
 
-app.a_function_Ill_make_public() // TypeError: Object #<Object> has no method 'a_function_Ill_make_public'
+app.will_be_made_public_but_cant_be_accessed_directly() // TypeError: Object #<Object> has no method 'will_be_made_public_but_cant_be_accessed_directly'
 
 app.do_something(); // => 'Private'
 ```
 
-…the other pattern is AMD which is a module based pattern (see: [Beginners guide to AMD and RequireJs](https://github.com/Integralist/Blog-Posts/blob/master/Beginners-guide-to-AMD-and-RequireJs.md))
+Another pattern is to use AMD (Asynchronous Module Definition) which is a module based pattern (see: [Beginners guide to AMD and RequireJs](https://github.com/Integralist/Blog-Posts/blob/master/Beginners-guide-to-AMD-and-RequireJs.md))
 
 
 ##Variables
 
 Variables hold values/data. 
 
-You declare a variable like this: `var my_var = 123;` - in this example we've declared a variable and assigned the value `123` to it.
+You declare a variable like so: `var my_var = 123;` - in this example we've declared a variable and assigned the value `123` to it.
 
-You must always declare a variable. An undeclared variable looks like this: `my_var = 123;` - notice the lack of the `var` keyword. Undeclared variables are a bad practice because the JavaScript engine will make an undeclared variable a 'global' variable (e.g. it is assigned to the Global object).
+You must always declare a variable. An undeclared variable looks like this: `my_var = 123;` - notice the lack of the `var` keyword. 
 
-To see why this is a problem, imagine you have a web page you're working on. Now imagine you have a 3rd party library of code included on your page which includes the following code:
+Undeclared variables are a bad practice because they cause confusion as to whether the variable should be 'global' or not.
+
+Here is a break down of the different variable scenarios:
+
+* Variable is declared within a function:  
+variable becomes scoped to that function (i.e. it isn't accessible outside of that function). 
+* Variable is declared at the top level of the script file (e.g. not inside of a function):  
+variable becomes a global variable (i.e. is available any where within the JavaScript program).
+* Variable is undeclared (e.g. doesn't matter where in the program the undeclared variable was created):  
+variable becomes a global variable (i.e. is available any where within the JavaScript program).
+
+As you can see, missing a `var` declaration will mean the JavaScript engine will make that undeclared variable a 'global' variable (e.g. it is assigned to the Global object).
+
+To see why this is a problem first imagine you have a web page you're working on and in which you have included a 3rd party JavaScript file (i.e. a script written by another developer). Now imagine the content of that 3rd party script is as follows:
 
 ```
+// 3rd party script written by another developer...
+
 var my_name = 'Mark';
-
-// more 3rd party code
 ```
 
-…the variable `my_name` is a global property (e.g. it is available via `window.my_name`).
+…in this instance, the 3rd party script hasn't wrapped the line `var my_name = 'Mark';` inside of an IIFE (see above pattern) so the variable `my_name` will be created as global property (e.g. it is available any where within the JavaScript program as well as explicitly via `window.my_name`).
 
-Now you don't want to overwrite `my_name` because that could cause the 3rd party code to break (e.g. if the rest of the 3rd party code expects `my_name` to be a `String` and you set it to a `Number` then that will likely cause a break).
+Now you don't want to overwrite the variable `my_name` because the 3rd party script that defined it is relying on it being a String with a value of `Mark` - if you change the value then it could cause the 3rd party code to break.
 
 So now imagine you're going to add your own code to the page. You write the following…
 
@@ -125,9 +139,9 @@ function do_something(){
 }
 ```
 
-…this may not cause the 3rd party code to break, but it will cause unintended side effects on the 3rd party code. This is because your variable `my_name` - although intended to be scoped inside a function - is undeclared (i.e. no `var` keyword) so your variable has been assigned to the Global object, thus overwriting the `my_name` variable that is already added to the Global object from the 3rd party code.
+…this may cause unintended side effects on the 3rd party code. Why? Because you coincidentally defined a variable by the same name of `my_name` and although you likely intended it to be scoped to the function `do_something` you've accidentally forgotten the `var` keyword and so your variable is undeclared, so your variable has been assigned to the Global object, thus overwriting the `my_name` variable that is already available on the Global object (set by the 3rd party code).
 
-To fix this you would declare your variable like so…
+To fix this you would simply make sure you properly declared your variable like so…
 
 ```
 function do_something(){
@@ -135,7 +149,7 @@ function do_something(){
 }
 ```
 
-…now, even though the variable name is the same - it is 'scoped' to the `do_something` function.
+So now, even though the variable name is the same, the variable is 'scoped' to the `do_something` function.
 
 In today's world you'll be very hard pushed to find a library that sets anything more than one global variable - but it's an issue to be aware of in case you inherit a code base from a less educated developer.
 
