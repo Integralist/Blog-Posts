@@ -68,7 +68,7 @@ One quote you'll hear a lot in JavaScript is:
 
 To avoid declaring global properties/methods there are certain 'patterns' that have been designed to work around this issue, such as the IIFE pattern…
 
-```
+```js
 /*
  * this pattern is referred to as an IIFE (immediately invoked function expression)
  * the function is immediately executed and all code within it is scoped to the function
@@ -121,7 +121,7 @@ As you can see, missing a `var` declaration will mean the JavaScript engine will
 
 To see why this is a problem first imagine you have a web page you're working on and in which you have included a 3rd party JavaScript file (i.e. a script written by another developer). Now imagine the content of that 3rd party script is as follows:
 
-```
+```js
 // 3rd party script written by another developer...
 
 var my_name = 'Mark';
@@ -133,7 +133,7 @@ Now you don't want to overwrite the variable `my_name` because the 3rd party scr
 
 So now imagine you're going to add your own code to the page. You write the following…
 
-```
+```js
 function do_something(){
     my_name = 'Bob';
 }
@@ -143,7 +143,7 @@ function do_something(){
 
 To fix this you would simply make sure you properly declared your variable like so…
 
-```
+```js
 function do_something(){
     var my_name = 'Bob';
 }
@@ -169,7 +169,7 @@ It's important to know the different types because at some point in your JavaScr
 
 What this means is if you have an Array and want to copy it so you can make changes to the copy (e.g. you want to leave the original as it is) then you might think to do something like this…
 
-```
+```js
 var my_arr = ['a', 'b', 'c'];
 var new_arr = my_arr;
 
@@ -186,7 +186,7 @@ To create a new `Object` use the syntax: `{}`
 
 For example:
 
-```
+```js
 var obj = {
 	name: 'Mark',
 	location: 'London, England'
@@ -200,7 +200,7 @@ A function added to an Object is known as a 'method'
 
 So for example:
 
-```
+```js
 var obj = {
 	/* Property */
 		name: 'Mark',
@@ -233,14 +233,14 @@ To access properties/methods you can use either the dot notation or the bracket 
 
 Using the previous example code, if your program was written by you then to access the 'name' property you would simply use: `obj.name` - but if your application accepted input from the user (where by you asked them what property/method they wanted to access) you obviously don't know before hand what the user is going to choose. In this instance you would use the bracket notation: 
 
-```
+```js
 var user_input = document.getElementById('my_form_input');
 console.log(obj[user_input]);
 ```
 
 The other time you'll need to use bracket notation is if you want to access a property that has special characters:
 
-```
+```js
 var obj = { 
 	'my property': 123 // YOU SHOULD NEVER NEED TO CREATE A PROPERTY NAME LIKE THIS
 };
@@ -258,7 +258,7 @@ Sounds pretty useful, but unfortunately neither of the current specifications (E
 
 But there is a trick to accessing an object's *class* attribute and that is to call the `toString()` method on the top level `Object.prototype` but using it on the relevant object you want to get the class of. The following example demonstrates the most common use case of accessing the *class* attribute: trying to work out if an object is actually an `Array`…
 
-```
+```js
 var arr = ['a','b','c'];
 
 console.log(typeof arr); // => "object" - well that's not right, it should return the type as 'Array'! (note: this is a known JavaScript bug)
@@ -278,7 +278,7 @@ Arrays are like a simplified Object.
 
 An Object is effectively a mapping of names (identifiers) to values… 
 
-```
+```js
 var obj = {
     name: value,
     name: value,
@@ -288,13 +288,13 @@ var obj = {
 
 …an Array is the same with the exception that the 'name' identifiers are automatically incremented numerical values. So an Array like this…
 
-```
+```js
 var arr = ['a', 'b', 'c'];
 ```
 
 …would effectively be similar to the following object…
 
-```
+```js
 var obj = {
     0: 'a',
     1: 'b',
@@ -340,7 +340,7 @@ The simplest way to understand them is to see the syntax.
 
 ###If Statement
 
-```
+```js
 if (condition) {
 
     // if 'condition' evaluated to true then run this code
@@ -358,7 +358,7 @@ if (condition) {
 
 So a basic example would be something like this…
 
-```
+```js
 var can_drink = false;
 var age = 18;
 
@@ -371,7 +371,7 @@ if (age >= 18) {
 
 If you have lots of checks against the same variable/condition then you're better off using a `switch` statement… 
 
-```
+```js
 switch (condition) {
     case x:
         // Execute this code block
@@ -390,7 +390,7 @@ switch (condition) {
 
 An example of using this statement would be… 
 
-```
+```js
 var car = 'Porsche';
 
 switch (car) {
@@ -413,13 +413,13 @@ switch (car) {
 
 For very short `if` statements you can also use a shortened syntax (a conditional operator sometimes referred to as a 'ternary' operator because of its three operands). The syntax is like so…
 
-```
+```js
 condition ? true : false
 ```
 
 …and can be used like so…
 
-```
+```js
 var age = 18;
 var can_drink = (age >= 18) ? true : false; // can_drink will equal a Boolean value of true
 
@@ -435,7 +435,7 @@ The best thing to do is to just try and take advantage of JavaScript's ability t
 
 For example, with an `if` conditional statement JavaScript will try to coerce the expression into either `true` or `false` like so… 
 
-```
+```js
 var element = document.getElementById('js-element');
 
 if (element) {
@@ -451,7 +451,7 @@ if (element) {
 
 In the above example JavaScript automatically converts the condition into a Boolean, but you can manually coerce a value into a Boolean by using the double negation operator `!!` like so...
 
-```
+```js
 var obj = { age: 0, year: 1980 };
 
 !!obj.age // => false (because zero coerces to false)
@@ -460,7 +460,7 @@ var obj = { age: 0, year: 1980 };
 
 You can also use a single negation operator `!` to return the opposite Boolean value of an object (this is useful for saying 'if NOT x')…
 
-```
+```js
 var bool = false;
 
 if (!bool) {
@@ -482,7 +482,7 @@ Functions make it easier to create re-useable code. They are simply blocks of Ja
 
 An example of the function syntax is as follows…
 
-```
+```js
 function identifier (parameters) {
     // statements
 }
@@ -490,7 +490,7 @@ function identifier (parameters) {
 
 …which could be used like so…
 
-```
+```js
 function add (a, b) {
     return a + b;
 }
@@ -504,7 +504,7 @@ Functions accept any number of 'parameters' (also known as 'arguments').
 
 Within a function you can access all arguments via a special `arguments` property…
 
-```
+```js
 function test (a, b, c) { 
     console.log(arguments); 
 }
@@ -526,7 +526,7 @@ These two methods are the same (i.e. they do the same thing - which is to call a
 
 The purpose of these methods is to allow you to *borrow* a function/method from another object. The following code demonstrates its usage and how powerful it can be… 
 
-```
+```js
 var obj1 = {
     name: 'Bob'
 };
@@ -555,7 +555,7 @@ There are multiple ways to use the prototype chain, one populate way is to try a
 
 An example of how to emulate Class style syntax in JavaScript (currently) is by using functions as 'Constructors' like so… 
 
-```
+```js
 var Person = function (settings) {
    // Instance properties (any new instances of the Person class will have these properties)
    this.name = settings.name || 'no name given';
@@ -608,7 +608,7 @@ There is another code reuse pattern you can use instead of 'inheritance' called 
 
 An example of this is as follows…
 
-```
+```js
 var person = {
 		names: ['James', 'Neil', 'Russ', 'Stuart']
 	};
@@ -630,7 +630,7 @@ Another code reuse pattern is called a 'mixin' - which instead of using 'inherit
 
 The following example demonstrates how this works… 
 
-```
+```js
 function extend(destination, source, overwrite) {
 	var overwrite = overwrite || false;
 	for (var i in source) {
