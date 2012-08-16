@@ -1096,9 +1096,68 @@ else {
 }
 ```
 
+###URL Routing
+
+I've not built in any real routing logic into this particular example application, but I've included below part of the example from the Backbone website so you at least have an idea of how it works...
+
+```js
+define(['../Utils/backbone'], function(){
+    
+    var Routing = Backbone.Router.extend({
+        routes: {
+            'test': 'test',
+            'search/:query/:page': 'search'
+        },
+        
+        test: function(){
+            console.log('User has accessed this app from /test/');
+        },
+        
+        search: function (query, page) {
+            console.log(query, page);
+        }
+    });
+    
+    return Routing;
+    
+});
+```
+
+...what we have here is a new `Router` instance where we then defines a set of 'routes' into your application. The routes we have defined are:
+
+* http://backbone:8888/#test  
+If we access our application with this URL we'll see a log message of `User has accessed this app from /test/`
+
+* http://backbone:8888/#search/testing/p7  
+If we access our application with this URL we'll see a log message of `testing, p7`
+
+...to initialise this Router system we need to trigger it via the main script file... 
+
+```js
+/**
+ * Router/History API Examples
+ */
+
+// Create new instance of our Routing Class
+var routing = new Routing();
+
+// Initialize the Router
+Backbone.history.start({ pushState: true });
+```
+
+Instead of displaying basic log messages we would use this routing feature to load a specific application state.
+
+So for example, if we set-up the relevant route then the user could access the application via a URL like: http://backbone:8888/#contact/99 and that could load the contact details for Model item 99.
+
+You also have the facility to take advantage of HTML5's `pushState` which removes the need for URL rewriting but does require extra application logic/work. The default for `Backbone.Router` is to use hashbangs.
+
+If a user access the application with a hashbang URL and the application is set-up to use `pushState` then Backbone will update the URL from the hashbang to the proper HTML5 variation.
+
 ##Wrap-up
 
-This is where we end. We've got our three Views set-up, we have our Model defined and contacts created from it and we created a Collection based on that Model type.
+So this is where we end. 
+
+We've got our three Views set-up, we have our Model defined and contacts created from it and we created a Collection based on that Model type.
 
 The Views and Models/Collection are tied together and the application is functioning as it should be.
 
