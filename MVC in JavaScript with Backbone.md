@@ -10,6 +10,7 @@
 * Project
 * Set-up
 * Architecture
+* Wrap-up
 * Conclusion
 
 ##Introduction
@@ -1095,11 +1096,18 @@ else {
 }
 ```
 
+##Wrap-up
+
+
+This is where we end. We've got our three Views set-up, we have our Model defined and contacts created from it and we created a Collection based on that Model type.
+
+The Views and Models/Collection are tied together as it should be and kept in sync.
+
 ##Conclusion
 
 When you start using Backbone.js the concepts can be a bit confusing, but you quickly learn your way around. 
 
-Oddly, trying to *explain* how to use Backbone.js is harder than actually using it! So I would suggest just using it as the best way to learn it.
+Oddly, trying to *explain* how to use Backbone.js is harder than actually using it! So I would suggest just start using it.
 
 The main [Backbone.js website](http://www.backbonejs.org/) is the best documentation available and is the ideal place to start after here. 
 
