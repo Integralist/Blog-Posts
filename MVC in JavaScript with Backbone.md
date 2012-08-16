@@ -85,7 +85,7 @@ But the basic premise for most of these libraries is that they implement the Mod
 
 ###Collections?
 
-Backbone.js also introduces another concept called a 'Collection'. A Collection is simply a group of a specific Models. So if you had a Model called "PhotoModel" and you created a few instances of that Model you might want to create a Collection called "PhotoAlbum". PhotoAlbum would then be a *collection* of PhotoModel's.
+Backbone.js also introduces another concept called a 'Collection'. A Collection is simply a group of a specific Models. So if you had a Model called "PhotoModel" and you created a few instances of that Model you might want to create a Collection called "PhotoAlbum". PhotoAlbum would then be a *collection* of PhotoModels.
 
 Collections trigger events when a Model is added or removed from the Collection and you are able to iterate over the Collection and pull out a specific Model, so they can end up being pretty useful.
 
@@ -161,7 +161,7 @@ Let's take a top level view of our directory structure…
 
 ###HTML
 
-The HTML page `index.html` consists of a view different elements that we'll use as 'Views'. 
+The HTML page `index.html` consists of a few different elements that we'll use as 'Views'. 
 
 We have the `<select>` menu for displaying the initial list of Contacts, the `<form>` for allowing us to add more Contacts, and an empty `<div>` which will be used for displaying the full details of the selected contact.
 
