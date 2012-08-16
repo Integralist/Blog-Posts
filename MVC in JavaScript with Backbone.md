@@ -417,7 +417,7 @@ You'll notice that when creating the view Backbone gives us the ability to pass 
 &nbsp;  
 Backbone also lets us specify a Collection for this View to be associated with (this is so we can watch for any events - such as a adding/removing Models - so we can keep the View in sync with any data changes)  
 &nbsp;  
-Lastly, we pass in a custom property I've called `associated_view` and the value of this will be a new instance of the `ContactView` View (this View is the empty `<div>` which will be used to display the select Contact details). The reason I've passed in this View into another View is because I want the `contacts_view` to have access to the `associated_view` so when the user selects a Contact we can easily tell `contacts_view` to render the selected Contact data.
+Lastly, we pass in a custom property I've called `associated_view` and the value of this will be a new instance of `ContactView` (this View is the empty `<div>` which will be used to display the details of a specific record as selected by the user of our application). The reason I've passed in this View into another View is because I want the `contacts_view` to have access to the `associated_view` so when the user selects a Contact we can easily tell `contacts_view` to render the selected Contact data.
 
 ```js
 /**
