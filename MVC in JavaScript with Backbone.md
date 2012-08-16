@@ -556,7 +556,7 @@ The PHP script we're using would normally connect to a database and return its d
 
 …Backbone.js then populates the Collection with the new data it has 'fetched' from the server application.
 
-You'll may have also noticed that back in our main JavaScript file (when we called the `fetch` method) we had specified a property called `add` and set its value to `true`. The reason we did this was because if we left that property out then when Backbone fetched the data from the server it would have cleared our Collection of all Model data and replaced it with the data from the server. Setting `add: true` means we don't overwrite any existing data but instead add the data on top of what's already there.
+You may have also noticed that back in our main JavaScript file (when we called the `fetch` method) we had specified a property called `add` and set its value to `true`. The reason we did this was because if we left that property out then when Backbone fetched the data from the server it would have cleared our Collection of all Model data and replaced it with the data from the server. Setting `add: true` means we don't overwrite any existing data but instead add the data on top of what's already there.
 
 ###Model Structure
 
