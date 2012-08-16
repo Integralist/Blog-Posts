@@ -1151,7 +1151,7 @@ So for example, if we set-up the relevant route then the user could access the a
 
 You also have the facility to take advantage of HTML5's `pushState` which removes the need for URL rewriting but does require extra application logic/work. The default for `Backbone.Router` is to use hashbangs.
 
-If a user access the application with a hashbang URL and the application is set-up to use `pushState` then Backbone will update the URL from the hashbang to the proper HTML5 variation.
+If a user accesses the application with a hashbang URL and the application is set-up to use `pushState` then Backbone will update the URL from the hashbang to the proper HTML5 variation.
 
 ##Wrap-up
 
