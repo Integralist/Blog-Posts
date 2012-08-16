@@ -334,13 +334,12 @@ require(['../Models/Contact', '../Collections/Contacts', '../Views/Contacts', '.
     
     contacts.fetch({
         add: true, // Prevent resetting the Collection (i.e. instead or clearing the Collection first we just add new Models on top of current set of Models),
-        error: function (collection, resp) {
-            console.log('Error: ', collection, resp);
-        },
-        success: function (collection, resp) {
-            console.log('Success: ', collection);
-            console.dir(resp);
-        }
+    	error: function (collection, resp) {
+        	// You can do something on error loading
+    	},
+    	success: function (collection, resp) {
+        	// You can do something on successful loading
+    	}
     });
     
     
@@ -383,7 +382,7 @@ function (Contact, Contacts, ContactsView, AddContactView, ContactView, Routing)
 ```
 
 * **Generate some data for the initial `<select>` menu population**  
-We've loaded the `Contact` Model and we create two new instances of it and pass in the relevant data properties for the Model data.
+We've loaded the `Contact` Model and we create two new instances of it and pass in the relevant properties for the Model data.
 
 ```js
 /**
