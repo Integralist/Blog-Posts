@@ -16,9 +16,9 @@
 
 ##Introduction
 
-I've written this *very* brief guide to JavaScript just as an aid for people new to the language and who need a basic starting point to see what the syntax looks like and some of the aspects of the language.
+I've written this *very* brief guide to JavaScript just as an aid for people new to the language and who need a basic starting point to see what the syntax looks like and to get a feeling for some of its features.
 
-This article's purpose is to give users a glimpse of the JavaScript environment and to hopefully spur them onto further reading/learning. 
+This article's main purpose is to give readers new to the language a glimpse of the JavaScript environment and to hopefully spur them onto further reading/learning. 
 
 ##What is JavaScript
 
@@ -36,15 +36,15 @@ function expression | `var myFunction = function(){ /* code */ };`
 primitive           | `undefined`, `null`, `boolean`, `string` and `number`
 operator            | `+`, `-`, `!`, `++`, `===`, `&&`, `typeof`
 
-###Expression
+###Expressions
 
-An example of an 'expression would be `1+1`. 
+An example of an 'expression' would be `1+1`. 
 
 Looks straight forward enough, and it should be. As mentioned above, an expression is simply *something* that can be interpreted as a value. So `1+1` (when evaluated by the JavaScript engine) results in an number with a value of two. 
 
 Now the expression `1+1` is pretty useless in a JavaScript program because we're not doing anything with it. For us to more effectively use this expression we ideally want to store it somewhere so we can reference it later and that's where 'variables' come in (see later on this article).
 
-###Statement
+###Statements
 
 Examples of JavaScript 'statements': 
 
@@ -66,76 +66,90 @@ One quote you'll hear a lot in JavaScript is:
 
 …and what this means is try to avoid creating global properties and methods. The less 'globals' you create then the less likely your code will conflict with another piece of code written by someone else that may be included in the same page.
 
-To avoid declaring global properties/methods there are certain 'patterns' that have been designed to work around this issue, such as…
+To avoid declaring global properties/methods there are certain 'patterns' that have been designed to work around this issue, such as the IIFE pattern…
 
-```
+```js
 /*
  * this pattern is referred to as an IIFE (immediately invoked function expression)
- * the function is immediately executed and all code within is scoped to the function
+ * the function is immediately executed and all code within it is scoped to the function
  * when executed we pass through 'this' which refers to the global object
  * we accept 'this' into the function as an argument called 'global'
  */
-var app = (function(global){
+var app = (function (global) {
 
     // private data (private as in: it can't be accessed from other code outside this function)
-    function a_function_Ill_make_public(){
+    // note: don't EVER name your functions like this!
+    function will_be_made_public_but_cant_be_accessed_directly(){
         console.log('Private');
     }
     
     return {
         // public API (private code we've chosen to make public)
-        do_something: a_function_Ill_make_public
+        do_something: will_be_made_public_but_cant_be_accessed_directly
     };
 
 }(this));
 
-app.a_function_Ill_make_public() // TypeError: Object #<Object> has no method 'a_function_Ill_make_public'
+app.will_be_made_public_but_cant_be_accessed_directly() // TypeError: Object #<Object> has no method 'will_be_made_public_but_cant_be_accessed_directly'
 
 app.do_something(); // => 'Private'
 ```
 
-…the other pattern is AMD which is a module based pattern (see: [Beginners guide to AMD and RequireJs](https://github.com/Integralist/Blog-Posts/blob/master/Beginners-guide-to-AMD-and-RequireJs.md))
+Another pattern is to use AMD (Asynchronous Module Definition) which is a module based pattern (see: [Beginners guide to AMD and RequireJs](https://github.com/Integralist/Blog-Posts/blob/master/Beginners-guide-to-AMD-and-RequireJs.md))
 
 
 ##Variables
 
 Variables hold values/data. 
 
-You declare a variable like this: `var my_var = 123;` - in this example we've declared a variable and assigned the value `123` to it.
+You declare a variable like so: `var my_var = 123;` - in this example we've declared a variable and assigned the value `123` to it.
 
-You must always declare a variable. An undeclared variable looks like this: `my_var = 123;` - notice the lack of the `var` keyword. Undeclared variables are a bad practice because the JavaScript engine will make an undeclared variable a 'global' variable (e.g. it is assigned to the Global object).
+You must always declare a variable. An undeclared variable looks like this: `my_var = 123;` - notice the lack of the `var` keyword. 
 
-To see why this is a problem, imagine you have a web page you're working on. Now imagine you have a 3rd party library of code included on your page which includes the following code:
+Undeclared variables are a bad practice because they cause confusion as to whether the variable should be 'global' or not.
 
-```
+Here is a break down of the different variable scenarios:
+
+* Variable is declared within a function:  
+variable becomes scoped to that function (i.e. it isn't accessible outside of that function). 
+* Variable is declared at the top level of the script file (e.g. not inside of a function):  
+variable becomes a global variable (i.e. is available any where within the JavaScript program).
+* Variable is undeclared (e.g. doesn't matter where in the program the undeclared variable was created):  
+variable becomes a global variable (i.e. is available any where within the JavaScript program).
+
+As you can see, missing a `var` declaration will mean the JavaScript engine will make that undeclared variable a 'global' variable (e.g. it is assigned to the Global object).
+
+To see why this is a problem first imagine you have a web page you're working on and in which you have included a 3rd party JavaScript file (i.e. a script written by another developer). Now imagine the content of that 3rd party script is as follows:
+
+```js
+// 3rd party script written by another developer...
+
 var my_name = 'Mark';
-
-// more 3rd party code
 ```
 
-…the variable `my_name` is a global property (e.g. it is available via `window.my_name`).
+…in this instance, the 3rd party script hasn't wrapped the line `var my_name = 'Mark';` inside of an IIFE (see above pattern) so the variable `my_name` will be created as global property (e.g. it is available any where within the JavaScript program as well as explicitly via `window.my_name`).
 
-Now you don't want to overwrite `my_name` because that could cause the 3rd party code to break (e.g. if the rest of the 3rd party code expects `my_name` to be a `String` and you set it to a `Number` then that will likely cause a break).
+Now you don't want to overwrite the variable `my_name` because the 3rd party script that defined it is relying on it being a String with a value of `Mark` - if you change the value then it could cause the 3rd party code to break.
 
 So now imagine you're going to add your own code to the page. You write the following…
 
-```
+```js
 function do_something(){
     my_name = 'Bob';
 }
 ```
 
-…this may not cause the 3rd party code to break, but it will cause unintended side effects on the 3rd party code. This is because your variable `my_name` - although intended to be scoped inside a function - is undeclared (i.e. no `var` keyword) so your variable has been assigned to the Global object, thus overwriting the `my_name` variable that is already added to the Global object from the 3rd party code.
+…this may cause unintended side effects on the 3rd party code. Why? Because you coincidentally defined a variable by the same name of `my_name` and although you likely intended it to be scoped to the function `do_something` you've accidentally forgotten the `var` keyword and so your variable is undeclared, so your variable has been assigned to the Global object, thus overwriting the `my_name` variable that is already available on the Global object (set by the 3rd party code).
 
-To fix this you would declare your variable like so…
+To fix this you would simply make sure you properly declared your variable like so…
 
-```
+```js
 function do_something(){
     var my_name = 'Bob';
 }
 ```
 
-…now, even though the variable name is the same - it is 'scoped' to the `do_something` function.
+So now, even though the variable name is the same, the variable is 'scoped' to the `do_something` function.
 
 In today's world you'll be very hard pushed to find a library that sets anything more than one global variable - but it's an issue to be aware of in case you inherit a code base from a less educated developer.
 
@@ -155,7 +169,7 @@ It's important to know the different types because at some point in your JavaScr
 
 What this means is if you have an Array and want to copy it so you can make changes to the copy (e.g. you want to leave the original as it is) then you might think to do something like this…
 
-```
+```js
 var my_arr = ['a', 'b', 'c'];
 var new_arr = my_arr;
 
@@ -172,7 +186,7 @@ To create a new `Object` use the syntax: `{}`
 
 For example:
 
-```
+```js
 var obj = {
 	name: 'Mark',
 	location: 'London, England'
@@ -186,7 +200,7 @@ A function added to an Object is known as a 'method'
 
 So for example:
 
-```
+```js
 var obj = {
 	/* Property */
 		name: 'Mark',
@@ -211,21 +225,22 @@ Every Object you create in JavaScript has a hidden object tied to it. This hidde
 
 All 'objects' that you create (e.g. `var obj = {};`) have the same prototype object they point to/reference - which is the top level `Object` in JavaScript. We call this `Object.prototype`, and this top level `Object` itself has no prototype (it's the only object that has no prototype because nothing precedes it).
 
-All built-in Constructors (e.g. `Array.prototype`, `Date.prototype`) inherit from the `Object.prototype` and this linked set of objects is known as the 'prototype chain' and is how 'inheritance' works (we don't go into 'inheritance' in this article - but see this post I had written a long time ago on [JavaScript Inheritance - using Classical Object-Oriented syntax](https://github.com/Integralist/Blog-Posts/blob/master/JavaScript-Inheritance.md)).
-###Accessing properties/methods
+All built-in Constructors (e.g. `Array.prototype`, `Date.prototype`) inherit from the `Object.prototype` and this linked set of objects is known as the 'prototype chain' and is how 'inheritance' works (see below for a short mention of inheritance and other forms of code reuse).
+
+###Accessing properties/methods
 
 To access properties/methods you can use either the dot notation or the bracket notation. The difference is in whether the property/method name is known at the type of execution or not.
 
 Using the previous example code, if your program was written by you then to access the 'name' property you would simply use: `obj.name` - but if your application accepted input from the user (where by you asked them what property/method they wanted to access) you obviously don't know before hand what the user is going to choose. In this instance you would use the bracket notation: 
 
-```
+```js
 var user_input = document.getElementById('my_form_input');
 console.log(obj[user_input]);
 ```
 
 The other time you'll need to use bracket notation is if you want to access a property that has special characters:
 
-```
+```js
 var obj = { 
 	'my property': 123 // YOU SHOULD NEVER NEED TO CREATE A PROPERTY NAME LIKE THIS
 };
@@ -243,7 +258,7 @@ Sounds pretty useful, but unfortunately neither of the current specifications (E
 
 But there is a trick to accessing an object's *class* attribute and that is to call the `toString()` method on the top level `Object.prototype` but using it on the relevant object you want to get the class of. The following example demonstrates the most common use case of accessing the *class* attribute: trying to work out if an object is actually an `Array`…
 
-```
+```js
 var arr = ['a','b','c'];
 
 console.log(typeof arr); // => "object" - well that's not right, it should return the type as 'Array'! (note: this is a known JavaScript bug)
@@ -255,7 +270,7 @@ console.log(Object.prototype.toString.call(arr)); // => "[object Array]" - that'
 
 That previous sentence probably didn't make a lot of sense because we've not covered `this` or anything to do with contexts/execution environments etc - but try and stick with it for a moment and understand that what we've done is called the `Object.prototype`'s `toString` method but we've called it as if it was our Array that had executed `toString`.
 
-The way this trick works actually requires a deep level understanding of how JavaScript handles it's conversion of data types: something I definitely wont go into here).
+The way this trick works actually requires a deep level understanding of how JavaScript handles its conversion of data types: something I definitely wont go into here).
 
 ##Arrays
 
@@ -263,7 +278,7 @@ Arrays are like a simplified Object.
 
 An Object is effectively a mapping of names (identifiers) to values… 
 
-```
+```js
 var obj = {
     name: value,
     name: value,
@@ -273,13 +288,13 @@ var obj = {
 
 …an Array is the same with the exception that the 'name' identifiers are automatically incremented numerical values. So an Array like this…
 
-```
+```js
 var arr = ['a', 'b', 'c'];
 ```
 
 …would effectively be similar to the following object…
 
-```
+```js
 var obj = {
     0: 'a',
     1: 'b',
@@ -325,7 +340,7 @@ The simplest way to understand them is to see the syntax.
 
 ###If Statement
 
-```
+```js
 if (condition) {
 
     // if 'condition' evaluated to true then run this code
@@ -343,7 +358,7 @@ if (condition) {
 
 So a basic example would be something like this…
 
-```
+```js
 var can_drink = false;
 var age = 18;
 
@@ -356,7 +371,7 @@ if (age >= 18) {
 
 If you have lots of checks against the same variable/condition then you're better off using a `switch` statement… 
 
-```
+```js
 switch (condition) {
     case x:
         // Execute this code block
@@ -375,7 +390,7 @@ switch (condition) {
 
 An example of using this statement would be… 
 
-```
+```js
 var car = 'Porsche';
 
 switch (car) {
@@ -398,13 +413,13 @@ switch (car) {
 
 For very short `if` statements you can also use a shortened syntax (a conditional operator sometimes referred to as a 'ternary' operator because of its three operands). The syntax is like so…
 
-```
+```js
 condition ? true : false
 ```
 
 …and can be used like so…
 
-```
+```js
 var age = 18;
 var can_drink = (age >= 18) ? true : false; // can_drink will equal a Boolean value of true
 
@@ -420,7 +435,7 @@ The best thing to do is to just try and take advantage of JavaScript's ability t
 
 For example, with an `if` conditional statement JavaScript will try to coerce the expression into either `true` or `false` like so… 
 
-```
+```js
 var element = document.getElementById('js-element');
 
 if (element) {
@@ -436,7 +451,7 @@ if (element) {
 
 In the above example JavaScript automatically converts the condition into a Boolean, but you can manually coerce a value into a Boolean by using the double negation operator `!!` like so...
 
-```
+```js
 var obj = { age: 0, year: 1980 };
 
 !!obj.age // => false (because zero coerces to false)
@@ -445,7 +460,7 @@ var obj = { age: 0, year: 1980 };
 
 You can also use a single negation operator `!` to return the opposite Boolean value of an object (this is useful for saying 'if NOT x')…
 
-```
+```js
 var bool = false;
 
 if (!bool) {
@@ -467,7 +482,7 @@ Functions make it easier to create re-useable code. They are simply blocks of Ja
 
 An example of the function syntax is as follows…
 
-```
+```js
 function identifier (parameters) {
     // statements
 }
@@ -475,7 +490,7 @@ function identifier (parameters) {
 
 …which could be used like so…
 
-```
+```js
 function add (a, b) {
     return a + b;
 }
@@ -489,7 +504,7 @@ Functions accept any number of 'parameters' (also known as 'arguments').
 
 Within a function you can access all arguments via a special `arguments` property…
 
-```
+```js
 function test (a, b, c) { 
     console.log(arguments); 
 }
@@ -511,7 +526,7 @@ These two methods are the same (i.e. they do the same thing - which is to call a
 
 The purpose of these methods is to allow you to *borrow* a function/method from another object. The following code demonstrates its usage and how powerful it can be… 
 
-```
+```js
 var obj1 = {
     name: 'Bob'
 };
@@ -525,10 +540,13 @@ var obj2 = {
 
 obj2.speak(); // => 'My name is Mark'
 
+// obj1 doesn't have a speak method and we don't want to add extra code to that object when 
+// obj2 already has the same method already defined. We want to be able to just borrow obj2's 'speak' method!
+
 obj2.speak.call(obj1); // => 'My name is Bob'
 ```
 
-…you can see how this can make functions/methods very re-usable!
+…you can see how by using the `call` method we can make better use of existing functions and so we become more productive as well as have smaller and more efficient code.
 
 ##Code Reuse (inheritance)
 
@@ -540,7 +558,7 @@ There are multiple ways to use the prototype chain, one populate way is to try a
 
 An example of how to emulate Class style syntax in JavaScript (currently) is by using functions as 'Constructors' like so… 
 
-```
+```js
 var Person = function (settings) {
    // Instance properties (any new instances of the Person class will have these properties)
    this.name = settings.name || 'no name given';
@@ -593,7 +611,7 @@ There is another code reuse pattern you can use instead of 'inheritance' called 
 
 An example of this is as follows…
 
-```
+```js
 var person = {
 		names: ['James', 'Neil', 'Russ', 'Stuart']
 	};
@@ -615,7 +633,7 @@ Another code reuse pattern is called a 'mixin' - which instead of using 'inherit
 
 The following example demonstrates how this works… 
 
-```
+```js
 function extend(destination, source, overwrite) {
 	var overwrite = overwrite || false;
 	for (var i in source) {
