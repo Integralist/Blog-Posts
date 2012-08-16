@@ -566,14 +566,14 @@ So far we have a main script file where we have created new instances of some Ba
 define(['../Utils/backbone'], function(){
     
     var Contact = Backbone.Model.extend({
-        // Bakbone specific object
+        // Backbone specific object
         defaults: {
             name: 'No name provided',
             age: 0,
             address: 'No address provided'
         },
         
-        // Bakbone specific method
+        // Backbone specific method
         initialize: function(){
             // Syntax: .on(type:property)
             this.on('change:age', function(){
@@ -585,7 +585,7 @@ define(['../Utils/backbone'], function(){
             });
         },
         
-        // Bakbone specific method
+        // Backbone specific method
         validate: function (attributes) {
             if (!attributes.id || attributes.id <= 0) {
                 return 'An error has occurred? There should be an id generated!';
