@@ -1098,10 +1098,11 @@ else {
 
 ##Wrap-up
 
-
 This is where we end. We've got our three Views set-up, we have our Model defined and contacts created from it and we created a Collection based on that Model type.
 
-The Views and Models/Collection are tied together as it should be and kept in sync.
+The Views and Models/Collection are tied together and the application is functioning as it should be.
+
+There are lots of things we could do to improve this example, but as a basic example of an MVC style application built using Backbone.js I think it does everything it needs to.
 
 ##Conclusion
 
