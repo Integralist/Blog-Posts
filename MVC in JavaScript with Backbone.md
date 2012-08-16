@@ -24,9 +24,18 @@ Because of this, and because I knew a lot of these so called MVC frameworks were
 
 My own library worked fine, and it genuinely followed the MVC principles:
 
-M (Models) | V (Views) | C (Controllers)
-- | - | -
-Data | User Interface | Logic
+<table>
+  <tr>
+    <th>M (Models)</th>
+    <th>V (Views)</th>
+    <th>C (Controllers)</th>
+  </tr>
+  <tr>
+    <td>Data</td>
+    <td>User Interface</td>
+    <td>Logic</td>
+  </tr>
+</table>
 
 But my own biggest concern was that although my MVC library was *structurally* equivalent to the proper MVC pattern and the API itself was fairly clean and easy to use, there was a lot of areas where I had too tightly coupled my library to a particular way of working and that made it difficult to re-use on different projects without first spending a lot of time making those tight couplings 'loose' again each time.
 
