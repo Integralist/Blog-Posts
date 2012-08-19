@@ -794,9 +794,9 @@ To install the command line version of Js Hint you'll need [NodeJs](http://nodej
 
 To install simply run this line via your command line: `npm install jshint`.
 
-This means you can now use your command line to navigate to your CSS folder and lint it.
+This means you can now use your command line to navigate to your JavaScript folder and lint it.
 
-There are different options/ways to use the command line interface of CSS Lint, and they are as follows…
+There are different options/ways to use the command line interface of JS Hint, and they are as follows…
 
 ```
 jshint path path2 [options] // => run against specific scripts
