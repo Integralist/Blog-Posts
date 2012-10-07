@@ -58,7 +58,7 @@ When the JavaScript interpreter starts up it creates a Global object and any pro
 
 The global object is regular object (as per the Object section seen later in this article).
 
-The global object is different depending on the context. In a web browser environment the global object is the `window` object. So if you open a browser console (e.g. Firefox's Firebug JavaScript Console, or Safari/Google Chrome's Console Tool) and enter the command `window` you'll see all the properties/methods available on that object - things like `window.location` will be one option that is listed (this references the location bar API of the web browser).
+The global object is different depending on the context. In a web browser environment the global object is said to be the `window` object. But this isn't completely accurate. The global object happens to have a `window` property which is set back to the global object itself! A little confusing I know :-) If you open a browser console (e.g. Firefox's Firebug JavaScript Console, or Safari/Google Chrome's Console Tool) and enter the command `window` you'll see all the properties/methods available on that object - things like `window.location` will be one option that is listed (this references the location bar API of the web browser).
 
 One quote you'll hear a lot in JavaScript is:
 
