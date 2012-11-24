@@ -272,7 +272,7 @@ But the first thing the method does is check if any errors already exist in the 
 
 We then compile the data into the template file and insert it into the page (thus displaying the errors to the user).
 
-We then update the URL hash to include the id value of the form errors element we've just inserted into the page. This is because on a long form the errors are displayed at the top of the form, but the user may well not see it because the page only shows after the form, so we redirect the user back up to the top of the form to see the errors.
+We then update the URL hash to include the id value of the form errors element we've just inserted into the page. This is because on a long form the errors are displayed at the top of the form, but the user may well not see it because the page only shows the bottom half the form, so we redirect the user back up to the top of the form to see the errors.
 
 I know some people will disagree with doing that and would prefer to display an error next to each field but I find that makes the design of the page a lot more complicated, especially when dealing with multiple screen dimensions. I personally prefer to have a single place to display all errors.
 
