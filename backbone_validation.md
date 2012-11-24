@@ -577,4 +577,4 @@ define(['../Utils/Templating/hogan'], function (hogan) {
 
 OK, so that's our full validation method! It looks big but when you break it down it's not actually that complicated.
 
-It works for me and has my life a hell of a lot easier whenever I've needed to validate a form. Hopefully it helps someone else, or inspires some one to take the principles to make their life a little easier when dealing with forms.
+It works for me and has made my life a hell of a lot easier whenever I've needed to validate a form. Hopefully it helps someone else, or inspires some one to take the principles shown here and to build their own variation so their life is a little easier when dealing with forms.
