@@ -15,7 +15,7 @@ To me this didn't make a lot of sense because a form is just data and a Model ho
 
 So I decided to create a validation module that would make validating a form (and displaying errors) a little bit easier, because lets face it, validating forms are tedious and boring.
 
-You can download the [full project code from GitHub]()
+You can download the [full project code from GitHub](https://github.com/Integralist/Backbone-Validation-View)
 
 ##Dependencies
 
