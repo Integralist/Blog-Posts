@@ -168,4 +168,4 @@ But with this simplified terminology/structure it gives us all the tools we need
 
 I know I've said it before about SMACSS ("*wow, I think this is it!*") but even when I first started using SMACSS I still had niggling feelings about "*hmm, it's a little complicated getting this all in place, but it seems to work well*". With BEM I've not had any of those concerns. The only initial concern I had was with the look of it. I didn't like the double underscores or the double dashes. But now I actually like them!
 
-If you want to see more good usage of BEM then I'll refer you to a small CSS abstraction library called [inuit.css](https://github.com/csswizardry/inuit.css) by [Harry Roberts](http://csswizardry.com/).
+If you want to see more good usage of BEM then I'll refer you to a small CSS abstraction library called [inuit.css](https://github.com/csswizardry/inuit.css) by [Harry Roberts](http://csswizardry.com/) as well as [my own website's source code](https://github.com/Integralist/integralist.github.com)
