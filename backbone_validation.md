@@ -4,7 +4,7 @@
 * Dependencies
 * HTML set-up
 * JavaScript set-up
-* Validation Model
+* Validation Module
 * Conclusion
 
 ##Introduction
@@ -97,7 +97,7 @@ function error (err) {
 
 Now we have our JavaScript set-up lets move onto the Backbone.View that will handle the validation of our form.
 
-##Validation Model
+##Validation Module
 
 We will go through each of the methods within this module so we can better understand what they're doing. There are four main methods and the rest are different validation methods.
 
