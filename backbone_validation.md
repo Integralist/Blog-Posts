@@ -228,7 +228,7 @@ validate: function(){
 
 The first thing the `process_errors` method does is it makes sure we are only dealing with unique error messages. For example if we have a set of 'sort code' fields (which are typically three separate fields) they will all have the same error message but we don't want that error message displayed three times so the `_.unique` method ensures our errors are unique.
 
-After that we need to make sure that Hogan.js has the error messages in an format it can handle so we use the `map` method to convert the data to the relevant format required.
+After that we need to make sure that Hogan.js has the error messages in a format it can handle so we use the `map` method to convert the data to the relevant format required.
 
 Next we need to convert the jQuery collection into an actual Array for Hogan.js to be able to loop through it.
 
@@ -266,7 +266,7 @@ process_errors: function (errors) {
 }
 ```
 
-The `display_errors` method takes in the object of errors we've created and trys to compile it into the template file using Hogan.js
+The `display_errors` method takes in the object of errors we've created and tries to compile it into the template file using Hogan.js
 
 But the first thing the method does is check if any errors already exist in the page. If it finds an errors element then it removes it.
 
