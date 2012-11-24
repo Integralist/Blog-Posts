@@ -14,7 +14,7 @@ This is a super quick post to introduce you to a method of writing more maintain
 
 BEM stands for "Block, Element, Modifier" and is a simple but effective way to group together different components/widgets (as shown by the following visual aid).
 
-![Visual Example of BEM](BEM.png)
+![Visual Example of BEM](http://www.integralist.co.uk/Assets/Images/BEM.png)
 
 Within each defined 'Block' you can have multiple 'elements' that make up the object, and for each element (depending on where it appears within the block) you might need to 'modify' the state of the element.
 
