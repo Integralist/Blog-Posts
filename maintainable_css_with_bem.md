@@ -49,8 +49,8 @@ So lets add in our classes for styling this widget and lets go on to break down 
     <form class="widget__form" action="process.php" method="post">
         <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
         <p>
-            <input name="amount" class="widget__input widget--amount"> 
-            <input type="submit" value="Calculate" class="widget__input widget--submit">
+            <input name="amount" class="widget__input widget__input--amount"> 
+            <input type="submit" value="Calculate" class="widget__input widget__input--submit">
         </p>
     </form>
 </section>
@@ -69,11 +69,11 @@ Here is a list of the elements styled…
 * `widget__form`
 * `widget__input`
 
-Notice that there are two other classes used: `widget--amount` and `widget--submit`. These are our 'modifiers'. They modify the state of our elements.
+Notice that there are two other classes used: `widget__input--amount` and `widget__input--submit`. These are our 'modifiers'. They modify the state of our elements.
 
 Let's look at where these have been used. I've applied the same class of `widget__input` on both `<input>` elements (because they both have the same base structure/styling). But both elements do have slight differences in their appearance, hence the use of a 'modifier' to apply the additional unique styles. 
 
-Modifiers are written with two hyphens(dashes) like so: `name--modifier`.
+Modifiers are written with two hyphens(dashes) like so: `block__element--modifier`.
 
 This means that our CSS code for this widget ends up looking like this…
 
@@ -100,11 +100,11 @@ This means that our CSS code for this widget ends up looking like this…
     padding: 0.4em 0.7em;
 }
 
-.widget--amount {
+.widget__input--amount {
     border: 1px solid #930;
 }
 
-.widget--submit {
+.widget__input--submit {
     background-color: #EEE;
     border: 0;
 }
