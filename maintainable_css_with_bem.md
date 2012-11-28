@@ -129,7 +129,7 @@ With regards to SMACSS: it's almost too strict in the sense that I think it's *o
 
 This might not be the case for some people, but for me these are all instances of the old adage: "*don't make me think*". If I have to think too hard about how something works, or where I need to find the code for something then (in my opinion) that methodology has failed.
 
-BEM succeeeds because it provides a good object oriented structure with a familiar terminology and is simple enough to not get in your way.
+BEM succeeds because it provides a good object oriented structure with a familiar terminology and is simple enough to not get in your way.
 
 But like with any tool, it can be misused. In the end it comes down to the overall skill and understanding of the developer.
 
