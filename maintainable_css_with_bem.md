@@ -121,7 +121,7 @@ I've tried a lot of different ways of writing CSS over the years. It went someth
 
 …and now BEM.
 
-**The reason I choose BEM over other methodologies comes down to this: it's less confusing then the other methods (i.e. SMACSS) but still provides us the good architecture we want (i.e. OOCSS) and with a recognisable terminology.**
+**The reason I choose BEM over other methodologies comes down to this: it's less confusing than the other methods (i.e. SMACSS) but still provides us the good architecture we want (i.e. OOCSS) and with a recognisable terminology.**
 
 For me OOCSS isn't strict enough. It let's developers go wild with how they name their objects. But I've seen that get really messy on larger projects, or projects with more than one developer and because of the lack of strictness in naming conventions developers become confused on what classes are supposed to be doing.
 
