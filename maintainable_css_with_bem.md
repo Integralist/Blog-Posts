@@ -10,6 +10,8 @@
 
 This is a super quick post to introduce you to a method of writing more maintainable CSS by using what's called "[BEM](http://bem.info)".
 
+Update: [@necolas](http://twitter.com/necolas) made a comment worth noting, that I'm using a modified version of the BEM naming conventions (BEM is a total framework that goes beyond just naming of classes and writing maintainable CSS). So I thought it best to make note of that here so as to not cause any confusion.
+
 ##BEM: Block, Element, Modifier
 
 BEM stands for "Block, Element, Modifier" and is a simple but effective way to group together different components/widgets (as shown by the following visual aid).
