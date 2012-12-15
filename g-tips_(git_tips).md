@@ -246,6 +246,10 @@ You can also unstage a single file using:
 
 `git reset <file>`
 
+If you've staged files before any commits have been set (e.g. right at the start of your project) then you'll find the above wont work because technically there are no commits to revert back to. So instead you'll need to remove the files like so…
+
+`git rm --cached <file>`
+
 ##Untrack a file without deleting it
 
 If you want to have Git stop tracking a file it's already tracking then you would think to run:
