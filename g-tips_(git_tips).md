@@ -32,6 +32,7 @@ Hopefully you'll find them useful too…
 26. Revert a specfic file back to an earlier version
 27. Viewing all commits for a file and who made those changes
 28. Commiting only parts of a file rather than the whole file
+29. Modifying your Git history with `rebase`
 
 ##Show where Git is installed
 
@@ -343,3 +344,15 @@ To split the single file into multiple commits you need to use Git's `patch` mod
 Sometimes you can't split a hunk into more hunks automatically, you have to do it manually. To do so you press `e` to edit and then use Vim to manually make changes.
 
 So if you have a line removed that you want to keep as part of the commit then you'll remove the `-` so there is just a space instead, and if you have a line added that you want to not have included as part of the commit then you remove the entire line. BUT the most important part it also updating the line numbers at the top of the file so that the number of lines in the file match what you are looking to commit (otherwise the commit will fail). To make the edit to the hunk final (pre-commit) press `esc` then `:wq` and then you'll be able to commit the selected changes.
+
+##Modifying your Git history with `rebase`
+
+To change multiple commits you must use the interactive mode of the `rebase` command and you must tell Git how many commits back you want to go (because it'll start from there and keep moving through the commits until it reaches the `HEAD`).
+
+REMEMBER: when using `rebase` every commit in the range specified is changed whether you change the message or not. So don't use `rebase` on commits that have already been pushed to a remote server as other users might have those commits pulled down and your changing of the commits will cause havoc for those users in the near future.
+
+To amend the last 3 commits we use: `git rebase -i HEAD~3` and follow the instructions.
+
+The principle is if you want to merge two commits then you'll need to have a commit to merge into and then change `pick` to `squash` on the other commits that you want to have squashed into the previous commit.
+
+You can also re-order commits and other things like change commits (add files, rename the message) and remove commits completely.
