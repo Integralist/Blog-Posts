@@ -31,6 +31,7 @@ Hopefully you'll find them useful too…
 25. Remove a remote
 26. Revert a specfic file back to an earlier version
 27. Viewing all commits for a file and who made those changes
+28. Commiting only parts of a file rather than the whole file
 
 ##Show where Git is installed
 
@@ -323,3 +324,22 @@ So if you want to access the other branches within that repo then run the follow
 ##Viewing all commits for a file and who made those changes
 
 `git blame <file>`
+
+##Commiting only parts of a file rather than the whole file
+
+If you have a file with lots of changes made, you might not want to have all the changes logged under one single commit.
+
+To split the single file into multiple commits you need to use Git's `patch` mode… 
+
+`git add <file> -p`
+
+…Git will attempt to split a file into separate hunks (Git terminology for a chunk of code). You can then press `?` to see what options you have available, the most common being:
+
+* `y` - yes
+* `n` - no
+* `d` - no to all remaining hunks
+* `s` - split current hunk into more hunks
+
+Sometimes you can't split a hunk into more hunks automatically, you have to do it manually. To do so you press `e` to edit and then use Vim to manually make changes.
+
+So if you have a line removed that you want to keep as part of the commit then you'll remove the `-` so there is just a space instead, and if you have a line added that you want to not have included as part of the commit then you remove the entire line. BUT the most important part it also updating the line numbers at the top of the file so that the number of lines in the file match what you are looking to commit (otherwise the commit will fail). To make the edit to the hunk final (pre-commit) press `esc` then `:wq` and then you'll be able to commit the selected changes.
