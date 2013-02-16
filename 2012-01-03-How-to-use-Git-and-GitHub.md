@@ -1,5 +1,4 @@
-How to use Git and GitHub
-=========================
+#How to use Git and GitHub
 
 If you’re having trouble understanding how to get up and running with GitHub, or you just wanted to find a free version-control system and heard about this thing called ‘Git’ then hopefully the following information should help…
 
@@ -69,17 +68,13 @@ When Git is installed the first thing we’ll probably want to do is to tell it 
 
 To inform Git what your username and email address is, open the Terminal application on your Mac and enter:
 
-```
-git config --global user.name "Joe Bloggs"
-git config --global user.email "joe@bloggs.com"
-```
+    git config --global user.name "Joe Bloggs"
+    git config --global user.email "joe@bloggs.com"
 
 You can check these settings at any time within the Terminal by typing:
 
-```
-git config user.name
-git config user.email
-```
+    git config user.name
+    git config user.email
 
 Next you want to make sure that Git ignores any ‘white space’ changes. Now this needs a little bit extra explanation: Git tracks file *content* and NOT individual files. So if you add an empty new line to a file (and Git is tracking that file) then Git will inform you that the file has been modified but you don’t really want a single empty line to be flagged up to you (not in web development really as white space is not that important). To have Git ignore whitespace changes you can enter the following into the Terminal:
 
@@ -102,10 +97,8 @@ Once you’re inside the project folder you’ll need to create an empty Git ‘
 
 If you’re Mac is set-up to not show ‘hidden’ folders then it wont look like much has happened (although you will now see a message in the Terminal telling you a new empty repository was created). If you really want to see hidden files and folders on your Mac then type the following into the Terminal…
 
-```
-defaults write com.apple.Finder AppleShowAllFiles YES
-killall Finder
-```
+    defaults write com.apple.Finder AppleShowAllFiles YES
+    killall Finder
 
 …the first line tells Finder to allow showing of hidden files, and the second line restarts Finder so you can see the changes take effect. Once you have a new Git repository set-up you need to tell Git what files/folders to start ‘tracking’.
 
@@ -165,10 +158,8 @@ Basically, in the Terminal you type…
 
 …obviously change the email address from `joe@bloggs.com` to whatever email address you used to sign-up to GitHub with. Terminal will then tell you…
 
-```
-Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/tekkub/.ssh/id_rsa):
-```
+    Generating public/private rsa key pair.
+    Enter file in which to save the key (/Users/tekkub/.ssh/id_rsa):
 
 …but your message will be slightly different in that the directory path in the brackets (e.g. `(/Users/tekkub/.ssh/id_rsa)`) will likely be different on your computer.
 
@@ -230,11 +221,9 @@ Now we can start pushing files any time we like to this particular project. I ha
 
 Lets say I made an update to the file ‘robots.txt’ - I can push that on it’s own:
 
-```
-git add robots.txt
-git commit -m 'Add some new robot configurations'
-git push origin master
-```
+    git add robots.txt
+    git commit -m 'Add some new robot configurations'
+    git push origin master
 
 Removing/Editing files
 ----------------------
@@ -245,10 +234,8 @@ To remove a file (e.g. lets remove the ‘robots.txt’ file) simply type…
 
 …then do the normal commit with message and push.
 
-```
-git commit -m 'Remove the robots.txt file'
-git push origin master
-```
+    git commit -m 'Remove the robots.txt file'
+    git push origin master
 
 To edit existing files is the same process as adding files. But beware, as you’ll get an error if the file hasn’t actually been changed!
 
@@ -368,20 +355,16 @@ A good example of using .gitignore is if you wanted a config script - e.g. Setti
 
 You can use a `#` as a comment line and then specify the types of files or specific files to be ignored, such as:
 
-```
-#Mac OS X files
-.DS_Store
+    #Mac OS X files
+    .DS_Store
 
-# VIM leave-behinds
-*.swp
-```
+    # VIM leave-behinds
+    *.swp
 
 You can also ignore all files of a certain type except one by using the bang (!) such as:
 
-```
-*.log
-!errors.log
-```
+    *.log
+    !errors.log
 
 Best practices for Commit Messages
 ----------------------------------

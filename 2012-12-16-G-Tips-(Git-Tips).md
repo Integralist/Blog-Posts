@@ -44,11 +44,9 @@ Hopefully you'll find them useful too…
 
 ##Update your global user details
 
-```
-git config --global user.name "Your Name"
-git config --global user.email "Your Email"
-git config --global apply.whitespace nowarn # ignore white space changes!
-```
+    git config --global user.name "Your Name"
+    git config --global user.email "Your Email"
+    git config --global apply.whitespace nowarn # ignore white space changes!
 
 ##Set-up a global ignore file
 
@@ -58,48 +56,46 @@ First create the global ignore file…
 
 Then add the following content to it (*this is a standard ignore file but I've added some Sass CSS pre-processor files to it*)…
 
-```
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-*.sass-cache
-*.scssc
+    # Compiled source #
+    ###################
+    *.com
+    *.class
+    *.dll
+    *.exe
+    *.o
+    *.so
+    *.sass-cache
+    *.scssc
 
-# Packages #
-############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
+    # Packages #
+    ############
+    # it's better to unpack these files and commit the raw source
+    # git has its own built in compression methods
+    *.7z
+    *.dmg
+    *.gz
+    *.iso
+    *.jar
+    *.rar
+    *.tar
+    *.zip
 
-# Logs and databases #
-######################
-*.log
-*.sql
-*.sqlite
+    # Logs and databases #
+    ######################
+    *.log
+    *.sql
+    *.sqlite
 
-# OS generated files #
-######################
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-Thumbs.db
-```
+    # OS generated files #
+    ######################
+    .DS_Store
+    .DS_Store?
+    ._*
+    .Spotlight-V100
+    .Trashes
+    Icon?
+    ehthumbs.db
+    Thumbs.db
 
 You can let Git know about your global ignore file by editing your global `.gitconfig` file…
 
@@ -107,10 +103,8 @@ You can let Git know about your global ignore file by editing your global `.gitc
 
 …then adding the following to it… 
 
-```
-[core]
-	excludesfile = /Users/<home-directory>/.gitignore_global
-```
+    [core]
+    	excludesfile = /Users/<home-directory>/.gitignore_global
 
 …or once the `.gitignore_global` file is created you can just tell git by using this short-hand command…
 
@@ -134,12 +128,10 @@ A short git commit message would look like this…
 
 Press `i` which puts Vim into 'insert' mode (meaning you can actually write)
 
-```
-This is my short description for this commit
+    This is my short description for this commit
 
-- Here is a break down of my changes
-- Another note about a particular change
-```
+    - Here is a break down of my changes
+    - Another note about a particular change
 
 After I've written my commit I just need to save the commit and exit Vim…
 
@@ -160,10 +152,8 @@ To get a better looking `git log` we need to write an alias called `git lg` that
 
 What we need to do is open the `~/.gitconfig` file and then add the following content… 
 
-```
-[alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-```
+    [alias]
+    	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
 ##Shorter `git status`
 
@@ -171,11 +161,9 @@ As per the above tip, we can create two extra alias' which give us a shorter com
 
 What we need to do is open the `~/.gitconfig` file and then add the following content… 
 
-```
-[alias] 
-	st = status
-    sts = status -sb
-```
+    [alias] 
+    	st = status
+        sts = status -sb
 
 …you don't need to specify `[alias]` if it's already in the file (see previous tip).
 
@@ -237,10 +225,8 @@ To unstage files we've added to the staging area we need to run the command `res
 
 Open up the file `~/.gitconfig` and then add the following content… 
 
-```
-[alias]
-	unstage = reset HEAD
-```
+    [alias]
+    	unstage = reset HEAD
 
 Note: you don't need to specify `[alias]` if it's already in the `~/.gitconfig` file.
 

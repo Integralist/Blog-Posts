@@ -1,0 +1,5 @@
+Find:
+---\nlayout: .*\ntitle: (.*)\nstrapline: .*\n---
+
+Replace:
+#\1

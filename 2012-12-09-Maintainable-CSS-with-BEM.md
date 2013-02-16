@@ -30,33 +30,29 @@ Below we have a money calculator widget. You enter an amount of money (e.g. £2.
 
 The HTML is very simple...
 
-```html
-<section>
-    <h1>Sterling Calculator</h1>
-    <form action="process.php" method="post">
-        <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
-        <p>
-            <input name="amount"> 
-            <input type="submit" value="Calculate">
-        </p>
-    </form>
-</section>
-```
+    <section>
+        <h1>Sterling Calculator</h1>
+        <form action="process.php" method="post">
+            <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
+            <p>
+                <input name="amount"> 
+                <input type="submit" value="Calculate">
+            </p>
+        </form>
+    </section>
 
 So lets add in our classes for styling this widget and lets go on to break down what we've added and why...
 
-```html
-<section class="widget">
-    <h1 class="widget__header">Sterling Calculator</h1>
-    <form class="widget__form" action="process.php" method="post">
-        <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
-        <p>
-            <input name="amount" class="widget__input widget__input--amount"> 
-            <input type="submit" value="Calculate" class="widget__input widget__input--submit">
-        </p>
-    </form>
-</section>
-```
+    <section class="widget">
+        <h1 class="widget__header">Sterling Calculator</h1>
+        <form class="widget__form" action="process.php" method="post">
+            <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
+            <p>
+                <input name="amount" class="widget__input widget__input--amount"> 
+                <input type="submit" value="Calculate" class="widget__input widget__input--submit">
+            </p>
+        </form>
+    </section>
 
 First thing to notice is that we've determined the top level `<section>` element to be our 'block'. This is the top level containing element. We've added a class of `widget` and this will be our namespace for this object/widget (whatever you prefer to call it).
 
@@ -79,38 +75,36 @@ Modifiers are written with two hyphens(dashes) like so: `block__element--modifie
 
 This means that our CSS code for this widget ends up looking like this…
 
-```css
-.widget {
-    background-color: #FC3;
-}
+    .widget {
+        background-color: #FC3;
+    }
 
-.widget__header {
-    color: #930;
-    font-size: 3em;
-    margin-bottom: 0.3em;
-    text-shadow: #FFF 1px 1px 2px;
-}
+    .widget__header {
+        color: #930;
+        font-size: 3em;
+        margin-bottom: 0.3em;
+        text-shadow: #FFF 1px 1px 2px;
+    }
 
-.widget__input {
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-         -o-border-radius: 5px;
-            border-radius: 5px;
+    .widget__input {
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+             -o-border-radius: 5px;
+                border-radius: 5px;
 
-    font-size: 0.9em;
-    line-height: 1.3;
-    padding: 0.4em 0.7em;
-}
+        font-size: 0.9em;
+        line-height: 1.3;
+        padding: 0.4em 0.7em;
+    }
 
-.widget__input--amount {
-    border: 1px solid #930;
-}
+    .widget__input--amount {
+        border: 1px solid #930;
+    }
 
-.widget__input--submit {
-    background-color: #EEE;
-    border: 0;
-}
-```
+    .widget__input--submit {
+        background-color: #EEE;
+        border: 0;
+    }
 
 ##Why BEM over the others?
 

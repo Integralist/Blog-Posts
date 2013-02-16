@@ -1,5 +1,4 @@
-Host Methods vs Native Methods
-==============================
+#Host Methods vs Native Methods
 
 This was intended as a short and overly simplified post about Host methods and Native methods:
 
@@ -25,11 +24,9 @@ We’ll give an example of each so you can get an idea of what I mean…
 
 To detect a Native method such as Array#forEach you should be able to do the following:
 
-```js
-if (!Array.prototype.forEach) { 
-	/* polyfill for missing forEach method */ 
-}
-```
+	if (!Array.prototype.forEach) { 
+		/* polyfill for missing forEach method */ 
+	}
 
 Note: polyfill is a term that Remy Sharp coined which means ‘a shim that mimics a future API’ (see: [http://remysharp.com/2010/10/08/what-is-a-polyfill/](http://remysharp.com/2010/10/08/what-is-a-polyfill/))
 
@@ -49,27 +46,25 @@ Again, this isn’t a reliable assumption to make, because in a future/new host 
 
 But for testing a host method exists, the following function has become the de-facto standard:
 
-```js
-/*
- * Feature Testing a Host Method
- * Because a callable host object can legitimately have any typeof result then it can't be relied upon.
- *
- * @notes:
- * The reason for the && !!object[property] is because in ECMAScript version 3, 
- * a null object has typeof result 'object' (which is considered a bug).
- * In future versions (ECMAScript 6+) the typeof result will be 'null' (as it should be).
- * 
- * @reference: http://michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting
- */
+	/*
+	 * Feature Testing a Host Method
+	 * Because a callable host object can legitimately have any typeof result then it can't be relied upon.
+	 *
+	 * @notes:
+	 * The reason for the && !!object[property] is because in ECMAScript version 3, 
+	 * a null object has typeof result 'object' (which is considered a bug).
+	 * In future versions (ECMAScript 6+) the typeof result will be 'null' (as it should be).
+	 * 
+	 * @reference: http://michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting
+	 */
 
-function isHostMethod(object, property) {
-	var type = typeof object[property];
+	function isHostMethod(object, property) {
+		var type = typeof object[property];
 
-	return type == 'function' || // This is the result we're expecting (as the test is for a method)
-		   (type == 'object' && !!object[property]) || // Protect against ES3 'null' typeof result being 'object'
-		   type == 'unknown'; // For IE < 9 when Microsoft used ActiveX objects for Native Functions (we're checking property of ActiveX object)
-}
-```
+		return type == 'function' || // This is the result we're expecting (as the test is for a method)
+			   (type == 'object' && !!object[property]) || // Protect against ES3 'null' typeof result being 'object'
+			   type == 'unknown'; // For IE < 9 when Microsoft used ActiveX objects for Native Functions (we're checking property of ActiveX object)
+	}
 
 So lets take a quick re-cap of what’s going on here:
 

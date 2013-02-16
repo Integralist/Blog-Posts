@@ -1,5 +1,4 @@
-jQuery Mobile: loading script files
-===================================
+#jQuery Mobile - loading script files
 
 I’m working on a jQuery Mobile web application and I need to load specific JavaScript files for each page.
 
@@ -15,47 +14,43 @@ Example is as follows…
 
 First we need to write a function to insert our script(s):
 
-```js
-function insertScript(script, container) {
-	var elem = document.createElement('script');
-	elem.type = 'text/javascript';
-	elem.src = 'Assets/Scripts/' + script + '.js';
-	container.appendChild(elem);
-}
-```
+	function insertScript(script, container) {
+		var elem = document.createElement('script');
+		elem.type = 'text/javascript';
+		elem.src = 'Assets/Scripts/' + script + '.js';
+		container.appendChild(elem);
+	}
 
 Next we need to detect the current page (details are in the code comments):
 
-```js
-// The 'pagechange' event is triggered after the changePage() request has finished loading the page into the DOM 
-// and all page transition animations have completed.
-// See: https://gist.github.com/1336327 for some other page events
-$(document).bind('pagechange', function(event){
+	// The 'pagechange' event is triggered after the changePage() request has finished loading the page into the DOM 
+	// and all page transition animations have completed.
+	// See: https://gist.github.com/1336327 for some other page events
+	$(document).bind('pagechange', function(event){
 
-	// grab a list of all the divs's found in the page that have the attribute "role" with a value of "page"
-	var pages = $('div[data-role="page"]'),
+		// grab a list of all the divs's found in the page that have the attribute "role" with a value of "page"
+		var pages = $('div[data-role="page"]'),
+			
+			// the current page is always the last div in the Array, so we store it in a variable
+			currentPage = pages[pages.length-1],
+			
+			// grab the url of the page the  was loaded from (e.g. what page have we just ajax'ed into view)
+			attr = currentPage.getAttribute('data-url');
 		
-		// the current page is always the last div in the Array, so we store it in a variable
-		currentPage = pages[pages.length-1],
+		// basic conditional checks for the url we're expecting
+		if (attr.indexOf('home.html') !== -1) {
+			// now we know what page we're on we can insert the required scripts.
+			// In this case i'm inserting a 'script.js' file.
+			// I do this by passing through the name of the file and the 'currentPage' variable
+			insertScript('search', currentPage);
+		}
 		
-		// grab the url of the page the  was loaded from (e.g. what page have we just ajax'ed into view)
-		attr = currentPage.getAttribute('data-url');
-	
-	// basic conditional checks for the url we're expecting
-	if (attr.indexOf('home.html') !== -1) {
-		// now we know what page we're on we can insert the required scripts.
-		// In this case i'm inserting a 'script.js' file.
-		// I do this by passing through the name of the file and the 'currentPage' variable
-		insertScript('search', currentPage);
-	}
-	
-	// rinse and repeat...
-	if (attr.indexOf('profile.html') !== -1) {
-		insertScript('profile', currentPage);
-	}
-	
-});
-```
+		// rinse and repeat...
+		if (attr.indexOf('profile.html') !== -1) {
+			insertScript('profile', currentPage);
+		}
+		
+	});
 
 That’s all there is to it.
 

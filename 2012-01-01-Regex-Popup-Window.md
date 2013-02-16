@@ -1,5 +1,4 @@
-Regex Popup Window
-==================
+#Regex Popup Window
 
 This is a quick post to show you how to open up external website links within a pop-up window (without adding extra non semantic mark-up to your HTML code).
 
@@ -15,53 +14,51 @@ The (original) Regex Solution
 Example Code
 ------------
 
-```js
-/**
- * The Integralist global namespace object.
- *
- * @class Integralist
- * @singleton
- * @static
- */
-function Integralist() {
-   // Constructor
-}
+     /**
+      * The Integralist global namespace object.
+      *
+      * @class Integralist
+      * @singleton
+      * @static
+      */
+     function Integralist() {
+        // Constructor
+     }
 
-/**
- * Augment the Integralist class so it includes a method
- * which finds all <a> elements that link to an external website
- * and sets them to open in a popup window
- */
-Integralist.prototype.external = function() {
-   var that = this; // Required to keep scope within the following Closure
-   this.settings = 'location=yes,resizable=yes,width=' + screen.availWidth + ',height=' + screen.availHeight + ',scrollbars=1,left=0,top=0';
-   this.popup = function(node) {
-      var url = node.href;
-      return function() {
-         window.open(url, 'external' , that.settings);
-         return false;
-      };
-   };
+     /**
+      * Augment the Integralist class so it includes a method
+      * which finds all <a> elements that link to an external website
+      * and sets them to open in a popup window
+      */
+     Integralist.prototype.external = function() {
+        var that = this; // Required to keep scope within the following Closure
+        this.settings = 'location=yes,resizable=yes,width=' + screen.availWidth + ',height=' + screen.availHeight + ',scrollbars=1,left=0,top=0';
+        this.popup = function(node) {
+           var url = node.href;
+           return function() {
+              window.open(url, 'external' , that.settings);
+              return false;
+           };
+        };
 
-   var a = document.getElementsByTagName('a'), // Private variable to store HTMLCollection of all <a> elements
-       len = a.length, // Store array length in variable
-       pattern = /^http(?:s)?:\/\/(?!(?:www.)?integralist)/; // RegExp pattern to match any external URL's but not the current website
+        var a = document.getElementsByTagName('a'), // Private variable to store HTMLCollection of all <a> elements
+            len = a.length, // Store array length in variable
+            pattern = /^http(?:s)?:\/\/(?!(?:www.)?integralist)/; // RegExp pattern to match any external URL's but not the current website
 
-   // Loop through the array checking for any A elements that link to an external URL
-   while (len--) {
-      var element = a[len].getAttribute('href');
-      if (pattern.test(element)) {
-         a[len].onclick = this.popup(a[len]);
-      }
-   }
-};
+        // Loop through the array checking for any A elements that link to an external URL
+        while (len--) {
+           var element = a[len].getAttribute('href');
+           if (pattern.test(element)) {
+              a[len].onclick = this.popup(a[len]);
+           }
+        }
+     };
 
-// Create a singleton of the Integralist Class
-var Integralist = new Integralist();
+     // Create a singleton of the Integralist Class
+     var Integralist = new Integralist();
 
-// Trigger 'external' method
-window.onload = Integralist.external;
-```
+     // Trigger 'external' method
+     window.onload = Integralist.external;
 
 Update 1
 --------

@@ -1,12 +1,11 @@
-Beginners guide to AMD and RequireJs
-====================================
+#Beginners guide to AMD and RequireJS
 
 Here is a short list of what we’ll cover in this post:
 
 * What is AMD?
 * Why does it matter?
 * How did we get here?
-* How does RequireJs (and alternatives) fit in?
+* How does RequireJS (and alternatives) fit in?
 * Can we use jQuery?
 * Basic Example
 * What now?
@@ -32,28 +31,19 @@ How did we get here?
 The way we insert scripts into our pages has evolved over the years:
 
 * Multiple `<script>` tags
-
-```html
-<script src="script-1.js">
-<script src="script-2.js">
-<script src="script-3.js">
-```
+        <script src="script-1.js">
+        <script src="script-2.js">
+        <script src="script-3.js">
 
 * Script Loader (e.g. LABjs / YepNope.js …and many many more)
+        // This example uses LABjs
+        <script src="LAB.js"></script>
+        <script>
+            $LAB.script('script-1.js').wait().script('script-2.js').script('script-3.js');
+        </script>
 
-```html
-// This example uses LABjs    
-<script src="LAB.js"></script>
-<script>
-    $LAB.script('script-1.js').wait().script('script-2.js').script('script-3.js');
-</script>
-```
-
-* AMD Script Loader (e.g. RequireJs / Curl …and a couple of others)
-
-```html
-<script data-main="main" src="require.js"></script>
-```
+* AMD Script Loader (e.g. RequireJS / Curl …and a couple of others)
+        <script data-main="main" src="require.js"></script>
 
 The ‘multiple scripts’ has served us long and true, but means that the rendering of the page takes three times as long, as each `<script>` tag must be downloaded, then executed before the browser can move onto the next `<script>` (this is what is meant by loading scripts ‘synchronously’). Imagine if you are loading a JavaScript framework followed by a whole bucket full of plugins and then some of your own scripts. The page load time would increase quite significantly.
 
@@ -61,34 +51,34 @@ The way forward from there is using a ‘Script Loader’ which effectively lets
 
 So moving forward from that slightly better situation we come to ‘AMD Script Loaders’ which also lets you load scripts asynchronously but the scripts you are loading aren’t just a hodge podgy of random scripts pulled from the different corners of the web, they are well structured ‘modules’ that define their own dependancies and can be easily re-used across different projects because of their loose coupling with other scripts. They are also defined within their own scope so they don’t interfere with other scripts that may have been added by another developer before you, and so make it easier not to have a page full of global variables floating around causing havoc.
 
-How does RequireJs (and alternatives) fit in?
+How does RequireJS (and alternatives) fit in?
 ---------------------------------------------
 
-RequireJs is one of the more well known (and thus ‘popular’) AMD script loaders. It follows the ‘Modules Transport/C’ specification laid out by the CommonJs group ([http://wiki.commonjs.org/wiki/CommonJS](http://wiki.commonjs.org/wiki/CommonJS)).
+RequireJS is one of the more well known (and thus ‘popular’) AMD script loaders. It follows the ‘Modules Transport/C’ specification laid out by the CommonJs group ([http://wiki.commonjs.org/wiki/CommonJS](http://wiki.commonjs.org/wiki/CommonJS)).
 
-The RequireJs website has a lot of information to get you started, but can be a bit confusing for those new to the concept. So we’ll dive into some of our own examples which will make it easier to understand how you can use RequireJs and AMD in general in your projects.
+The RequireJS website has a lot of information to get you started, but can be a bit confusing for those new to the concept. So we’ll dive into some of our own examples which will make it easier to understand how you can use RequireJS and AMD in general in your projects.
 
 Can we use jQuery?
 ------------------
 
-Sure! RequireJs actually has a special build of it that includes jQuery, but as jQuery too has seen AMD as the future, it has made itself AMD compatible (well, for those who might have more knowledge about AMD, it’s compatible in the sense that it can be loaded as a ‘named module’). 
+Sure! RequireJS actually has a special build of it that includes jQuery, but as jQuery too has seen AMD as the future, it has made itself AMD compatible (well, for those who might have more knowledge about AMD, it’s compatible in the sense that it can be loaded as a ‘named module’). 
 
-So for the 1.7 release of jQuery it will be possible to not need the RequireJs specific build that includes jQuery - you’ll be able to just load jQuery as a dependancy when defining your ‘module’.
+So for the 1.7 release of jQuery it will be possible to not need the RequireJS specific build that includes jQuery - you’ll be able to just load jQuery as a dependancy when defining your ‘module’.
 
 Basic Example
 -------------
 
 “OK, this is sounding groovy, how do I get involved?”
 
-Well, to get you started I have a Github repo set-up which demonstrates the basics of using RequireJs (and trust me it’s basic, but then that’s the idea!)
+Well, to get you started I have a Github repo set-up which demonstrates the basics of using RequireJS (and trust me it’s basic, but then that’s the idea!)
 
-[https://github.com/Integralist/RequireJs-Example/](https://github.com/Integralist/RequireJs-Example/)
+[https://github.com/Integralist/RequireJS-Example/](https://github.com/Integralist/RequireJS-Example/)
 
 There are comments in the code to help clarify what’s happening, but we’ll go over it here too.
 
 The order of things will be:
 
-1. Insert RequireJs into your web page.
+1. Insert RequireJS into your web page.
 2. Set-up the main script for the page (this script will load your other scripts (‘modules’) needed in this page).
 3. Define your modules (ideally you’d define your modules first, but it made more sense to write it in this order).
 4. Run a ‘build script’ when you’re ready to deploy your application (this takes your separate modules and combines them into a single script rather than having multiple scripts that need to be downloaded**++**)
@@ -97,7 +87,7 @@ The order of things will be:
 
 So here we go…
 
-### 1. Insert RequireJs
+### 1. Insert RequireJS
 
 I keep all my files for my application/website in an ‘Assets’ folder.
 
@@ -123,45 +113,41 @@ For this example the structure would be:
 	
 In my main page I’ll insert the following script tag at the bottom of the page, just above the closing `</body>` tag…
 
-```html
-<script data-main="Assets/Scripts/main" src="Assets/Scripts/Require.js"></script>
-```
+    <script data-main="Assets/Scripts/main" src="Assets/Scripts/Require.js"></script>
 
 …you’ll notice that we have specified a custom attribute on the script tag that points to our script folder and a file called ‘main’.
 
-This does two things, it loads the Assets/Scripts/main.js file but it also tells RequireJs that all your other scripts are located in the Assets/Scripts folder as well.
+This does two things, it loads the Assets/Scripts/main.js file but it also tells RequireJS that all your other scripts are located in the Assets/Scripts folder as well.
 
 ### 2. Set-up your ‘main’ script
 
 Inside main.js we have the following code…
 
-```js
-// This allows us to specify jQuery as a dependancy in one of our modules
-// You'll notice all paths are relative to Assets/Scripts/
-require.config({
-    paths : {
-        'jquery' : 'Utils/jquery'
-    }
-});
+    // This allows us to specify jQuery as a dependancy in one of our modules
+    // You'll notice all paths are relative to Assets/Scripts/
+    require.config({
+        paths : {
+            'jquery' : 'Utils/jquery'
+        }
+    });
 
-/*
-    When we're defining a module we use the define() method.
-    We'll see this used shortly.
-    But as this is our main 'bootstrapping' script we're using the require() function instead.
+    /*
+        When we're defining a module we use the define() method.
+        We'll see this used shortly.
+        But as this is our main 'bootstrapping' script we're using the require() function instead.
 
-    The require() function is similar to define() in that you pass it an optional array of dependencies, 
-    and a function which will be executed when those dependencies are resolved. 
-    However this code is not stored as a named module, as its purpose is to be run immediately.
-*/
+        The require() function is similar to define() in that you pass it an optional array of dependencies, 
+        and a function which will be executed when those dependencies are resolved. 
+        However this code is not stored as a named module, as its purpose is to be run immediately.
+    */
 
-require(["App/people"], function(iCanCallThisAnythingILike) {
-    // The argument passed through is the returned value from the function definition we defined inside App/people.js
-    // In this case it was an object literal with two properties: 'list' & 'scripts'
-    // If we had specified two dependancies then we'd pass through a second argument which again would be the return'ed value from that module
-    
-    console.log(iCanCallThisAnythingILike.list, iCanCallThisAnythingILike.scripts);
-});
-```
+    require(["App/people"], function(iCanCallThisAnythingILike) {
+        // The argument passed through is the returned value from the function definition we defined inside App/people.js
+        // In this case it was an object literal with two properties: 'list' & 'scripts'
+        // If we had specified two dependancies then we'd pass through a second argument which again would be the return'ed value from that module
+        
+        console.log(iCanCallThisAnythingILike.list, iCanCallThisAnythingILike.scripts);
+    });
 
 So far we have our main script loading in a single dependancy (Assets/Scripts/App/people.js).
 
@@ -171,32 +157,30 @@ Lets have a look at that dependancy…
 
 Here is the content of our ‘Assets/Scripts/App/people.js’ file…
 
-```js
-/*
- * You see we've specified the jQuery library as a dependency without specifying its correct path (we've just specified the name 'jquery').
- * This is because jQuery's AMD support is based on it being defined as a 'Named Module'.
- * So if you look at the script main.js (which is our bootstrapper file) you'll see we've set the require.config() to include the full path to jQuery.
- */
+    /*
+     * You see we've specified the jQuery library as a dependency without specifying its correct path (we've just specified the name 'jquery').
+     * This is because jQuery's AMD support is based on it being defined as a 'Named Module'.
+     * So if you look at the script main.js (which is our bootstrapper file) you'll see we've set the require.config() to include the full path to jQuery.
+     */
 
-define(["Models/Person", "Utils/random", "jquery"], function (Person, randomUtility, $) {
+    define(["Models/Person", "Utils/random", "jquery"], function (Person, randomUtility, $) {
 
-    // Notice that our dependancy modules(scripts) don't use the full path /Assets/Scripts/
-    // This is because in our HTML page (where we loaded the RequireJs library) we had specified the main path already as a data- attribute on the script tag.
-    // So RequireJs already knows that when we say 'Models/Person' we mean 'Assets/Scripts/Models/Person.js'
+        // Notice that our dependancy modules(scripts) don't use the full path /Assets/Scripts/
+        // This is because in our HTML page (where we loaded the RequireJS library) we had specified the main path already as a data- attribute on the script tag.
+        // So RequireJS already knows that when we say 'Models/Person' we mean 'Assets/Scripts/Models/Person.js'
 
-    var people = [],
-        scriptsOnPage = $('script');
+        var people = [],
+            scriptsOnPage = $('script');
 
-    people.push(new Person('Jim'));
-    people.push(new Person(randomUtility.someValue));
+        people.push(new Person('Jim'));
+        people.push(new Person(randomUtility.someValue));
 
-    return { 
-        list: people, 
-        scripts: scriptsOnPage 
-    };
+        return { 
+            list: people, 
+            scripts: scriptsOnPage 
+        };
 
-});
-```
+    });
 
 Be aware that nothing should be declared outside of a single define() call. 
 
@@ -208,44 +192,42 @@ Have a look at the modules defined in ‘Models/Person.js’ and ‘Utils/random
 
 ### 4. Run a build script
 
-RequireJs provides you with an optimisation script which you can run from the command line (I use the Terminal on the Mac, but your mileage may vary on Windows or other OS’) which helps you concatenate your different modules into one script and then minifies it for you and exports this single file into a folder of your choosing so you can link to this new file rather than your original main.js file (like we have at the moment). You could set-up the build script to just export it in the same folder as your main.js file and simply call it main.min.js if you like - up to you.
+RequireJS provides you with an optimisation script which you can run from the command line (I use the Terminal on the Mac, but your mileage may vary on Windows or other OS’) which helps you concatenate your different modules into one script and then minifies it for you and exports this single file into a folder of your choosing so you can link to this new file rather than your original main.js file (like we have at the moment). You could set-up the build script to just export it in the same folder as your main.js file and simply call it main.min.js if you like - up to you.
 
-To run the build script we’re using NodeJs (as recommended by the author of RequireJs), but you can use Java as well if that’s your preference. Have a look at the RequireJs site to find out about that or if you need more information on installing NodeJs (as that is outside the realms of this post).
+To run the build script we’re using NodeJs (as recommended by the author of RequireJS), but you can use Java as well if that’s your preference. Have a look at the RequireJS site to find out about that or if you need more information on installing NodeJs (as that is outside the realms of this post).
 
 I’ve placed my build script (and the optimisation script) in the my main scripts folder ‘Assets/Scripts’ as I like to keep everything together (I know some people prefer to have this optimisation script completely separate from their project files, so you can place it wherever you feel comfortable).
 
 My build script looks like this…
 
-```js
-/*
- * http://requirejs.org/docs/optimization.html
- *
- * Use NodeJs to execute the r.js optimisation script on this build script
- * node r.js -o app.build.js
- *
- * See: https://github.com/jrburke/r.js/blob/master/build/example.build.js for an example build script
- *
- * If you specify just the name (with no includes/excludes) then all modules are combined into the "main" file.
- * You can include/exclude specific modules though if needed
- *
- * You can also set optimize: "none" (or more specific uglifyjs settings) if you need to.
- */
+    /*
+     * http://requirejs.org/docs/optimization.html
+     *
+     * Use NodeJs to execute the r.js optimisation script on this build script
+     * node r.js -o app.build.js
+     *
+     * See: https://github.com/jrburke/r.js/blob/master/build/example.build.js for an example build script
+     *
+     * If you specify just the name (with no includes/excludes) then all modules are combined into the "main" file.
+     * You can include/exclude specific modules though if needed
+     *
+     * You can also set optimize: "none" (or more specific uglifyjs settings) if you need to.
+     */
 
-({
-    appDir: "../../",
-    baseUrl: "Assets/Scripts",
-    dir: "../../project-build",
-    modules: [
-        {
-            name: "main"
-            /*
-                include: ["App/people"],
-                exclude: ["Utils/random"]
-            */
-        }
-    ]
-})
-```
+    ({
+        appDir: "../../",
+        baseUrl: "Assets/Scripts",
+        dir: "../../project-build",
+        modules: [
+            {
+                name: "main"
+                /*
+                    include: ["App/people"],
+                    exclude: ["Utils/random"]
+                */
+            }
+        ]
+    })
 
 See the code comments above for the command you need to use to execute the build script using the optimisation tool.
 
@@ -260,7 +242,7 @@ Well… start using AMD in your projects.
 
 The best way to learn it is to use it. Try out some of the basic structural changes to get yourself used to architecting your apps in a modular fashion, and then just go for it!
 
-I’ve covered RequireJs here, but I’ve heard good things about [@unscriptable](http://twitter.com/unscriptable)’s Curl loader ([https://github.com/unscriptable/curl](https://github.com/unscriptable/curl)) so I’d recommend checking that out too.
+I’ve covered RequireJS here, but I’ve heard good things about [@unscriptable](http://twitter.com/unscriptable)’s Curl loader ([https://github.com/unscriptable/curl](https://github.com/unscriptable/curl)) so I’d recommend checking that out too.
 
 Links/Reference Material
 ------------------------

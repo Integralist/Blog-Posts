@@ -1,5 +1,4 @@
-Beginners guide on how to test your code (using Jasmine BDD)
-============================================================
+#Beginners guide on how to test your code (using Jasmine BDD)
 
 * Introduction
 * Start how you mean to go on
@@ -65,82 +64,71 @@ The set-up is as follows:
 * Then include your own JavaScript code ‘my-cool-library.js’
 * Then include your own ‘my-tests.js’
 * After that have an inline script which executes the Jasmine test runner…
-	
-```js
-jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
-jasmine.getEnv().execute();
-```
+		jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+		jasmine.getEnv().execute();
 
 Within your own ‘my-tests.js’ file is where you’ll write your unit-tests.
 
 Different unit-testing libraries have different API’s. Jasmine’s API is as follows…
 
-```js
-describe('test suite name', function(){
-	// assertions for your code to try and pass
-	// if any assertions fail then this entire suite fails
-});
-```
+	describe('test suite name', function(){
+		// assertions for your code to try and pass
+		// if any assertions fail then this entire suite fails
+	});
 
 An example
 ----------
 
 So now imagine your ‘my-cool-library.js’ consisted of an object whose API let the user add/remove or check for CSS classes on an element. Lets say the API was as follows…
 
-```js
-var header = document.getElementById('my-header');
-css.add(header, 'newclass') // --> adds the class 'newclass' to the specified element 'header'
-css.has(header, 'newclass') // --> returns a boolean value (true/false) depending on whether the class 'newclass' is found
-css.remove(header, 'newclass') // --> removes the class 'newclass' from the specified element 'header'
-css.classes(header) // --> returns an Array of classes found on this element
-```
+	var header = document.getElementById('my-header');
+	css.add(header, 'newclass') // --> adds the class 'newclass' to the specified element 'header'
+	css.has(header, 'newclass') // --> returns a boolean value (true/false) depending on whether the class 'newclass' is found
+	css.remove(header, 'newclass') // --> removes the class 'newclass' from the specified element 'header'
+	css.classes(header) // --> returns an Array of classes found on this element
 
 Your test suite for this code could look something like (don’t worry, we’ll discuss after)…
 
-```js
-// Test Suite
-describe('CSS tests', function() {
-	
-	var header = document.getElementById('my-header');
-	
-	beforeEach(function() {
-		// Reset the className before each spec is run
-		header.className = 'myclassa myclassb';
+	// Test Suite
+	describe('CSS tests', function() {
+		
+		var header = document.getElementById('my-header');
+		
+		beforeEach(function() {
+			// Reset the className before each spec is run
+			header.className = 'myclassa myclassb';
+		});
+		
+		// Spec
+		it('should return an Array of class names', function() {
+			expect(css.classes(header)).toEqual(['myclassa', 'myclassb']);
+			expect(css.classes(header).length).toBe(2);
+		});
+		
+		// Spec
+		it('should add class to element', function() {
+			css.add(header, 'newclass');
+			expect(header.className).toBe('myclassa myclassb newclass');
+		});
+		
+		// Spec
+		it('should return a boolean for whether the class is on the given element', function() {
+			expect(css.has(header, 'myclassa')).toBeTruthy();
+			expect(css.has(header, 'newclass')).toBeFalsy(); // although in the previous spec we added 'newclass' to the element, in this spec this assertion should return false because the beforeEach method above has reset the class list back to 'myclassa myclassb'
+		});
+		
+		// Spec
+		it('should remove class from element', function() {
+			css.remove(header, 'myclassb');
+			expect(header.className).toBe('myclassa');
+		});
+		
 	});
-	
-	// Spec
-	it('should return an Array of class names', function() {
-		expect(css.classes(header)).toEqual(['myclassa', 'myclassb']);
-		expect(css.classes(header).length).toBe(2);
-	});
-	
-	// Spec
-	it('should add class to element', function() {
-		css.add(header, 'newclass');
-		expect(header.className).toBe('myclassa myclassb newclass');
-	});
-	
-	// Spec
-	it('should return a boolean for whether the class is on the given element', function() {
-		expect(css.has(header, 'myclassa')).toBeTruthy();
-		expect(css.has(header, 'newclass')).toBeFalsy(); // although in the previous spec we added 'newclass' to the element, in this spec this assertion should return false because the beforeEach method above has reset the class list back to 'myclassa myclassb'
-	});
-	
-	// Spec
-	it('should remove class from element', function() {
-		css.remove(header, 'myclassb');
-		expect(header.className).toBe('myclassa');
-	});
-	
-});
-```
 
 …so a few things you’ll notice:
 
 * We’ve grouped all our tests related to the CSS part of our code using Jasmine’s 
-	```js
-	describe('test suite name', function(){ /* tests */ });
-	```
+		describe('test suite name', function(){ /* tests */ });
 * We’re using a setUp method (which Jasmine calls `beforeEach`) to run some code to reset the class names before each test run (so we start from a clean slate for each test) - there is also a corresponding tearDown method which Jasmine calls `afterEach` (see documentation)
 * Each test is represented by `it('expectation of this test', function(){ /* assertions */ });`
 * The assertions are handled by Jasmine’s `expect(expressions).matcher`
@@ -156,23 +144,21 @@ Jasmine has a few more matchers which you can read more about in the documentati
 
 You can even create your own matchers…
 
-```js
-// Add our two new matchers. One to check if an object is an Array and the other to check if the result is a Number
-// You create these within the beforeEach method which is executed before each test is run
-beforeEach(function() {
-	this.addMatchers({
-		toBeArray: function(expected) {
-			return Object.prototype.toString.call(this.actual); === '[object Array]' ? true : false;
-		}
+	// Add our two new matchers. One to check if an object is an Array and the other to check if the result is a Number
+	// You create these within the beforeEach method which is executed before each test is run
+	beforeEach(function() {
+		this.addMatchers({
+			toBeArray: function(expected) {
+				return Object.prototype.toString.call(this.actual); === '[object Array]' ? true : false;
+			}
+		});
+		
+		this.addMatchers({
+			toBeNumber: function(expected) {
+				return /\d+/.test(this.actual);
+			}
+		});
 	});
-	
-	this.addMatchers({
-		toBeNumber: function(expected) {
-			return /\d+/.test(this.actual);
-		}
-	});
-});
-```
 
 Review of example
 -----------------
@@ -183,12 +169,10 @@ I’ve set-up an example of the code found in this post on Github: [https://gith
 
 So lets look at one of the tests…
 
-```js
-it('should add class to element', function() {
-	css.add(header, 'newclass');
-	expect(header.className).toBe('myclassa myclassb newclass');
-});
-```
+	it('should add class to element', function() {
+		css.add(header, 'newclass');
+		expect(header.className).toBe('myclassa myclassb newclass');
+	});
 
 …as you can see the test starts by describing what is expected of it. In this case it should add a class to the specified element.
 
@@ -202,15 +186,13 @@ To see the test suite fail then just amend one of the tests slightly to cause it
 
 Now when you run the test-runner.html file (remembering that now one of the tests will fail) you’ll see that instead of a nice clean green bar to highlight success you see a red bar and a drill down into the issue. If you do as I suggested above to cause the test to fail you’ll notice now Jasmine highlights exactly what the problem is to you…
 
-[http://cl.ly/1z3b1g3U1z0e2r2U2c2H](See screenshot image)
+[See screenshot image](http://cl.ly/1z3b1g3U1z0e2r2U2c2H)
 
-```
-4 specs, 1 failure in 0.014s
-> CSS tests (this is the name of the test suite that failed - as you could have multiple suites running this helps narrow it down)
->> should add class to element (this tells you the exact test that fails)
->>> Expected 'myclassa myclassb newclass' to be 'x myclassa myclassb newclass'. (this tells you what the result actually was followed by what the test was expecting - so you can see where the result went wrong)
->>>> (after this you get a stack trace of what was executed so you can see specifics of where the error occurred)
-```
+	4 specs, 1 failure in 0.014s
+	> CSS tests (this is the name of the test suite that failed - as you could have multiple suites running this helps narrow it down)
+	>> should add class to element (this tells you the exact test that fails)
+	>>> Expected 'myclassa myclassb newclass' to be 'x myclassa myclassb newclass'. (this tells you what the result actually was followed by what the test was expecting - so you can see where the result went wrong)
+	>>>> (after this you get a stack trace of what was executed so you can see specifics of where the error occurred)
 
 Conclusion
 ----------

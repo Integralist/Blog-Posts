@@ -64,33 +64,31 @@ Things have a come a loooong way since the good 'ole days of web development. Ou
 
 Below is an example of a web page HTML structure…
 
-```html
-<!doctype html>
-<!--[if IE 8]><html class="ie8" dir="ltr" lang="en"><![endif]-->
-<!--[if IE 9]><html class="ie9" dir="ltr" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--> <html dir="ltr" lang="en"> <!--<![endif]-->
+    <!doctype html>
+    <!--[if IE 8]><html class="ie8" dir="ltr" lang="en"><![endif]-->
+    <!--[if IE 9]><html class="ie9" dir="ltr" lang="en"><![endif]-->
+    <!--[if gt IE 9]><!--> <html dir="ltr" lang="en"> <!--<![endif]-->
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="Mark McDonnell" />
-		<title>My thoughts on current web development practices</title>
-		<!--[if lt IE 9]>
-		<script src="/Assets/Scripts/Utils/Elements/html5.js"></script>
-		<![endif]-->
-		<link rel="author" href="/humans.txt" type="text/plain">
-    	<link rel="stylesheet" href="Assets/Styles/mobile.css"  media="only screen and (min-width: 320px)">
-        <link rel="stylesheet" href="Assets/Styles/tablet.css"  media="only screen and (min-width: 600px) and (max-width: 959px)">
-        <link rel="stylesheet" href="Assets/Styles/desktop.css" media="only screen and (min-width: 960px)">
-    	<!--[if (lt IE 9) & (!IEMobile)]>
-    	<link rel="stylesheet" href="/Assets/Styles/desktop.css">
-    	<![endif]-->
-	</head>
-	<body>
-	    Content
-	</body>
-</html>
-```
+    	<head>
+    		<meta charset="utf-8">
+    		<meta name="viewport" content="width=device-width, initial-scale=1">
+    		<meta name="author" content="Mark McDonnell" />
+    		<title>My thoughts on current web development practices</title>
+    		<!--[if lt IE 9]>
+    		<script src="/Assets/Scripts/Utils/Elements/html5.js"></script>
+    		<![endif]-->
+    		<link rel="author" href="/humans.txt" type="text/plain">
+        	<link rel="stylesheet" href="Assets/Styles/mobile.css"  media="only screen and (min-width: 320px)">
+            <link rel="stylesheet" href="Assets/Styles/tablet.css"  media="only screen and (min-width: 600px) and (max-width: 959px)">
+            <link rel="stylesheet" href="Assets/Styles/desktop.css" media="only screen and (min-width: 960px)">
+        	<!--[if (lt IE 9) & (!IEMobile)]>
+        	<link rel="stylesheet" href="/Assets/Styles/desktop.css">
+        	<![endif]-->
+    	</head>
+    	<body>
+    	    Content
+    	</body>
+    </html>
 
 This breaks down into the following basic structure…
 
@@ -115,16 +113,14 @@ We then have a Microsoft 'conditional comment' which says if the browser is less
 
 Next we have a line of code which lets the host know there is a `humans.txt` file available. The point of this file is to inform the user who built the site (similar to how a `robot.txt` file informs a Search Engine robot what can/can't be indexed). There are no strict rules on how the content of this file should be laid out, but I generally use:
 
-```
-/* the humans responsible & colophon */
-/* humanstxt.org */
+    /* the humans responsible & colophon */
+    /* humanstxt.org */
 
-/* TEAM */
-Company Name: Developer A, Developer B, Developer C
-Site: http://www.domain.tld/
-Twitter: http://twitter.com/username
-Location: Address
-```
+    /* TEAM */
+    Company Name: Developer A, Developer B, Developer C
+    Site: http://www.domain.tld/
+    Twitter: http://twitter.com/username
+    Location: Address
 
 ###Brief Example of Media Queries
 
@@ -152,20 +148,18 @@ After that, we have the `<body>` element which will contain the content of your 
 
 It's important that you use only elements that semantically match the content. There are easy examples and there are slightly more awkward examples. An easy example is a top level navigation menu, I think most of us are aware by now that the most semantically correct element to use here is an un-ordered list `<ul>`…
 
-```html
-<ul>
-	<li><a href="">Home</a></li>
-	<li><a href="">About</a></li>
-	<li><a href="">Services</a>
-		<ul>
-			<li><a href="">Service A</a></li>
-			<li><a href="">Service B</a></li>
-			<li><a href="">Service C</a></li>
-		</ul>
-	</li>
-	<li><a href="">Contact</a></li>
-</ul>
-```
+    <ul>
+    	<li><a href="">Home</a></li>
+    	<li><a href="">About</a></li>
+    	<li><a href="">Services</a>
+    		<ul>
+    			<li><a href="">Service A</a></li>
+    			<li><a href="">Service B</a></li>
+    			<li><a href="">Service C</a></li>
+    		</ul>
+    	</li>
+    	<li><a href="">Contact</a></li>
+    </ul>
 
 A slightly more awkward example though: imagine we have one of those large 'web 2.0' (how old does that sound already!) footer areas where the designer has a massive list of helpful links and contact information. The structure of that might be something like this…
 
@@ -178,24 +172,22 @@ Service C    | Google+       | 22222 222222
 
 …you *could* use a `<dl>` element, but is this strictly the correct element to use? An example of what that would look like is…
 
-```html
-<dl>
-	<dt>Services</dt>
-		<dd>Service A<dd>
-		<dd>Service B<dd>
-		<dd>Service C<dd>
-	
-	<dt>Social</dt>
-		<dd>Facebook<dd>
-		<dd>Twitter<dd>
-		<dd>Google+<dd>
-	
-	<dt>Contacts</dt>
-		<dd>00000 000000<dd>
-		<dd>11111 111111<dd>
-		<dd>22222 222222<dd>
-</dl>
-```
+    <dl>
+    	<dt>Services</dt>
+    		<dd>Service A<dd>
+    		<dd>Service B<dd>
+    		<dd>Service C<dd>
+    	
+    	<dt>Social</dt>
+    		<dd>Facebook<dd>
+    		<dd>Twitter<dd>
+    		<dd>Google+<dd>
+    	
+    	<dt>Contacts</dt>
+    		<dd>00000 000000<dd>
+    		<dd>11111 111111<dd>
+    		<dd>22222 222222<dd>
+    </dl>
 
 …if we look at the specification for this element it says… 
 
@@ -203,34 +195,32 @@ Service C    | Google+       | 22222 222222
 
 …so this looks to be the right element to use as it is an "association list" (i.e. we've associated a list of items with the relevant title) but maybe instead we should have used a `<table>` element because we are kind of dealing with tabular data. There are defined headers with *associated* rows of content (similar to the association made with a `<dl>`). An example of what this would look like is…
 
-```html
-<table>
-    <thead>
-        <tr>
-            <th scope="col">Services</th>
-            <th scope="col">Social</th>
-            <th scope="col">Contacts</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Service A</td>
-            <td>Facebook</td>
-            <td>00000 000000</td>
-        </tr>
-        <tr>
-            <td>Service B</td>
-            <td>Twitter</td>
-            <td>11111 111111</td>
-        </tr>
-        <tr>
-            <td>Service C</td>
-            <td>Google+</td>
-            <td>22222 222222</td>
-        </tr>
-    </tbody>
-</table>
-```
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Services</th>
+                <th scope="col">Social</th>
+                <th scope="col">Contacts</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Service A</td>
+                <td>Facebook</td>
+                <td>00000 000000</td>
+            </tr>
+            <tr>
+                <td>Service B</td>
+                <td>Twitter</td>
+                <td>11111 111111</td>
+            </tr>
+            <tr>
+                <td>Service C</td>
+                <td>Google+</td>
+                <td>22222 222222</td>
+            </tr>
+        </tbody>
+    </table>
 
 …this is a bit of an anal analysis of 'semantic' usage, but the fact is this sort of thing happens all the time. We look at something in a design and try to think of the most semantic element to use and although `<dl>` seems like the right choice, is it really? I guess it depends on how you interpret the specification. I know I've used the `<dl>` elements many times but I sometimes wonder if I shouldn't have just gone with the `<table>` element instead (on a side note: I'd love to hear people's feedback on this)
 
@@ -314,46 +304,44 @@ So where you see the `.css` files inside of the /`Styles`/ directory - this is a
 
 For example, the home.scss file (which is what generates the home.css file) could contain the following content (note: that this content changes depending on the requirements of your project)…
 
-```css
-// Configurations/Settings
-@import "Configurations/variables";
+    // Configurations/Settings
+    @import "Configurations/variables";
 
-// Functions
-@import "Functions/calcems";
-@import "Functions/calcpercentage";
-@import "Functions/fontsize";
+    // Functions
+    @import "Functions/calcems";
+    @import "Functions/calcpercentage";
+    @import "Functions/fontsize";
 
-// Base
-@import "Base/normalize";
-@import "Base/additions";
-@import "Base/theme";
+    // Base
+    @import "Base/normalize";
+    @import "Base/additions";
+    @import "Base/theme";
 
-// Layouts
-@import "Layouts/grid";
-@import "Layouts/container";
+    // Layouts
+    @import "Layouts/grid";
+    @import "Layouts/container";
 
-// Modules
-    
-    // Mixins
-    @import "Modules/Mixins/radius";
-    @import "Modules/Mixins/transition";
+    // Modules
+        
+        // Mixins
+        @import "Modules/Mixins/radius";
+        @import "Modules/Mixins/transition";
 
-    // Components
-    @import "Modules/Components/media";
-    
-    // Helpers
-    @import "Modules/Helpers/clearfix";
-    @import "Modules/Helpers/hidetxt";
-    @import "Modules/Helpers/horizontal";
+        // Components
+        @import "Modules/Components/media";
+        
+        // Helpers
+        @import "Modules/Helpers/clearfix";
+        @import "Modules/Helpers/hidetxt";
+        @import "Modules/Helpers/horizontal";
 
-// Generic Styles for Modules that appear across the site (e.g. header/navigation/footer)
-@import "Modules/header";
-@import "Modules/navigation";
-@import "Modules/footer";
+    // Generic Styles for Modules that appear across the site (e.g. header/navigation/footer)
+    @import "Modules/header";
+    @import "Modules/navigation";
+    @import "Modules/footer";
 
-// Page Specific Styles
-@import "Modules/Queries/960-home";
-```
+    // Page Specific Styles
+    @import "Modules/Queries/960-home";
 
 …so let's go over a couple of points about this Sass file.
 
@@ -372,103 +360,89 @@ Now before we get into OOCSS let's first quickly demonstrate some issues with us
 
 Here is a typical usage of Sass:
 
-```css
-.nav{
-    li{
-        a{}
+    .nav{
+        li{
+            a{}
+        }
     }
-}
-```
 
 Which when the pre-processor executes equates to...
 
-```css
-.nav {}
-.nav li {}
-.nav li a {}
-```
+    .nav {}
+    .nav li {}
+    .nav li a {}
 
 But this might not have been the result you intended, instead you actually wanted…
 
-```css
-.nav {}
-.nav li {}
-.nav a {}
-```
+    .nav {}
+    .nav li {}
+    .nav a {}
 
 …which would have better performance and be more 'specific' to your DOM structure.
 
 To do that you just need to tweak the Sass code slightly…
 
-```css
-.nav{
-    li{
-        
+    .nav{
+        li{
+            
+        }
+        a {
+            
+        }
     }
-    a {
-        
-    }
-}
-```
 
 So just be careful with Sass and double check its output to ensure it is producing the selectors/rules you actually want. 
 
 One tip for using nested selectors is to use the ampersand `&` character to reference the whole selector, so for example…
 
-```css
-a {
-	text-decoration: none;
+    a {
+    	text-decoration: none;
 
-	// this will be compiled to 
-	// a:hover, a:focus
-    &:hover,
-    &:focus {
-        color: $brand-color;
-    }
-}
-
-.rate-options {
-    counter-reset: rateoption;
-    list-style: none;
-    margin-top: 2em;
-    
-    li {
-        margin-right: 1.5em;
-    
     	// this will be compiled to 
-    	// .rate-options li:before
-        &:before {
-            color: $action-color;
-            content: counters(rateoption, "") " ";
-            counter-increment: rateoption;
+    	// a:hover, a:focus
+        &:hover,
+        &:focus {
+            color: $brand-color;
         }
     }
-}
-```
+
+    .rate-options {
+        counter-reset: rateoption;
+        list-style: none;
+        margin-top: 2em;
+        
+        li {
+            margin-right: 1.5em;
+        
+        	// this will be compiled to 
+        	// .rate-options li:before
+            &:before {
+                color: $action-color;
+                content: counters(rateoption, "") " ";
+                counter-increment: rateoption;
+            }
+        }
+    }
 
 Other issues with pre-processors can come from Mixins, which although very useful, are also a waste of time/space if good OOCSS is already in place. Remember that the content of a Mixin is copied into every rule you specify it to be used. 
 
 The `@extend` statement is slightly better in the sense that you can write a class `.funky-border` which contains a single declaration: `border: 10px dashed blue;` and then for every element that uses that same styling you can simply do…
 
-```css
-.my-box {
-	@extend .funky-border;
-	color: red;
-}
-``` 
+    .my-box {
+    	@extend .funky-border;
+    	color: red;
+    } 
 
 …what this ends up compiling to is something like this…
 
-```css
-.funky-border,
-.my-box {
-	border: 10px dashed blue;
-}
+    .funky-border,
+    .my-box {
+    	border: 10px dashed blue;
+    }
 
-.my-box {
-	color: red;
-}
-```
+    .my-box {
+    	color: red;
+    }
 
 …again, looks great but you need to be careful because in Internet Explorer there is a limit to the amount of selectors you can specify for a single rule! So if you were using `@extend` everywhere you might hit an issue (unlikely you'll reach that limit, but on a application big enough and with bad architecture in place that could still happen).
 
@@ -528,40 +502,34 @@ All of the following items are 'modular' in that sense (e.g. when it comes down 
 
 Example Mixin:
 
-```css
-@mixin transition ($transition: all 0.2s linear) {
-	-webkit-transition: $transition;
-	   -moz-transition: $transition;
-	    -ms-transition: $transition;
-	     -o-transition: $transition;
-	        transition: $transition;
-}
-```
+    @mixin transition ($transition: all 0.2s linear) {
+    	-webkit-transition: $transition;
+    	   -moz-transition: $transition;
+    	    -ms-transition: $transition;
+    	     -o-transition: $transition;
+    	        transition: $transition;
+    }
 
 ####Extensions
 
 Extensions are effectively re-usable classes which you can incorporate into any existing rule. An example of this could be having a class that lets you set a box shadow…
 
-```css
-.shadow {
-    @include shadow(0 3px 6px #666);
-    border: 3px solid #fff;
-}
-```
+    .shadow {
+        @include shadow(0 3px 6px #666);
+        border: 3px solid #fff;
+    }
 
 …which would be used like so… 
 
-```css
-.profile-photo {
-    @extend .shadow;
-    // other styles
-}
+    .profile-photo {
+        @extend .shadow;
+        // other styles
+    }
 
-.company-logo {
-    @extend .shadow;
-    // other styles
-}
-```
+    .company-logo {
+        @extend .shadow;
+        // other styles
+    }
 
 …you could argue that this type of class should be incorporated into a 'module' - and most of the time that is correct - but this isn't *always* appropriate.
 
@@ -577,23 +545,19 @@ So now I find the best way to manage modules is to keep the module, and the stat
 
 The way I keep the IE code within the same file is I stopped having them as separate files like so…
 
-```html
-<!--[if IE 8]>
-<link rel="stylesheet" href="/Assets/Styles/IE8.css">
-<![endif]-->
+    <!--[if IE 8]>
+    <link rel="stylesheet" href="/Assets/Styles/IE8.css">
+    <![endif]-->
 
-<!--[if IE 7]>
-<link rel="stylesheet" href="/Assets/Styles/IE7.css">
-<![endif]-->
-```
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="/Assets/Styles/IE7.css">
+    <![endif]-->
 
 …and instead went with the [Paul Irish solution](http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/)…
 
-```html
-<!--[if IE 8]><html class="ie8" dir="ltr" lang="en"><![endif]-->
-<!--[if IE 9]><html class="ie9" dir="ltr" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--> <html dir="ltr" lang="en"> <!--<![endif]-->
-```
+    <!--[if IE 8]><html class="ie8" dir="ltr" lang="en"><![endif]-->
+    <!--[if IE 9]><html class="ie9" dir="ltr" lang="en"><![endif]-->
+    <!--[if gt IE 9]><!--> <html dir="ltr" lang="en"> <!--<![endif]-->
 
 …yes doing it this way *can* mean the overall file size of your CSS is larger for browsers that aren't affected by the IE specific code, but to be honest since dropping support for IE7 the amount of IE fixes needed has literally dropped off the radar!
 
@@ -603,12 +567,10 @@ Selectors are a tricky subject in CSS. The key principle is to be as 'specific' 
 
 Where you may have `ul.menu` just use `.menu`. This is because if you had another element which isn't a `ul` but which needed similar stylings to your `.menu` class you can now reuse that class, where as before you would of had to of either written another class with similar code, or added another element selector to the rule like so…
 
-```css
-ul.menu,
-ol.menu {
-    // styles
-}
-```
+    ul.menu,
+    ol.menu {
+        // styles
+    }
 
 …both of which are bad situations, so just be specific (where possible/reasonable).
 
@@ -663,11 +625,9 @@ But with percentages you wouldn't just set the width to `.15625%` you need to mo
 
 To help your images scale appropriately along with your responsive design you can set the `max-width` property to be 100% which means the image will never be larger than its container but can happily resize/scale downwards on smaller screens…
 
-```css
-img {
-    max-width: 100%;
-}
-```
+    img {
+        max-width: 100%;
+    }
 
 ####What about containing elements with unknown widths?
 
@@ -683,11 +643,9 @@ By doing: `960 / 16 = 60` (again it's that `target / context = result` algorithm
 
 We can now set our wrapper element like so…
 
-```css
-.container {
-    max-width: 60em;
-}
-```
+    .container {
+        max-width: 60em;
+    }
 
 ###Mobile Design: *users on the move*
 
@@ -695,19 +653,17 @@ Because I make sure my sites are built using a responsive approach, it isn't a w
 
 The tool for that job are 'Media Queries'…
 
-```css
-@media only screen and (min-width: 320px) {
-	// Mobile styles
-}
+    @media only screen and (min-width: 320px) {
+    	// Mobile styles
+    }
 
-@media only screen and (min-width: 600px) and (max-width: 959px) {
-	// Tablet styles
-}
+    @media only screen and (min-width: 600px) and (max-width: 959px) {
+    	// Tablet styles
+    }
 
-@media only screen and (min-width: 960px) {
-	// Desktop styles
-}
-```
+    @media only screen and (min-width: 960px) {
+    	// Desktop styles
+    }
 
 …yes I know these examples are *conveniently* matching the dimensions of an iPhone and iPad - which is a bad thing! What you ideally want to do is target good 'break-points' in your design and not screen dimensions because let's face it: we know better by now that these assumptions will fail us in the future.
 
@@ -743,13 +699,11 @@ This means you can now use your command line to navigate to your CSS folder and 
 
 There are different options/ways to use the command line interface of CSS Lint, and they are as follows…
 
-```
-csslint [options] [file|dir]*
-csslint file1.css file2.css
-csslint ./
-csslint --errors=box-model,ids test.css // => decide what should be errors
-csslint --warnings=box-model,ids test.css // => decide what should be warnings
-```
+    csslint [options] [file|dir]*
+    csslint file1.css file2.css
+    csslint ./
+    csslint --errors=box-model,ids test.css // => decide what should be errors
+    csslint --warnings=box-model,ids test.css // => decide what should be warnings
 
 Below is my general usage command (which I keep in a txt file inside my `/Styles/Lint` folder for quicker copy/pasting into the command line interface): 
 
@@ -758,7 +712,6 @@ csslint --errors=import,compatible-vendor-prefixes,display-property-grouping,ove
 ```
 
 When I run that command I see any bugs/issues with my CSS code that doesn't appear to abide by the 'rules' specified via the command line options.
-
 
 ##JavaScript: *the behaviour*
 
@@ -776,9 +729,9 @@ I guess the best place to start is with a good foundation and that is: AMD
 
 This gives you a modular code base that is easily re-usable because each 'module' (and its specified dependancies) should be completely transferable between projects. I have [a whole load of modules](https://github.com/Integralist/Passage/tree/master/public/Assets/Scripts/Utils) that I use across lots of different projects and I'm adding to them all the time.
 
-Because modules aren't natively supported in browsers yet (they're in discussion for ES6) then AMD is the next best thing. To use AMD you need a module loader and that's where [RequireJs](http://requirejs.org/) comes in - there are other AMD loaders available but I prefer to use RequireJs. I won't go into the details of how to use RequireJs as [I've already written about it in the past](https://github.com/Integralist/Blog-Posts/blob/master/Beginners-guide-to-AMD-and-RequireJs.md) but suffice to say it makes it very easy to work on a large scale project and to deploy your JavaScript as a single minified file.
+Because modules aren't natively supported in browsers yet (they're in discussion for ES6) then AMD is the next best thing. To use AMD you need a module loader and that's where [RequireJS](http://requirejs.org/) comes in - there are other AMD loaders available but I prefer to use RequireJS. I won't go into the details of how to use RequireJS as [I've already written about it in the past](https://github.com/Integralist/Blog-Posts/blob/master/Beginners-guide-to-AMD-and-RequireJS.md) but suffice to say it makes it very easy to work on a large scale project and to deploy your JavaScript as a single minified file.
 
-That's right, using modules is great but you still need to consider performance (all those HTTP requests aren't good for you) so RequireJs provides a handy build tool that lets you use NodeJs (or Java) to concatenate and minify all your modules into a single file. I've said it before and I'll say it again: I appreciate that some people think that the overall file size could be worse than loading multiple files but when I consider low connectivity devices the idea of loading one single file just feels better to me. 
+That's right, using modules is great but you still need to consider performance (all those HTTP requests aren't good for you) so RequireJS provides a handy build tool that lets you use NodeJs (or Java) to concatenate and minify all your modules into a single file. I've said it before and I'll say it again: I appreciate that some people think that the overall file size could be worse than loading multiple files but when I consider low connectivity devices the idea of loading one single file just feels better to me. 
 
 The great thing to remember about modules is the maintainability of the project and the re-usable code you get from it.
 
@@ -798,13 +751,11 @@ This means you can now use your command line to navigate to your JavaScript fold
 
 There are different options/ways to use the command line interface of JS Hint, and they are as follows…
 
-```
-jshint path path2 [options] // => run against specific scripts
-jshint *.js // => run against all scripts
-jshint main.js --show-non-errors // => show non-errors (e.g. Implied globals etc)
-jshint main.js --config ./Lint/config.json // => use specific configuration options
-jshint main.js --show-non-errors --config ./Lint/config.json // => example of showing non-errors against specific configuration settings
-```
+    jshint path path2 [options] // => run against specific scripts
+    jshint *.js // => run against all scripts
+    jshint main.js --show-non-errors // => show non-errors (e.g. Implied globals etc)
+    jshint main.js --config ./Lint/config.json // => use specific configuration options
+    jshint main.js --show-non-errors --config ./Lint/config.json // => example of showing non-errors against specific configuration settings
 
 Below is my general usage command (which I keep in a txt file inside my `/Scripts/Lint` folder for quicker copy/pasting into the command line interface): 
 
@@ -814,89 +765,87 @@ jshint **/*.js --config ./Lint/config.json
 
 ...this relies on a specific `config.json` file which is easier than manually typing all the options. It looks like this:
 
-```js
-{
-	// Settings
-    "passfail"      : false,  // Stop on first error.
-    "maxerr"        : 200,    // Maximum error before stopping.
+    {
+    	// Settings
+        "passfail"      : false,  // Stop on first error.
+        "maxerr"        : 200,    // Maximum error before stopping.
 
 
-    // Predefined globals whom JSHint will ignore.
-    "browser"       : true,   // Standard browser globals e.g. `window`, `document`.
+        // Predefined globals whom JSHint will ignore.
+        "browser"       : true,   // Standard browser globals e.g. `window`, `document`.
 
-    "node"          : false,
-    "rhino"         : false,
-    "couch"         : false,
-    "wsh"           : false,   // Windows Scripting Host.
+        "node"          : false,
+        "rhino"         : false,
+        "couch"         : false,
+        "wsh"           : false,   // Windows Scripting Host.
 
-    "jquery"        : true,
-    "prototypejs"   : false,
-    "mootools"      : false,
-    "dojo"          : false,
+        "jquery"        : true,
+        "prototypejs"   : false,
+        "mootools"      : false,
+        "dojo"          : false,
 
-    "predef"        : [  // Custom globals.
-    	// this is because we use require() from RequireJS library
-        "require",
-        "define",
-        
-        // this is because we use Jasmine BDD for unit-testing
-        "jasmine",
-        "describe",
-        "beforeEach",
-        "afterEach",
-        "it",
-        "expect"
-    ],
-
-
-    // Development.
-    "debug"         : false,  // Allow debugger statements e.g. browser breakpoints.
-    "devel"         : false,  // Allow developments statements e.g. `console.log();`.
+        "predef"        : [  // Custom globals.
+        	// this is because we use require() from RequireJS library
+            "require",
+            "define",
+            
+            // this is because we use Jasmine BDD for unit-testing
+            "jasmine",
+            "describe",
+            "beforeEach",
+            "afterEach",
+            "it",
+            "expect"
+        ],
 
 
-    // ECMAScript 5.
-    "es5"           : true,   // Allow ECMAScript 5 syntax.
-    "strict"        : false,  // Require `use strict` pragma  in every file.
-    "globalstrict"  : false,  // Allow global "use strict" (also enables 'strict').
+        // Development.
+        "debug"         : false,  // Allow debugger statements e.g. browser breakpoints.
+        "devel"         : false,  // Allow developments statements e.g. `console.log();`.
 
 
-    // The Good Parts.
-    "asi"           : false,  // Tolerate Automatic Semicolon Insertion (no semicolons).
-    "laxbreak"      : true,   // Tolerate unsafe line breaks e.g. `return [\n] x` without semicolons.
-    "bitwise"       : true,   // Prohibit bitwise operators (&, |, ^, etc.).
-    "boss"          : true,   // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
-    "curly"         : true,   // Require {} for every new block or scope.
-    "eqeqeq"        : true,   // Require triple equals i.e. `===`.
-    "eqnull"        : false,  // Tolerate use of `== null`.
-    "evil"          : false,  // Tolerate use of `eval`.
-    "expr"          : false,  // Tolerate `ExpressionStatement` as Programs.
-    "forin"         : false,  // Tolerate `for in` loops without `hasOwnPrototype`.
-    "immed"         : true,   // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
-    "latedef"       : true,   // Prohipit variable use before definition.
-    "loopfunc"      : false,  // Allow functions to be defined within loops.
-    "noarg"         : true,   // Prohibit use of `arguments.caller` and `arguments.callee`.
-    "regexp"        : false,  // Prohibit `.` and `[^...]` in regular expressions.
-    "regexdash"     : false,  // Tolerate unescaped last dash i.e. `[-...]`.
-    "scripturl"     : true,   // Tolerate script-targeted URLs.
-    "shadow"        : true,   // Allows re-define variables later in code e.g. `var x=1; x=2;`.
-    "supernew"      : false,  // Tolerate `new function () { ... };` and `new Object;`.
-    "undef"         : true,   // Require all non-global variables be declared before they are used.
+        // ECMAScript 5.
+        "es5"           : true,   // Allow ECMAScript 5 syntax.
+        "strict"        : false,  // Require `use strict` pragma  in every file.
+        "globalstrict"  : false,  // Allow global "use strict" (also enables 'strict').
 
 
-    // Personal styling preferences.
-    "newcap"        : true,   // Require capitalization of all constructor functions e.g. `new F()`.
-    "noempty"       : true,   // Prohibit use of empty blocks.
-    "nonew"         : true,   // Prohibit use of constructors for side-effects.
-    "nomen"         : true,   // Prohibit use of initial or trailing underbars in names.
-    "onevar"        : false,  // Allow only one `var` statement per function.
-    "plusplus"      : false,  // Prohibit use of `++` & `--`.
-    "sub"           : false,  // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`.
-    "trailing"      : false,  // Prohibit trailing whitespaces.
-    "white"         : true,   // Check against strict whitespace and indentation rules.
-    "indent"        : 4,      // Specify indentation spacing
-    "smarttabs"		: true	  // Suppress warnings about mixed tabs and spaces
-}
-```
+        // The Good Parts.
+        "asi"           : false,  // Tolerate Automatic Semicolon Insertion (no semicolons).
+        "laxbreak"      : true,   // Tolerate unsafe line breaks e.g. `return [\n] x` without semicolons.
+        "bitwise"       : true,   // Prohibit bitwise operators (&, |, ^, etc.).
+        "boss"          : true,   // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
+        "curly"         : true,   // Require {} for every new block or scope.
+        "eqeqeq"        : true,   // Require triple equals i.e. `===`.
+        "eqnull"        : false,  // Tolerate use of `== null`.
+        "evil"          : false,  // Tolerate use of `eval`.
+        "expr"          : false,  // Tolerate `ExpressionStatement` as Programs.
+        "forin"         : false,  // Tolerate `for in` loops without `hasOwnPrototype`.
+        "immed"         : true,   // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
+        "latedef"       : true,   // Prohipit variable use before definition.
+        "loopfunc"      : false,  // Allow functions to be defined within loops.
+        "noarg"         : true,   // Prohibit use of `arguments.caller` and `arguments.callee`.
+        "regexp"        : false,  // Prohibit `.` and `[^...]` in regular expressions.
+        "regexdash"     : false,  // Tolerate unescaped last dash i.e. `[-...]`.
+        "scripturl"     : true,   // Tolerate script-targeted URLs.
+        "shadow"        : true,   // Allows re-define variables later in code e.g. `var x=1; x=2;`.
+        "supernew"      : false,  // Tolerate `new function () { ... };` and `new Object;`.
+        "undef"         : true,   // Require all non-global variables be declared before they are used.
+
+
+        // Personal styling preferences.
+        "newcap"        : true,   // Require capitalization of all constructor functions e.g. `new F()`.
+        "noempty"       : true,   // Prohibit use of empty blocks.
+        "nonew"         : true,   // Prohibit use of constructors for side-effects.
+        "nomen"         : true,   // Prohibit use of initial or trailing underbars in names.
+        "onevar"        : false,  // Allow only one `var` statement per function.
+        "plusplus"      : false,  // Prohibit use of `++` & `--`.
+        "sub"           : false,  // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`.
+        "trailing"      : false,  // Prohibit trailing whitespaces.
+        "white"         : true,   // Check against strict whitespace and indentation rules.
+        "indent"        : 4,      // Specify indentation spacing
+        "smarttabs"		: true	  // Suppress warnings about mixed tabs and spaces
+    }
 
 When I run that command I see any bugs/issues with my JavaScript code that doesn't appear to abide by the 'rules' specified via the command line options. If I see nothing then that means there were no errors and I'm good to go.
 
@@ -904,23 +853,21 @@ When I run that command I see any bugs/issues with my JavaScript code that doesn
 
 One thing I find very useful to do for all my JavaScript files is to include a code structure comment at the top like so...
 
-```js
-/*
- * Code Structure:
- * - Variables
- * - Functions
- *   - fn_name_1
- *   - fn_name_2
- *   - fn_name_3
- *   - fn_name_4
- *   - fn_name_5
- *   - fn_name_6
- *   - fn_name_7
- *   - fn_name_8
- *   - fn_name_9
- * - Initialisation
- */
-```
+    /*
+     * Code Structure:
+     * - Variables
+     * - Functions
+     *   - fn_name_1
+     *   - fn_name_2
+     *   - fn_name_3
+     *   - fn_name_4
+     *   - fn_name_5
+     *   - fn_name_6
+     *   - fn_name_7
+     *   - fn_name_8
+     *   - fn_name_9
+     * - Initialisation
+     */
 
 ...this makes understanding where specific code is in the file a lot easier (at a glance). As you can see this code structure follows my [JavaScript Style Guide](https://github.com/Integralist/Style-Guides/blob/master/JavaScript%20Style%20Guide.md) which goes into more detail about the specifics of my JavaScript code structure.
 
@@ -989,133 +936,125 @@ But there are other aspects of your site that aren't simple to resolve - JavaScr
 
 Below is an example of a minor performance dilemma I had recently while writing CSS with the Sass pre-processor. Although this example would likely be an extremely neglible performance hit I still found it interesting (afterwards) how potentially easily it is to make mistakes when using a pre-processor. So here is some Sass driven CSS code… 
 
-```css
-.dashboard-box {
-    @include box-sizing(border-box);
-	@include shadow(1px 1px 3px rgba(0, 0, 0, .2));
-	@extend .box-gradient-bg;
-	
-	border: 1px solid $grey;
-	margin-bottom: 1.5em;
-	
-	&,
-    > div {
-	   @include radius(.5em);
-	}
-	
-	> div {
-    	border: 1px solid $white;
-    	padding: 0.2em;
-	}
-	
-	.title {
-    	@include radius(.3em);
-    	@extend .header-gradient-bg;
-    	font-size: 1.166666667em;
-    	margin: 0;
+    .dashboard-box {
+        @include box-sizing(border-box);
+    	@include shadow(1px 1px 3px rgba(0, 0, 0, .2));
+    	@extend .box-gradient-bg;
+    	
+    	border: 1px solid $grey;
+    	margin-bottom: 1.5em;
+    	
+    	&,
+        > div {
+    	   @include radius(.5em);
+    	}
+    	
+    	> div {
+        	border: 1px solid $white;
+        	padding: 0.2em;
+    	}
+    	
+    	.title {
+        	@include radius(.3em);
+        	@extend .header-gradient-bg;
+        	font-size: 1.166666667em;
+        	margin: 0;
+        }
     }
-}
-```
 
 …which generates the following CSS…
 
-```css
-.dashboard-box {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  -o-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  border: 1px solid #999999;
-  margin-bottom: 1.5em;
-}
-.dashboard-box,
-.dashboard-box > div {
-  -webkit-border-radius: 0.5em;
-  -moz-border-radius: 0.5em;
-  -o-border-radius: 0.5em;
-  border-radius: 0.5em;
-}
-.dashboard-box > div {
-  border: 1px solid white;
-  padding: 0.2em;
-}
-.dashboard-box .title {
-  -webkit-border-radius: 0.3em;
-  -moz-border-radius: 0.3em;
-  -o-border-radius: 0.3em;
-  border-radius: 0.3em;
-  font-size: 1.166666667em;
-  margin: 0;
-}
-```
+    .dashboard-box {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      -o-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      border: 1px solid #999999;
+      margin-bottom: 1.5em;
+    }
+    .dashboard-box,
+    .dashboard-box > div {
+      -webkit-border-radius: 0.5em;
+      -moz-border-radius: 0.5em;
+      -o-border-radius: 0.5em;
+      border-radius: 0.5em;
+    }
+    .dashboard-box > div {
+      border: 1px solid white;
+      padding: 0.2em;
+    }
+    .dashboard-box .title {
+      -webkit-border-radius: 0.3em;
+      -moz-border-radius: 0.3em;
+      -o-border-radius: 0.3em;
+      border-radius: 0.3em;
+      font-size: 1.166666667em;
+      margin: 0;
+    }
 
 …but at first I wasn't sure if having duplicated selectors (i.e. `.dashboard-box` and `.dashboard-box > div`) was very efficient, so I went back and changed my Sass code. This time I put `@include radius(.5em);` both at the top of the main declaration block as well as inside the `> div` declaration...
 
-```css
-.dashboard-box {
-    @include radius(.5em);
-    @include box-sizing(border-box);
-	@include shadow(1px 1px 3px rgba(0, 0, 0, .2));
-	@extend .box-gradient-bg;
-	
-	border: 1px solid $grey;
-	margin-bottom: 1.5em;
-	
-	> div {
-	    @include radius(.5em);
-    	border: 1px solid $white;
-    	padding: 0.2em;
-	}
-	
-	.title {
-    	@include radius(.3em);
-    	@extend .header-gradient-bg;
-    	font-size: 1.166666667em;
-    	margin: 0;
+    .dashboard-box {
+        @include radius(.5em);
+        @include box-sizing(border-box);
+    	@include shadow(1px 1px 3px rgba(0, 0, 0, .2));
+    	@extend .box-gradient-bg;
+    	
+    	border: 1px solid $grey;
+    	margin-bottom: 1.5em;
+    	
+    	> div {
+    	    @include radius(.5em);
+        	border: 1px solid $white;
+        	padding: 0.2em;
+    	}
+    	
+    	.title {
+        	@include radius(.3em);
+        	@extend .header-gradient-bg;
+        	font-size: 1.166666667em;
+        	margin: 0;
+        }
     }
-}
-```
 
 ...which resulted in the following CSS… 
 
-```css
-.dashboard-box {
-  -webkit-border-radius: 0.5em;
-  -moz-border-radius: 0.5em;
-  -o-border-radius: 0.5em;
-  border-radius: 0.5em;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  -o-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  border: 1px solid #999999;
-  margin-bottom: 1.5em;
-}
-.dashboard-box > div {
-  -webkit-border-radius: 0.5em;
-  -moz-border-radius: 0.5em;
-  -o-border-radius: 0.5em;
-  border-radius: 0.5em;
-  border: 1px solid white;
-  padding: 0.2em;
-}
-.dashboard-box .title {
-  -webkit-border-radius: 0.3em;
-  -moz-border-radius: 0.3em;
-  -o-border-radius: 0.3em;
-  border-radius: 0.3em;
-  font-size: 1.166666667em;
-  margin: 0;
-}
-```
+    .dashboard-box {
+      -webkit-border-radius: 0.5em;
+      -moz-border-radius: 0.5em;
+      -o-border-radius: 0.5em;
+      border-radius: 0.5em;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      -o-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      border: 1px solid #999999;
+      margin-bottom: 1.5em;
+    }
+    .dashboard-box > div {
+      -webkit-border-radius: 0.5em;
+      -moz-border-radius: 0.5em;
+      -o-border-radius: 0.5em;
+      border-radius: 0.5em;
+      border: 1px solid white;
+      padding: 0.2em;
+    }
+    .dashboard-box .title {
+      -webkit-border-radius: 0.3em;
+      -moz-border-radius: 0.3em;
+      -o-border-radius: 0.3em;
+      border-radius: 0.3em;
+      font-size: 1.166666667em;
+      margin: 0;
+    }
 
 Now, what has this given us? OK so yes this means I don't have the `.dashboard-box` or `.dashboard-box > div` selectors duplicated (which is good), BUT now I've got two different problems:
 
@@ -1152,7 +1091,7 @@ You can also have GitHub host simple website pages for you - [my site](http://ww
 
 There are many ways to automate your work flow, doing so makes you more efficient and productive and in general can just save you hassle.
 
-I've already discussed some of the command line tools I use that make my life easier (e.g. jshint, csslint, the RequireJs build script).
+I've already discussed some of the command line tools I use that make my life easier (e.g. jshint, csslint, the RequireJS build script).
 
 But there are other things you can do so as using a content generator like [Yeoman](http://yeoman.io/) which I'll be honest I don't use but some of the things it does for you are quite nice, such as:
 
@@ -1173,7 +1112,7 @@ I already have CSS and JavaScript linting on the command line which works for me
 
 I use the command line to handle my dependancies by pulling in GitHub hosted repositories as sub modules and then any time there is an update I can just run `git pull` on the relevant sub modules to get the latest versions - not quite as automatic as something like Google's Yeoman but it works for me.
 
-My CSS and JavaScript files are concatenated and minified with a combination of Sass and the RequireJs build script and so the only thing left to do is start programming.
+My CSS and JavaScript files are concatenated and minified with a combination of Sass and the RequireJS build script and so the only thing left to do is start programming.
 
 ##Conclusion
 
