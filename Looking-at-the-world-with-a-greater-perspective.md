@@ -1,3 +1,5 @@
+WIP (Work In Progress - haven't touched this in a couple of years actually)
+
 #Looking at the world with a greater perspective
 
 ##Table of contents
